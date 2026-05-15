@@ -1,0 +1,26 @@
+# BasicAirTemperatureFlow
+
+main: kit: flow: BasicAirTemperatureFlow:
+{
+  entity: "air_temperature",
+  kind: "basic",
+  name: "BasicAirTemperatureFlow",
+  step: [
+    {
+      match: {
+        collection_id: "collection01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "air_temperature_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAirTemperatureFlow"
+}

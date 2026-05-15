@@ -1,0 +1,26 @@
+# BasicWindSpeedFlow
+
+main: kit: flow: BasicWindSpeedFlow:
+{
+  entity: "wind_speed",
+  kind: "basic",
+  name: "BasicWindSpeedFlow",
+  step: [
+    {
+      match: {
+        collection_id: "collection01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "wind_speed_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWindSpeedFlow"
+}

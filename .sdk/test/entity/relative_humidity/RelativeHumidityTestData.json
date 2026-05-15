@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "relative_humidity": {
+      "RELATIVE_HUMIDITY00": {
+        "station_id": "STATION01",
+        "timestamp": "s1f",
+        "value": 32,
+        "collection_id": "COLLECTION01"
+      },
+      "RELATIVE_HUMIDITY01": {
+        "station_id": "STATION01",
+        "timestamp": "s3d",
+        "value": 62,
+        "collection_id": "COLLECTION01"
+      },
+      "RELATIVE_HUMIDITY02": {
+        "station_id": "STATION01",
+        "timestamp": "s5b",
+        "value": 92,
+        "collection_id": "COLLECTION01"
+      }
+    }
+  },
+  "new": {
+    "relative_humidity": {
+      "relative_humidity_ref01": {
+        "station_id": "STATION01",
+        "timestamp": "s79",
+        "value": 122
+      }
+    }
+  }
+}

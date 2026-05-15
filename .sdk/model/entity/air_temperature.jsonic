@@ -1,0 +1,97 @@
+# Entity: air_temperature
+
+main: kit: entity: air_temperature: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "station_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "air_temperature"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 1459
+                kind: "param"
+                name: "collection_id"
+                orig: "collection_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "datetime"
+                orig: "datetime"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/collections/{collectionId}/air-temperature"
+          parts: [
+            "collections"
+            "{collection_id}"
+            "air-temperature"
+          ]
+          rename: {
+            param: {
+              collectionId: "collection_id"
+            }
+          }
+          select: {
+            exist: [
+              "collection_id"
+              "date"
+              "datetime"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "collection"
+      ]
+    ]
+  }
+
+
+
+}

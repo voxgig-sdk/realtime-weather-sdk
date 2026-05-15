@@ -1,0 +1,51 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 6
+  metrics: count: method: 6
+
+  entity: air_temperature: {
+    path: "/collections/{collectionId}/air-temperature": {
+      rename: param: "collectionId": *"collection_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: collection: {
+    path: "/collections/{collectionId}/metadata": {
+      action: "metadata": {}
+      rename: param: "collectionId": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: rainfall: {
+    path: "/collections/{collectionId}/rainfall": {
+      rename: param: "collectionId": *"collection_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: relative_humidity: {
+    path: "/collections/{collectionId}/relative-humidity": {
+      rename: param: "collectionId": *"collection_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: wind_direction: {
+    path: "/collections/{collectionId}/wind-direction": {
+      rename: param: "collectionId": *"collection_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: wind_speed: {
+    path: "/collections/{collectionId}/wind-speed": {
+      rename: param: "collectionId": *"collection_id"
+      op: list: method: *GET
+    }
+  }
+
+}

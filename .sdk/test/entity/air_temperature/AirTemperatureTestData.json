@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "air_temperature": {
+      "AIR_TEMPERATURE00": {
+        "station_id": "STATION01",
+        "timestamp": "s1f",
+        "value": 32,
+        "collection_id": "COLLECTION01"
+      },
+      "AIR_TEMPERATURE01": {
+        "station_id": "STATION01",
+        "timestamp": "s3d",
+        "value": 62,
+        "collection_id": "COLLECTION01"
+      },
+      "AIR_TEMPERATURE02": {
+        "station_id": "STATION01",
+        "timestamp": "s5b",
+        "value": 92,
+        "collection_id": "COLLECTION01"
+      }
+    }
+  },
+  "new": {
+    "air_temperature": {
+      "air_temperature_ref01": {
+        "station_id": "STATION01",
+        "timestamp": "s79",
+        "value": 122
+      }
+    }
+  }
+}

@@ -1,0 +1,1015 @@
+{
+  "name": "realtime-weather",
+  "origin": "voxgig-sdk",
+  "def": "realtime-weather_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "name": "National Environment Agency (NEA)",
+          "url": "https://data.gov.sg"
+        },
+        "description": "This API provides real-time readings of temperature, humidity, precipitation, and wind conditions across various weather stations in Singapore at intervals of up to one minute. Managed by the National Environment Agency (NEA), it allows users to access detailed weather data for public use.",
+        "license": {
+          "name": "Open Data Licence",
+          "url": "https://data.gov.sg"
+        },
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "https://api-production.data.gov.sg/v2/public/api"
+          }
+        ],
+        "title": "Realtime Weather API",
+        "version": "2.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "air_temperature": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "station_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "value",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "name": "air_temperature",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 1459,
+                        "kind": "param",
+                        "name": "collection_id",
+                        "orig": "collection_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "date",
+                        "orig": "date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "datetime",
+                        "orig": "datetime",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collections/{collectionId}/air-temperature",
+                  "parts": [
+                    "collections",
+                    "{collection_id}",
+                    "air-temperature"
+                  ],
+                  "rename": {
+                    "param": {
+                      "collectionId": "collection_id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "collection_id",
+                      "date",
+                      "datetime"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "collection"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "collection": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "coverage",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "dataset_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "collection",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 1459,
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "collection_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collections/{collectionId}/metadata",
+                  "parts": [
+                    "collections",
+                    "{id}",
+                    "metadata"
+                  ],
+                  "rename": {
+                    "param": {
+                      "collectionId": "id"
+                    }
+                  },
+                  "select": {
+                    "$action": "metadata",
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "rainfall": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "station_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "value",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "name": "rainfall",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 1459,
+                        "kind": "param",
+                        "name": "collection_id",
+                        "orig": "collection_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "date",
+                        "orig": "date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "datetime",
+                        "orig": "datetime",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collections/{collectionId}/rainfall",
+                  "parts": [
+                    "collections",
+                    "{collection_id}",
+                    "rainfall"
+                  ],
+                  "rename": {
+                    "param": {
+                      "collectionId": "collection_id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "collection_id",
+                      "date",
+                      "datetime"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "collection"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "relative_humidity": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "station_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "value",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "name": "relative_humidity",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 1459,
+                        "kind": "param",
+                        "name": "collection_id",
+                        "orig": "collection_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "date",
+                        "orig": "date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "datetime",
+                        "orig": "datetime",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collections/{collectionId}/relative-humidity",
+                  "parts": [
+                    "collections",
+                    "{collection_id}",
+                    "relative-humidity"
+                  ],
+                  "rename": {
+                    "param": {
+                      "collectionId": "collection_id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "collection_id",
+                      "date",
+                      "datetime"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "collection"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "wind_direction": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "station_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "value",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "name": "wind_direction",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 1459,
+                        "kind": "param",
+                        "name": "collection_id",
+                        "orig": "collection_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "date",
+                        "orig": "date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "datetime",
+                        "orig": "datetime",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collections/{collectionId}/wind-direction",
+                  "parts": [
+                    "collections",
+                    "{collection_id}",
+                    "wind-direction"
+                  ],
+                  "rename": {
+                    "param": {
+                      "collectionId": "collection_id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "collection_id",
+                      "date",
+                      "datetime"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "collection"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "wind_speed": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "station_id",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "value",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            }
+          ],
+          "name": "wind_speed",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 1459,
+                        "kind": "param",
+                        "name": "collection_id",
+                        "orig": "collection_id",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "date",
+                        "orig": "date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "datetime",
+                        "orig": "datetime",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/collections/{collectionId}/wind-speed",
+                  "parts": [
+                    "collections",
+                    "{collection_id}",
+                    "wind-speed"
+                  ],
+                  "rename": {
+                    "param": {
+                      "collectionId": "collection_id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "collection_id",
+                      "date",
+                      "datetime"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "collection"
+              ]
+            ]
+          },
+          "active": true
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicAirTemperatureFlow": {
+          "entity": "air_temperature",
+          "kind": "basic",
+          "name": "BasicAirTemperatureFlow",
+          "step": [
+            {
+              "match": {
+                "collection_id": "collection01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "air_temperature_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicAirTemperatureFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicCollectionFlow": {
+          "entity": "collection",
+          "kind": "basic",
+          "name": "BasicCollectionFlow",
+          "step": [
+            {
+              "match": {
+                "collection_id": "collection01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "collection_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicCollectionFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRainfallFlow": {
+          "entity": "rainfall",
+          "kind": "basic",
+          "name": "BasicRainfallFlow",
+          "step": [
+            {
+              "match": {
+                "collection_id": "collection01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "rainfall_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRainfallFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRelativeHumidityFlow": {
+          "entity": "relative_humidity",
+          "kind": "basic",
+          "name": "BasicRelativeHumidityFlow",
+          "step": [
+            {
+              "match": {
+                "collection_id": "collection01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "relative_humidity_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRelativeHumidityFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWindDirectionFlow": {
+          "entity": "wind_direction",
+          "kind": "basic",
+          "name": "BasicWindDirectionFlow",
+          "step": [
+            {
+              "match": {
+                "collection_id": "collection01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "wind_direction_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWindDirectionFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicWindSpeedFlow": {
+          "entity": "wind_speed",
+          "kind": "basic",
+          "name": "BasicWindSpeedFlow",
+          "step": [
+            {
+              "match": {
+                "collection_id": "collection01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "wind_speed_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicWindSpeedFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "realtime-weather"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "realtime-weather"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "realtime-weather"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "realtime-weather"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "realtime-weather"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "realtime-weather"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "realtime-weather",
+  "Name": "RealtimeWeather",
+  "name_": "realtime_weather",
+  "name-": "realtime-weather",
+  "NAME": "REALTIME-WEATHER"
+}

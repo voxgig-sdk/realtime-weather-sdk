@@ -1,0 +1,97 @@
+# Entity: wind_direction
+
+main: kit: entity: wind_direction: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "station_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "wind_direction"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 1459
+                kind: "param"
+                name: "collection_id"
+                orig: "collection_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "datetime"
+                orig: "datetime"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/collections/{collectionId}/wind-direction"
+          parts: [
+            "collections"
+            "{collection_id}"
+            "wind-direction"
+          ]
+          rename: {
+            param: {
+              collectionId: "collection_id"
+            }
+          }
+          select: {
+            exist: [
+              "collection_id"
+              "date"
+              "datetime"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "collection"
+      ]
+    ]
+  }
+
+
+
+}

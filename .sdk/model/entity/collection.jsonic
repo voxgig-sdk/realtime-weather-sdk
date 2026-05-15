@@ -1,0 +1,77 @@
+# Entity: collection
+
+main: kit: entity: collection: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "coverage"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "dataset_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "collection"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 1459
+                kind: "param"
+                name: "id"
+                orig: "collection_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/collections/{collectionId}/metadata"
+          parts: [
+            "collections"
+            "{id}"
+            "metadata"
+          ]
+          rename: {
+            param: {
+              collectionId: "id"
+            }
+          }
+          select: {
+            "$action": "metadata"
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

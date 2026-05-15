@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "wind_speed": {
+      "WIND_SPEED00": {
+        "station_id": "STATION01",
+        "timestamp": "s1f",
+        "value": 32,
+        "collection_id": "COLLECTION01"
+      },
+      "WIND_SPEED01": {
+        "station_id": "STATION01",
+        "timestamp": "s3d",
+        "value": 62,
+        "collection_id": "COLLECTION01"
+      },
+      "WIND_SPEED02": {
+        "station_id": "STATION01",
+        "timestamp": "s5b",
+        "value": 92,
+        "collection_id": "COLLECTION01"
+      }
+    }
+  },
+  "new": {
+    "wind_speed": {
+      "wind_speed_ref01": {
+        "station_id": "STATION01",
+        "timestamp": "s79",
+        "value": 122
+      }
+    }
+  }
+}

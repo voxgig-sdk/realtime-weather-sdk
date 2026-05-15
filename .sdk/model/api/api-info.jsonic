@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "National Environment Agency (NEA)"
+        url: "https://data.gov.sg"
+      }
+      description: "This API provides real-time readings of temperature, humidity, precipitation, and wind conditions across various weather stations in Singapore at intervals of up to one minute. Managed by the National Environment Agency (NEA), it allows users to access detailed weather data for public use."
+      license: {
+        name: "Open Data Licence"
+        url: "https://data.gov.sg"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api-production.data.gov.sg/v2/public/api"
+        }
+      ]
+      title: "Realtime Weather API"
+      version: "2.0.0"
+    }
+  }
+}
+
+}

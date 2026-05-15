@@ -1,0 +1,8 @@
+# Flows
+
+@"BasicAirTemperatureFlow.jsonic"
+@"BasicCollectionFlow.jsonic"
+@"BasicRainfallFlow.jsonic"
+@"BasicRelativeHumidityFlow.jsonic"
+@"BasicWindDirectionFlow.jsonic"
+@"BasicWindSpeedFlow.jsonic"

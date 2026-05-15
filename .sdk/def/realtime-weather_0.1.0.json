@@ -1,0 +1,640 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Realtime Weather API",
+    "description": "This API provides real-time readings of temperature, humidity, precipitation, and wind conditions across various weather stations in Singapore at intervals of up to one minute. Managed by the National Environment Agency (NEA), it allows users to access detailed weather data for public use.",
+    "version": "2.0.0",
+    "contact": {
+      "name": "National Environment Agency (NEA)",
+      "url": "https://data.gov.sg"
+    },
+    "license": {
+      "name": "Open Data Licence",
+      "url": "https://data.gov.sg"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api-production.data.gov.sg/v2/public/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/collections/{collectionId}/metadata": {
+      "get": {
+        "summary": "Get collection metadata",
+        "description": "Retrieves the metadata for a specific weather data collection. Collection ID 1459 corresponds to Realtime Weather Readings across Singapore.",
+        "operationId": "getCollectionMetadata",
+        "tags": [
+          "Collections"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier for the collection. Use 1459 for Realtime Weather Readings.",
+            "schema": {
+              "type": "integer",
+              "example": 1459
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with collection metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionMetadata"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/air-temperature": {
+      "get": {
+        "summary": "Get air temperature readings",
+        "description": "Retrieves real-time air temperature readings across weather stations in Singapore. Coverage from May 2016 to February 2026.",
+        "operationId": "getAirTemperature",
+        "tags": [
+          "Weather Data"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "description": "The collection identifier (1459 for Realtime Weather)",
+            "schema": {
+              "type": "integer",
+              "example": 1459
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "datetime",
+            "in": "query",
+            "required": false,
+            "description": "Filter by datetime in ISO 8601 format",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with air temperature data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/rainfall": {
+      "get": {
+        "summary": "Get rainfall readings",
+        "description": "Retrieves real-time rainfall readings across weather stations in Singapore. Coverage from December 2016 to February 2026.",
+        "operationId": "getRainfall",
+        "tags": [
+          "Weather Data"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "description": "The collection identifier (1459 for Realtime Weather)",
+            "schema": {
+              "type": "integer",
+              "example": 1459
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "datetime",
+            "in": "query",
+            "required": false,
+            "description": "Filter by datetime in ISO 8601 format",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with rainfall data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/relative-humidity": {
+      "get": {
+        "summary": "Get relative humidity readings",
+        "description": "Retrieves real-time relative humidity readings across weather stations in Singapore. Coverage from November 2016 to February 2026.",
+        "operationId": "getRelativeHumidity",
+        "tags": [
+          "Weather Data"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "description": "The collection identifier (1459 for Realtime Weather)",
+            "schema": {
+              "type": "integer",
+              "example": 1459
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "datetime",
+            "in": "query",
+            "required": false,
+            "description": "Filter by datetime in ISO 8601 format",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with relative humidity data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/wind-direction": {
+      "get": {
+        "summary": "Get wind direction readings",
+        "description": "Retrieves real-time wind direction readings across weather stations in Singapore. Coverage from November 2016 to February 2026.",
+        "operationId": "getWindDirection",
+        "tags": [
+          "Weather Data"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "description": "The collection identifier (1459 for Realtime Weather)",
+            "schema": {
+              "type": "integer",
+              "example": 1459
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "datetime",
+            "in": "query",
+            "required": false,
+            "description": "Filter by datetime in ISO 8601 format",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with wind direction data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionId}/wind-speed": {
+      "get": {
+        "summary": "Get wind speed readings",
+        "description": "Retrieves real-time wind speed readings across weather stations in Singapore. Coverage from December 2016 to February 2026.",
+        "operationId": "getWindSpeed",
+        "tags": [
+          "Weather Data"
+        ],
+        "parameters": [
+          {
+            "name": "collectionId",
+            "in": "path",
+            "required": true,
+            "description": "The collection identifier (1459 for Realtime Weather)",
+            "schema": {
+              "type": "integer",
+              "example": 1459
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "datetime",
+            "in": "query",
+            "required": false,
+            "description": "Filter by datetime in ISO 8601 format",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with wind speed data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherData"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CollectionMetadata": {
+        "type": "object",
+        "properties": {
+          "collectionId": {
+            "type": "integer",
+            "description": "Unique identifier for the collection",
+            "example": 1459
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the collection",
+            "example": "Realtime Weather Readings across Singapore"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the collection"
+          },
+          "agency": {
+            "type": "string",
+            "description": "Publishing agency",
+            "example": "National Environment Agency (NEA)"
+          },
+          "datasets": {
+            "type": "array",
+            "description": "List of datasets in the collection",
+            "items": {
+              "$ref": "#/components/schemas/Dataset"
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          }
+        }
+      },
+      "Dataset": {
+        "type": "object",
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "description": "Unique identifier for the dataset"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the dataset"
+          },
+          "coverage": {
+            "type": "string",
+            "description": "Time coverage of the dataset",
+            "example": "May 2016 to Feb 2026"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of dataset",
+            "enum": [
+              "API",
+              "file"
+            ]
+          }
+        }
+      },
+      "WeatherData": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "stations": {
+                "type": "array",
+                "description": "Weather stations providing data",
+                "items": {
+                  "$ref": "#/components/schemas/Station"
+                }
+              },
+              "readingType": {
+                "type": "string",
+                "description": "Type of weather reading",
+                "example": "temperature"
+              },
+              "readingUnit": {
+                "type": "string",
+                "description": "Unit of measurement",
+                "example": "deg C"
+              }
+            }
+          },
+          "data": {
+            "type": "array",
+            "description": "Array of weather readings",
+            "items": {
+              "$ref": "#/components/schemas/Reading"
+            }
+          }
+        }
+      },
+      "Station": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique station identifier"
+          },
+          "deviceId": {
+            "type": "string",
+            "description": "Device identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Station name"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "format": "double",
+                "description": "Latitude coordinate"
+              },
+              "longitude": {
+                "type": "number",
+                "format": "double",
+                "description": "Longitude coordinate"
+              }
+            }
+          }
+        }
+      },
+      "Reading": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the reading"
+          },
+          "stationId": {
+            "type": "string",
+            "description": "Station identifier"
+          },
+          "value": {
+            "type": "number",
+            "format": "double",
+            "description": "The measured value"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional error details"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Collections",
+      "description": "Operations related to collection metadata"
+    },
+    {
+      "name": "Weather Data",
+      "description": "Operations for retrieving real-time weather readings"
+    }
+  ],
+  "externalDocs": {
+    "description": "API Documentation",
+    "url": "https://data.gov.sg/collections/1459/view"
+  }
+}
