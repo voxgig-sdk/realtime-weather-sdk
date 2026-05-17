@@ -1,4 +1,4 @@
--- ProjectName SDK utility: make_url
+-- RealtimeWeather SDK utility: make_url
 
 local vs = require("utility.struct.struct")
 

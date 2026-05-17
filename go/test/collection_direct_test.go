@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/realtime-weather-sdk"
-	"github.com/voxgig-sdk/realtime-weather-sdk/core"
+	sdk "github.com/voxgig-sdk/realtime-weather-sdk/go"
+	"github.com/voxgig-sdk/realtime-weather-sdk/go/core"
 )
 
 func TestCollectionDirect(t *testing.T) {

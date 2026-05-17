@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/realtime-weather-sdk/core"
+import "github.com/voxgig-sdk/realtime-weather-sdk/go/core"
 
 func makeResponseUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["response"] != nil {
