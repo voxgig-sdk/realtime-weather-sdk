@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from realtimeweather_sdk import RealtimeWeatherSDK
 
-client = RealtimeWeatherSDK({
-    "apikey": os.environ.get("REALTIME-WEATHER_APIKEY"),
-})
+client = RealtimeWeatherSDK({})
 ```
 
 ### 2. List airtemperatures
@@ -121,7 +118,6 @@ Create a `.env.local` file at the project root:
 
 ```
 REALTIME-WEATHER_TEST_LIVE=TRUE
-REALTIME-WEATHER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

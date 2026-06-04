@@ -20,9 +20,6 @@ class RealtimeWeatherConfig
             ],
             "options" => [
                 "base" => "https://api-production.data.gov.sg/v2/public/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

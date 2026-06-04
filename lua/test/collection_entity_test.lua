@@ -94,7 +94,6 @@ function collection_basic_setup(extra)
     ["REALTIMEWEATHER_TEST_COLLECTION_ENTID"] = idmap,
     ["REALTIMEWEATHER_TEST_LIVE"] = "FALSE",
     ["REALTIMEWEATHER_TEST_EXPLAIN"] = "FALSE",
-    ["REALTIMEWEATHER_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -106,7 +105,6 @@ function collection_basic_setup(extra)
   if env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["REALTIMEWEATHER_APIKEY"],
       },
       extra or {},
     })

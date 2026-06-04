@@ -85,7 +85,6 @@ def air_temperature_basic_setup(extra)
     "REALTIMEWEATHER_TEST_AIR_TEMPERATURE_ENTID" => idmap,
     "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
     "REALTIMEWEATHER_TEST_EXPLAIN" => "FALSE",
-    "REALTIMEWEATHER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +96,6 @@ def air_temperature_basic_setup(extra)
   if env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["REALTIMEWEATHER_APIKEY"],
       },
       extra || {},
     ])

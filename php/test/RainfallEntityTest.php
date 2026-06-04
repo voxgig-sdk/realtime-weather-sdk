@@ -88,7 +88,6 @@ function rainfall_basic_setup($extra)
         "REALTIMEWEATHER_TEST_RAINFALL_ENTID" => $idmap,
         "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
         "REALTIMEWEATHER_TEST_EXPLAIN" => "FALSE",
-        "REALTIMEWEATHER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +99,6 @@ function rainfall_basic_setup($extra)
     if ($env["REALTIMEWEATHER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["REALTIMEWEATHER_APIKEY"],
             ],
             $extra ?? [],
         ]);

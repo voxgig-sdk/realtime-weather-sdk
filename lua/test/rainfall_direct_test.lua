@@ -77,14 +77,12 @@ function rainfall_direct_setup(mockres)
   local env = runner.env_override({
     ["REALTIMEWEATHER_TEST_RAINFALL_ENTID"] = {},
     ["REALTIMEWEATHER_TEST_LIVE"] = "FALSE",
-    ["REALTIMEWEATHER_APIKEY"] = "NONE",
   })
 
   local live = env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["REALTIMEWEATHER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
