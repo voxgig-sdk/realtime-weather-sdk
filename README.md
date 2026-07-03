@@ -1,23 +1,8 @@
 # RealtimeWeather SDK
 
-Real-time temperature, humidity, rainfall and wind readings from Singapore's NEA weather stations
+Realtime Weather API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Realtime Weather API
-
-This SDK wraps the real-time weather collection published by [data.gov.sg](https://data.gov.sg/collections/1459/view), Singapore's official open data portal. The underlying readings come from a network of weather stations operated by the National Environment Agency (NEA).
-
-What you get from the API:
-
-- Air temperature readings from NEA weather stations
-- Rainfall measurements
-- Relative humidity values
-- Wind direction
-- Wind speed
-- A collection endpoint that exposes metadata about the grouped datasets
-
-Readings are reported at the weather-station level and refreshed at intervals as frequent as one minute. The service is served from `https://api-production.data.gov.sg/v2/public/api` and does not require an API key for these public endpoints. CORS is enabled, so the API can be called directly from browser-based clients.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install realtime-weather-sdk
 luarocks install realtime-weather-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { RealtimeWeatherSDK } from 'realtime-weather'
 
-const client = new RealtimeWeatherSDK({})
+const client = new RealtimeWeatherSDK({
+  apikey: process.env.REALTIME-WEATHER_APIKEY,
+})
 
 // List all airtemperatures
 const airtemperatures = await client.AirTemperature().list()
+console.log(airtemperatures.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,12 +90,12 @@ The API exposes 6 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **AirTemperature** | Real-time air temperature readings (in degrees Celsius) from NEA weather stations across Singapore. | `/collections/{collectionId}/air-temperature` |
-| **Collection** | Metadata describing the realtime weather collection (collection id `1459`), including the datasets it groups together; backed by `/collections/{id}/metadata`. | `/collections/{collectionId}/metadata` |
-| **Rainfall** | Real-time rainfall measurements reported per weather station. | `/collections/{collectionId}/rainfall` |
-| **RelativeHumidity** | Real-time relative humidity percentages from NEA weather stations. | `/collections/{collectionId}/relative-humidity` |
-| **WindDirection** | Real-time wind direction readings from NEA weather stations. | `/collections/{collectionId}/wind-direction` |
-| **WindSpeed** | Real-time wind speed readings from NEA weather stations. | `/collections/{collectionId}/wind-speed` |
+| **AirTemperature** |  | `/collections/{collectionId}/air-temperature` |
+| **Collection** |  | `/collections/{collectionId}/metadata` |
+| **Rainfall** |  | `/collections/{collectionId}/rainfall` |
+| **RelativeHumidity** |  | `/collections/{collectionId}/relative-humidity` |
+| **WindDirection** |  | `/collections/{collectionId}/wind-direction` |
+| **WindSpeed** |  | `/collections/{collectionId}/wind-speed` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -118,12 +105,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from realtimeweather_sdk import RealtimeWeatherSDK
 
-client = RealtimeWeatherSDK({})
+client = RealtimeWeatherSDK({
+    "apikey": os.environ.get("REALTIME-WEATHER_APIKEY"),
+})
 
 # List all airtemperatures
-airtemperatures, err = client.AirTemperature(None).list(None, None)
+airtemperatures, err = client.AirTemperature().list()
+print(airtemperatures)
 ```
 
 ### PHP
@@ -132,10 +123,13 @@ airtemperatures, err = client.AirTemperature(None).list(None, None)
 <?php
 require_once 'realtimeweather_sdk.php';
 
-$client = new RealtimeWeatherSDK([]);
+$client = new RealtimeWeatherSDK([
+    "apikey" => getenv("REALTIME-WEATHER_APIKEY"),
+]);
 
 // List all airtemperatures
-[$airtemperatures, $err] = $client->AirTemperature(null)->list(null, null);
+[$airtemperatures, $err] = $client->AirTemperature()->list();
+print_r($airtemperatures);
 ```
 
 ### Golang
@@ -143,10 +137,13 @@ $client = new RealtimeWeatherSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/realtime-weather-sdk/go"
 
-client := sdk.NewRealtimeWeatherSDK(map[string]any{})
+client := sdk.NewRealtimeWeatherSDK(map[string]any{
+    "apikey": os.Getenv("REALTIME-WEATHER_APIKEY"),
+})
 
 // List all airtemperatures
 airtemperatures, err := client.AirTemperature(nil).List(nil, nil)
+fmt.Println(airtemperatures)
 ```
 
 ### Ruby
@@ -154,10 +151,13 @@ airtemperatures, err := client.AirTemperature(nil).List(nil, nil)
 ```ruby
 require_relative "RealtimeWeather_sdk"
 
-client = RealtimeWeatherSDK.new({})
+client = RealtimeWeatherSDK.new({
+  "apikey" => ENV["REALTIME-WEATHER_APIKEY"],
+})
 
 # List all airtemperatures
-airtemperatures, err = client.AirTemperature(nil).list(nil, nil)
+airtemperatures, err = client.AirTemperature().list
+puts airtemperatures
 ```
 
 ### Lua
@@ -165,10 +165,13 @@ airtemperatures, err = client.AirTemperature(nil).list(nil, nil)
 ```lua
 local sdk = require("realtime-weather_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("REALTIME-WEATHER_APIKEY"),
+})
 
 -- List all airtemperatures
-local airtemperatures, err = client:AirTemperature(nil):list(nil, nil)
+local airtemperatures, err = client:AirTemperature():list()
+print(airtemperatures)
 ```
 
 ## Unit testing in offline mode
@@ -187,25 +190,21 @@ const result = await client.AirTemperature().load({ id: 'test01' })
 ### Python
 
 ```python
-client = RealtimeWeatherSDK.test(None, None)
-result, err = client.AirTemperature(None).load(
-    {"id": "test01"}, None
-)
+client = RealtimeWeatherSDK.test()
+result, err = client.AirTemperature().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = RealtimeWeatherSDK::test(null, null);
-[$result, $err] = $client->AirTemperature(null)->load(
-    ["id" => "test01"], null
-);
+$client = RealtimeWeatherSDK::test();
+[$result, $err] = $client->AirTemperature()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.AirTemperature(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -214,19 +213,15 @@ result, err := client.AirTemperature(nil).Load(
 ### Ruby
 
 ```ruby
-client = RealtimeWeatherSDK.test(nil, nil)
-result, err = client.AirTemperature(nil).load(
-  { "id" => "test01" }, nil
-)
+client = RealtimeWeatherSDK.test
+result, err = client.AirTemperature().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:AirTemperature(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:AirTemperature():load({ id = "test01" })
 ```
 
 ## How it works
@@ -330,14 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Realtime Weather API
-
-- Upstream: [https://data.gov.sg/collections/1459/view](https://data.gov.sg/collections/1459/view)
-
-- Data is published under the Singapore Open Data Licence via data.gov.sg.
-- Attribution to the National Environment Agency (NEA) and data.gov.sg is expected when reusing the data.
-- Review the full licence terms on data.gov.sg before redistributing or building commercial products.
 
 ---
 

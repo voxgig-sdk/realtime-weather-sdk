@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -122,7 +122,7 @@ local air_temperature = client:AirTemperature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:AirTemperature(nil):list(nil, nil)
+local results, err = client:AirTemperature():list()
 ```
 
 ### Common Methods
@@ -177,7 +177,7 @@ local collection = client:Collection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Collection(nil):list(nil, nil)
+local results, err = client:Collection():list()
 ```
 
 ### Common Methods
@@ -231,7 +231,7 @@ local rainfall = client:Rainfall(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Rainfall(nil):list(nil, nil)
+local results, err = client:Rainfall():list()
 ```
 
 ### Common Methods
@@ -285,7 +285,7 @@ local relative_humidity = client:RelativeHumidity(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:RelativeHumidity(nil):list(nil, nil)
+local results, err = client:RelativeHumidity():list()
 ```
 
 ### Common Methods
@@ -339,7 +339,7 @@ local wind_direction = client:WindDirection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WindDirection(nil):list(nil, nil)
+local results, err = client:WindDirection():list()
 ```
 
 ### Common Methods
@@ -393,7 +393,7 @@ local wind_speed = client:WindSpeed(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WindSpeed(nil):list(nil, nil)
+local results, err = client:WindSpeed():list()
 ```
 
 ### Common Methods

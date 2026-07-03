@@ -121,6 +121,7 @@ func relative_humidityBasicSetup(extra map[string]any) *entityTestSetup {
 		"REALTIMEWEATHER_TEST_RELATIVE_HUMIDITY_ENTID": idmap,
 		"REALTIMEWEATHER_TEST_LIVE":      "FALSE",
 		"REALTIMEWEATHER_TEST_EXPLAIN":   "FALSE",
+		"REALTIMEWEATHER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["REALTIMEWEATHER_TEST_RELATIVE_HUMIDITY_ENTID"])
@@ -131,6 +132,7 @@ func relative_humidityBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["REALTIMEWEATHER_APIKEY"],
 			},
 			extra,
 		})

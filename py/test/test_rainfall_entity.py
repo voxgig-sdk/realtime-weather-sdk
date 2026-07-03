@@ -94,6 +94,7 @@ def _rainfall_basic_setup(extra):
         "REALTIMEWEATHER_TEST_RAINFALL_ENTID": idmap,
         "REALTIMEWEATHER_TEST_LIVE": "FALSE",
         "REALTIMEWEATHER_TEST_EXPLAIN": "FALSE",
+        "REALTIMEWEATHER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -104,6 +105,7 @@ def _rainfall_basic_setup(extra):
     if env.get("REALTIMEWEATHER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("REALTIMEWEATHER_APIKEY"),
             },
             extra or {},
         ])

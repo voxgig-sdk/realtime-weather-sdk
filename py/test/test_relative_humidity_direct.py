@@ -73,12 +73,14 @@ def _relative_humidity_direct_setup(mockres):
     env = runner.env_override({
         "REALTIMEWEATHER_TEST_RELATIVE_HUMIDITY_ENTID": {},
         "REALTIMEWEATHER_TEST_LIVE": "FALSE",
+        "REALTIMEWEATHER_APIKEY": "NONE",
     })
 
     live = env.get("REALTIMEWEATHER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("REALTIMEWEATHER_APIKEY"),
         }
         client = RealtimeWeatherSDK(merged_opts)
         return {

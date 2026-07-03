@@ -118,12 +118,14 @@ func wind_directionDirectSetup(mockres any) *wind_directionDirectSetupResult {
 	env := envOverride(map[string]any{
 		"REALTIMEWEATHER_TEST_WIND_DIRECTION_ENTID": map[string]any{},
 		"REALTIMEWEATHER_TEST_LIVE":    "FALSE",
+		"REALTIMEWEATHER_APIKEY":       "NONE",
 	})
 
 	live := env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["REALTIMEWEATHER_APIKEY"],
 		}
 		client := sdk.NewRealtimeWeatherSDK(mergedOpts)
 

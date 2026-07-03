@@ -1,6 +1,11 @@
 # RealtimeWeather Ruby SDK
 
-The Ruby SDK for the RealtimeWeather API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the RealtimeWeather API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "RealtimeWeather_sdk"
 
-client = RealtimeWeatherSDK.new({})
+client = RealtimeWeatherSDK.new({
+  "apikey" => ENV["REALTIME-WEATHER_APIKEY"],
+})
 ```
 
 ### 2. List airtemperatures
 
 ```ruby
-result, err = client.AirTemperature(nil).list(nil, nil)
+result, err = client.AirTemperature().list
 raise err if err
 
 if result.is_a?(Array)
@@ -89,11 +96,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = RealtimeWeatherSDK.test(nil, nil)
+client = RealtimeWeatherSDK.test
 
-result, err = client.RealtimeWeather(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.RealtimeWeather().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -125,6 +130,7 @@ Create a `.env.local` file at the project root:
 
 ```
 REALTIME-WEATHER_TEST_LIVE=TRUE
+REALTIME-WEATHER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,6 +153,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

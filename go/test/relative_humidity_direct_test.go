@@ -118,12 +118,14 @@ func relative_humidityDirectSetup(mockres any) *relative_humidityDirectSetupResu
 	env := envOverride(map[string]any{
 		"REALTIMEWEATHER_TEST_RELATIVE_HUMIDITY_ENTID": map[string]any{},
 		"REALTIMEWEATHER_TEST_LIVE":    "FALSE",
+		"REALTIMEWEATHER_APIKEY":       "NONE",
 	})
 
 	live := env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["REALTIMEWEATHER_APIKEY"],
 		}
 		client := sdk.NewRealtimeWeatherSDK(mergedOpts)
 

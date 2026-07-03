@@ -76,12 +76,14 @@ def air_temperature_direct_setup(mockres)
   env = Runner.env_override({
     "REALTIMEWEATHER_TEST_AIR_TEMPERATURE_ENTID" => {},
     "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
+    "REALTIMEWEATHER_APIKEY" => "NONE",
   })
 
   live = env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["REALTIMEWEATHER_APIKEY"],
     }
     client = RealtimeWeatherSDK.new(merged_opts)
     return {

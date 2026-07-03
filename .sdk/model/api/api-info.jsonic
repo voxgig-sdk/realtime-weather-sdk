@@ -21,34 +21,7 @@ main: {
       ]
       title: "Realtime Weather API"
       version: "2.0.0"
-      tagline: "Real-time temperature, humidity, rainfall and wind readings from Singapore's NEA weather stations"
-      homepage: "https://data.gov.sg/collections/1459/view"
-      docs_url: "https://data.gov.sg/collections/1459/view"
-      license_short: "Singapore Open Data Licence"
-      license_md: `- Data is published under the Singapore Open Data Licence via data.gov.sg.
-- Attribution to the National Environment Agency (NEA) and data.gov.sg is expected when reusing the data.
-- Review the full licence terms on data.gov.sg before redistributing or building commercial products.`
-      about_md: `This SDK wraps the real-time weather collection published by [data.gov.sg](https://data.gov.sg/collections/1459/view), Singapore's official open data portal. The underlying readings come from a network of weather stations operated by the National Environment Agency (NEA).
-
-What you get from the API:
-
-- Air temperature readings from NEA weather stations
-- Rainfall measurements
-- Relative humidity values
-- Wind direction
-- Wind speed
-- A collection endpoint that exposes metadata about the grouped datasets
-
-Readings are reported at the weather-station level and refreshed at intervals as frequent as one minute. The service is served from \`https://api-production.data.gov.sg/v2/public/api\` and does not require an API key for these public endpoints. CORS is enabled, so the API can be called directly from browser-based clients.`
-      entity_desc: {
-        air_temperature: "Real-time air temperature readings (in degrees Celsius) from NEA weather stations across Singapore."
-        collection: "Metadata describing the realtime weather collection (collection id `1459`), including the datasets it groups together; backed by `/collections/{id}/metadata`."
-        rainfall: "Real-time rainfall measurements reported per weather station."
-        relative_humidity: "Real-time relative humidity percentages from NEA weather stations."
-        wind_direction: "Real-time wind direction readings from NEA weather stations."
-        wind_speed: "Real-time wind speed readings from NEA weather stations."
-      }
-      auth: false
     }
   }
 }
+

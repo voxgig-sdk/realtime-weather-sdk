@@ -114,6 +114,7 @@ function basicSetup(extra?: any) {
     'REALTIME_WEATHER_TEST_RELATIVE_HUMIDITY_ENTID': idmap,
     'REALTIME_WEATHER_TEST_LIVE': 'FALSE',
     'REALTIME_WEATHER_TEST_EXPLAIN': 'FALSE',
+    'REALTIME_WEATHER_APIKEY': 'NONE',
   })
 
   idmap = env['REALTIME_WEATHER_TEST_RELATIVE_HUMIDITY_ENTID']
@@ -123,6 +124,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new RealtimeWeatherSDK(merge([
       {
+        apikey: env.REALTIME_WEATHER_APIKEY,
       },
       extra
     ]))
