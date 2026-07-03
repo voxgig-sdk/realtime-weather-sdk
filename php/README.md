@@ -10,7 +10,7 @@ The PHP SDK for the RealtimeWeather API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/realtime-weather-sdk
+composer require voxgig-sdk/realtime-weather
 ```
 
 

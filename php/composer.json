@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/realtime-weather",
-  "description": "RealtimeWeather SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Realtime Weather public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "realtime-weather"],
+  "homepage": "https://github.com/voxgig-sdk/realtime-weather-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/realtime-weather-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/realtime-weather-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

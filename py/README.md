@@ -10,7 +10,7 @@ The Python SDK for the RealtimeWeather API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install realtime-weather-sdk
+pip install voxgig-sdk-realtime-weather
 ```
 
 Or install from source:

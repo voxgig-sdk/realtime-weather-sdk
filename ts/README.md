@@ -10,7 +10,7 @@ The TypeScript SDK for the RealtimeWeather API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install realtime-weather
+npm install @voxgig-sdk/realtime-weather
 ```
 ## Tutorial: your first API call
 

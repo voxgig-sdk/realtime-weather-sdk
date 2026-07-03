@@ -10,13 +10,13 @@ The Ruby SDK for the RealtimeWeather API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install realtime-weather-sdk
+gem install voxgig-sdk-realtime-weather
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "realtime-weather-sdk"
+gem "voxgig-sdk-realtime-weather"
 ```
 
 Then run:

@@ -10,7 +10,7 @@ The Lua SDK for the RealtimeWeather API — an entity-oriented client using Lua 
 
 ## Install
 ```bash
-luarocks install realtime-weather-sdk
+luarocks install voxgig-sdk-realtime-weather
 ```
 
 If the module is not yet published, add the source directory to

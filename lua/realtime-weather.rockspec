@@ -8,12 +8,14 @@ source = {
   dir = "realtime-weather-sdk/lua"
 }
 description = {
-  summary = "RealtimeWeather SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Realtime Weather public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/realtime-weather-sdk",
+  issues_url = "https://github.com/voxgig-sdk/realtime-weather-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "realtime-weather" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {
