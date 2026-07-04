@@ -52,8 +52,7 @@ class TestAirTemperatureEntity:
             "collection_id": setup["idmap"]["collection01"],
         }
 
-        air_temperature_ref01_list_result, err = air_temperature_ref01_ent.list(air_temperature_ref01_match, None)
-        assert err is None
+        air_temperature_ref01_list_result = air_temperature_ref01_ent.list(air_temperature_ref01_match, None)
         assert isinstance(air_temperature_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _air_temperature_basic_setup(extra):
         "REALTIMEWEATHER_TEST_AIR_TEMPERATURE_ENTID": idmap,
         "REALTIMEWEATHER_TEST_LIVE": "FALSE",
         "REALTIMEWEATHER_TEST_EXPLAIN": "FALSE",
-        "REALTIMEWEATHER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _air_temperature_basic_setup(extra):
     if env.get("REALTIMEWEATHER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("REALTIMEWEATHER_APIKEY"),
             },
             extra or {},
         ])

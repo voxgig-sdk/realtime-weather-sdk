@@ -20,9 +20,6 @@ class RealtimeWeatherConfig
             ],
             "options" => [
                 "base" => "https://api-production.data.gov.sg/v2/public/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -78,6 +75,7 @@ class RealtimeWeatherConfig
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -185,6 +183,7 @@ class RealtimeWeatherConfig
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -262,6 +261,7 @@ class RealtimeWeatherConfig
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -362,6 +362,7 @@ class RealtimeWeatherConfig
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -462,6 +463,7 @@ class RealtimeWeatherConfig
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -562,6 +564,7 @@ class RealtimeWeatherConfig
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

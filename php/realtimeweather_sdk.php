@@ -103,7 +103,7 @@ class RealtimeWeatherSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class RealtimeWeatherSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class RealtimeWeatherSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,59 +216,125 @@ class RealtimeWeatherSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function AirTemperature($data = null)
+    private $_air_temperature = null;
+
+    // Idiomatic facade: $client->air_temperature()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias AirTemperature() (PHP method
+    // names are case-insensitive).
+    public function air_temperature($data = null)
     {
         require_once __DIR__ . '/entity/air_temperature_entity.php';
+        if ($data === null) {
+            if ($this->_air_temperature === null) {
+                $this->_air_temperature = new AirTemperatureEntity($this, null);
+            }
+            return $this->_air_temperature;
+        }
         return new AirTemperatureEntity($this, $data);
     }
 
 
-    public function Collection($data = null)
+    private $_collection = null;
+
+    // Idiomatic facade: $client->collection()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Collection() (PHP method
+    // names are case-insensitive).
+    public function collection($data = null)
     {
         require_once __DIR__ . '/entity/collection_entity.php';
+        if ($data === null) {
+            if ($this->_collection === null) {
+                $this->_collection = new CollectionEntity($this, null);
+            }
+            return $this->_collection;
+        }
         return new CollectionEntity($this, $data);
     }
 
 
-    public function Rainfall($data = null)
+    private $_rainfall = null;
+
+    // Idiomatic facade: $client->rainfall()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Rainfall() (PHP method
+    // names are case-insensitive).
+    public function rainfall($data = null)
     {
         require_once __DIR__ . '/entity/rainfall_entity.php';
+        if ($data === null) {
+            if ($this->_rainfall === null) {
+                $this->_rainfall = new RainfallEntity($this, null);
+            }
+            return $this->_rainfall;
+        }
         return new RainfallEntity($this, $data);
     }
 
 
-    public function RelativeHumidity($data = null)
+    private $_relative_humidity = null;
+
+    // Idiomatic facade: $client->relative_humidity()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias RelativeHumidity() (PHP method
+    // names are case-insensitive).
+    public function relative_humidity($data = null)
     {
         require_once __DIR__ . '/entity/relative_humidity_entity.php';
+        if ($data === null) {
+            if ($this->_relative_humidity === null) {
+                $this->_relative_humidity = new RelativeHumidityEntity($this, null);
+            }
+            return $this->_relative_humidity;
+        }
         return new RelativeHumidityEntity($this, $data);
     }
 
 
-    public function WindDirection($data = null)
+    private $_wind_direction = null;
+
+    // Idiomatic facade: $client->wind_direction()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias WindDirection() (PHP method
+    // names are case-insensitive).
+    public function wind_direction($data = null)
     {
         require_once __DIR__ . '/entity/wind_direction_entity.php';
+        if ($data === null) {
+            if ($this->_wind_direction === null) {
+                $this->_wind_direction = new WindDirectionEntity($this, null);
+            }
+            return $this->_wind_direction;
+        }
         return new WindDirectionEntity($this, $data);
     }
 
 
-    public function WindSpeed($data = null)
+    private $_wind_speed = null;
+
+    // Idiomatic facade: $client->wind_speed()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias WindSpeed() (PHP method
+    // names are case-insensitive).
+    public function wind_speed($data = null)
     {
         require_once __DIR__ . '/entity/wind_speed_entity.php';
+        if ($data === null) {
+            if ($this->_wind_speed === null) {
+                $this->_wind_speed = new WindSpeedEntity($this, null);
+            }
+            return $this->_wind_speed;
+        }
         return new WindSpeedEntity($this, $data);
     }
 

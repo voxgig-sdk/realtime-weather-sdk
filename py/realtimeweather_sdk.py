@@ -144,16 +144,23 @@ class RealtimeWeatherSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class RealtimeWeatherSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,40 +212,106 @@ class RealtimeWeatherSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def air_temperature(self):
+        """Idiomatic facade: client.air_temperature.list() / client.air_temperature.load({"id": ...})."""
+        from entity.air_temperature_entity import AirTemperatureEntity
+        cached = getattr(self, "_air_temperature", None)
+        if cached is None:
+            cached = AirTemperatureEntity(self, None)
+            self._air_temperature = cached
+        return cached
 
     def AirTemperature(self, data=None):
+        # Deprecated: use client.air_temperature instead.
         from entity.air_temperature_entity import AirTemperatureEntity
         return AirTemperatureEntity(self, data)
 
 
+    @property
+    def collection(self):
+        """Idiomatic facade: client.collection.list() / client.collection.load({"id": ...})."""
+        from entity.collection_entity import CollectionEntity
+        cached = getattr(self, "_collection", None)
+        if cached is None:
+            cached = CollectionEntity(self, None)
+            self._collection = cached
+        return cached
+
     def Collection(self, data=None):
+        # Deprecated: use client.collection instead.
         from entity.collection_entity import CollectionEntity
         return CollectionEntity(self, data)
 
 
+    @property
+    def rainfall(self):
+        """Idiomatic facade: client.rainfall.list() / client.rainfall.load({"id": ...})."""
+        from entity.rainfall_entity import RainfallEntity
+        cached = getattr(self, "_rainfall", None)
+        if cached is None:
+            cached = RainfallEntity(self, None)
+            self._rainfall = cached
+        return cached
+
     def Rainfall(self, data=None):
+        # Deprecated: use client.rainfall instead.
         from entity.rainfall_entity import RainfallEntity
         return RainfallEntity(self, data)
 
 
+    @property
+    def relative_humidity(self):
+        """Idiomatic facade: client.relative_humidity.list() / client.relative_humidity.load({"id": ...})."""
+        from entity.relative_humidity_entity import RelativeHumidityEntity
+        cached = getattr(self, "_relative_humidity", None)
+        if cached is None:
+            cached = RelativeHumidityEntity(self, None)
+            self._relative_humidity = cached
+        return cached
+
     def RelativeHumidity(self, data=None):
+        # Deprecated: use client.relative_humidity instead.
         from entity.relative_humidity_entity import RelativeHumidityEntity
         return RelativeHumidityEntity(self, data)
 
 
+    @property
+    def wind_direction(self):
+        """Idiomatic facade: client.wind_direction.list() / client.wind_direction.load({"id": ...})."""
+        from entity.wind_direction_entity import WindDirectionEntity
+        cached = getattr(self, "_wind_direction", None)
+        if cached is None:
+            cached = WindDirectionEntity(self, None)
+            self._wind_direction = cached
+        return cached
+
     def WindDirection(self, data=None):
+        # Deprecated: use client.wind_direction instead.
         from entity.wind_direction_entity import WindDirectionEntity
         return WindDirectionEntity(self, data)
 
 
+    @property
+    def wind_speed(self):
+        """Idiomatic facade: client.wind_speed.list() / client.wind_speed.load({"id": ...})."""
+        from entity.wind_speed_entity import WindSpeedEntity
+        cached = getattr(self, "_wind_speed", None)
+        if cached is None:
+            cached = WindSpeedEntity(self, None)
+            self._wind_speed = cached
+        return cached
+
     def WindSpeed(self, data=None):
+        # Deprecated: use client.wind_speed instead.
         from entity.wind_speed_entity import WindSpeedEntity
         return WindSpeedEntity(self, data)
 

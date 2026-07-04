@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'RealtimeWeather_types'
+
 
 class RealtimeWeatherSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class RealtimeWeatherSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class RealtimeWeatherSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue RealtimeWeatherError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = RealtimeWeatherHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class RealtimeWeatherSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,46 +198,88 @@ class RealtimeWeatherSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.air_temperature.list / client.air_temperature.load({ "id" => ... })
+  def air_temperature
+    require_relative 'entity/air_temperature_entity'
+    @air_temperature ||= AirTemperatureEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.air_temperature instead.
   def AirTemperature(data = nil)
     require_relative 'entity/air_temperature_entity'
     AirTemperatureEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.collection.list / client.collection.load({ "id" => ... })
+  def collection
+    require_relative 'entity/collection_entity'
+    @collection ||= CollectionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.collection instead.
   def Collection(data = nil)
     require_relative 'entity/collection_entity'
     CollectionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.rainfall.list / client.rainfall.load({ "id" => ... })
+  def rainfall
+    require_relative 'entity/rainfall_entity'
+    @rainfall ||= RainfallEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.rainfall instead.
   def Rainfall(data = nil)
     require_relative 'entity/rainfall_entity'
     RainfallEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.relative_humidity.list / client.relative_humidity.load({ "id" => ... })
+  def relative_humidity
+    require_relative 'entity/relative_humidity_entity'
+    @relative_humidity ||= RelativeHumidityEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.relative_humidity instead.
   def RelativeHumidity(data = nil)
     require_relative 'entity/relative_humidity_entity'
     RelativeHumidityEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.wind_direction.list / client.wind_direction.load({ "id" => ... })
+  def wind_direction
+    require_relative 'entity/wind_direction_entity'
+    @wind_direction ||= WindDirectionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.wind_direction instead.
   def WindDirection(data = nil)
     require_relative 'entity/wind_direction_entity'
     WindDirectionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.wind_speed.list / client.wind_speed.load({ "id" => ... })
+  def wind_speed
+    require_relative 'entity/wind_speed_entity'
+    @wind_speed ||= WindSpeedEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.wind_speed instead.
   def WindSpeed(data = nil)
     require_relative 'entity/wind_speed_entity'
     WindSpeedEntity.new(self, data)

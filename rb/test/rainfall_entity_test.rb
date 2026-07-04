@@ -45,8 +45,7 @@ class RainfallEntityTest < Minitest::Test
       "collection_id" => setup[:idmap]["collection01"],
     }
 
-    rainfall_ref01_list_result, err = rainfall_ref01_ent.list(rainfall_ref01_match, nil)
-    assert_nil err
+    rainfall_ref01_list_result = rainfall_ref01_ent.list(rainfall_ref01_match, nil)
     assert rainfall_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def rainfall_basic_setup(extra)
     "REALTIMEWEATHER_TEST_RAINFALL_ENTID" => idmap,
     "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
     "REALTIMEWEATHER_TEST_EXPLAIN" => "FALSE",
-    "REALTIMEWEATHER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def rainfall_basic_setup(extra)
   if env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["REALTIMEWEATHER_APIKEY"],
       },
       extra || {},
     ])

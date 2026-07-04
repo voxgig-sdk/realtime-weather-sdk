@@ -86,14 +86,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'REALTIMEWEATHER_TEST_WIND_SPEED_ENTID': {},
     'REALTIMEWEATHER_TEST_LIVE': 'FALSE',
-    'REALTIMEWEATHER_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.REALTIMEWEATHER_TEST_LIVE
 
   if (live) {
     const client = new RealtimeWeatherSDK({
-      apikey: env.REALTIMEWEATHER_APIKEY,
     })
 
     let idmap: any = env['REALTIMEWEATHER_TEST_WIND_SPEED_ENTID']

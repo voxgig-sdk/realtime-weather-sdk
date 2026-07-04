@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -76,7 +75,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -90,11 +92,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -102,7 +105,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## AirTemperatureEntity
 
 ```php
-$air_temperature = $client->AirTemperature();
+$air_temperature = $client->air_temperature();
 ```
 
 ### Fields
@@ -115,12 +118,12 @@ $air_temperature = $client->AirTemperature();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->AirTemperature()->list([]);
+$results = $client->air_temperature()->list([]);
 ```
 
 ### Common Methods
@@ -156,7 +159,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```php
-$collection = $client->Collection();
+$collection = $client->collection();
 ```
 
 ### Fields
@@ -170,12 +173,12 @@ $collection = $client->Collection();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Collection()->list([]);
+$results = $client->collection()->list([]);
 ```
 
 ### Common Methods
@@ -211,7 +214,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```php
-$rainfall = $client->Rainfall();
+$rainfall = $client->rainfall();
 ```
 
 ### Fields
@@ -224,12 +227,12 @@ $rainfall = $client->Rainfall();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Rainfall()->list([]);
+$results = $client->rainfall()->list([]);
 ```
 
 ### Common Methods
@@ -265,7 +268,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```php
-$relative_humidity = $client->RelativeHumidity();
+$relative_humidity = $client->relative_humidity();
 ```
 
 ### Fields
@@ -278,12 +281,12 @@ $relative_humidity = $client->RelativeHumidity();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->RelativeHumidity()->list([]);
+$results = $client->relative_humidity()->list([]);
 ```
 
 ### Common Methods
@@ -319,7 +322,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```php
-$wind_direction = $client->WindDirection();
+$wind_direction = $client->wind_direction();
 ```
 
 ### Fields
@@ -332,12 +335,12 @@ $wind_direction = $client->WindDirection();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->WindDirection()->list([]);
+$results = $client->wind_direction()->list([]);
 ```
 
 ### Common Methods
@@ -373,7 +376,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```php
-$wind_speed = $client->WindSpeed();
+$wind_speed = $client->wind_speed();
 ```
 
 ### Fields
@@ -386,12 +389,12 @@ $wind_speed = $client->WindSpeed();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->WindSpeed()->list([]);
+$results = $client->wind_speed()->list([]);
 ```
 
 ### Common Methods

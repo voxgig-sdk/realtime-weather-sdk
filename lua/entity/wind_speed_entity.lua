@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch WindSpeedListMatch
+---@param ctrl? table
+---@return WindSpeed[]
+---@return string? err
 function WindSpeedEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

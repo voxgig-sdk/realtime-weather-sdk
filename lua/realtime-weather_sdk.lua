@@ -244,36 +244,114 @@ end
 
 
 
+-- Idiomatic facade: client:air_temperature():list() / client:air_temperature():load({ id = ... })
+function RealtimeWeatherSDK:air_temperature(data)
+  local EntityMod = require("entity.air_temperature_entity")
+  if data == nil then
+    if self._air_temperature == nil then
+      self._air_temperature = EntityMod.new(self, nil)
+    end
+    return self._air_temperature
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:air_temperature() instead.
 function RealtimeWeatherSDK:AirTemperature(data)
   local EntityMod = require("entity.air_temperature_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:collection():list() / client:collection():load({ id = ... })
+function RealtimeWeatherSDK:collection(data)
+  local EntityMod = require("entity.collection_entity")
+  if data == nil then
+    if self._collection == nil then
+      self._collection = EntityMod.new(self, nil)
+    end
+    return self._collection
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:collection() instead.
 function RealtimeWeatherSDK:Collection(data)
   local EntityMod = require("entity.collection_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:rainfall():list() / client:rainfall():load({ id = ... })
+function RealtimeWeatherSDK:rainfall(data)
+  local EntityMod = require("entity.rainfall_entity")
+  if data == nil then
+    if self._rainfall == nil then
+      self._rainfall = EntityMod.new(self, nil)
+    end
+    return self._rainfall
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:rainfall() instead.
 function RealtimeWeatherSDK:Rainfall(data)
   local EntityMod = require("entity.rainfall_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:relative_humidity():list() / client:relative_humidity():load({ id = ... })
+function RealtimeWeatherSDK:relative_humidity(data)
+  local EntityMod = require("entity.relative_humidity_entity")
+  if data == nil then
+    if self._relative_humidity == nil then
+      self._relative_humidity = EntityMod.new(self, nil)
+    end
+    return self._relative_humidity
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:relative_humidity() instead.
 function RealtimeWeatherSDK:RelativeHumidity(data)
   local EntityMod = require("entity.relative_humidity_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:wind_direction():list() / client:wind_direction():load({ id = ... })
+function RealtimeWeatherSDK:wind_direction(data)
+  local EntityMod = require("entity.wind_direction_entity")
+  if data == nil then
+    if self._wind_direction == nil then
+      self._wind_direction = EntityMod.new(self, nil)
+    end
+    return self._wind_direction
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:wind_direction() instead.
 function RealtimeWeatherSDK:WindDirection(data)
   local EntityMod = require("entity.wind_direction_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:wind_speed():list() / client:wind_speed():load({ id = ... })
+function RealtimeWeatherSDK:wind_speed(data)
+  local EntityMod = require("entity.wind_speed_entity")
+  if data == nil then
+    if self._wind_speed == nil then
+      self._wind_speed = EntityMod.new(self, nil)
+    end
+    return self._wind_speed
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:wind_speed() instead.
 function RealtimeWeatherSDK:WindSpeed(data)
   local EntityMod = require("entity.wind_speed_entity")
   return EntityMod.new(self, data)

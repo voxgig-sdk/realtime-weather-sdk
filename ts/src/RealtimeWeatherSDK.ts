@@ -7,6 +7,8 @@ import { RelativeHumidityEntity } from './entity/RelativeHumidityEntity'
 import { WindDirectionEntity } from './entity/WindDirectionEntity'
 import { WindSpeedEntity } from './entity/WindSpeedEntity'
 
+export type * from './RealtimeWeatherTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -207,36 +209,84 @@ class RealtimeWeatherSDK {
 
 
 
+  _air_temperature?: AirTemperatureEntity
+
+  // Idiomatic facade: `client.air_temperature.list()` / `client.air_temperature.load({ id })`.
+  get air_temperature(): AirTemperatureEntity {
+    return (this._air_temperature ??= new AirTemperatureEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.air_temperature` instead. */
   AirTemperature(data?: any) {
     const self = this
     return new AirTemperatureEntity(self,data)
   }
 
 
+  _collection?: CollectionEntity
+
+  // Idiomatic facade: `client.collection.list()` / `client.collection.load({ id })`.
+  get collection(): CollectionEntity {
+    return (this._collection ??= new CollectionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.collection` instead. */
   Collection(data?: any) {
     const self = this
     return new CollectionEntity(self,data)
   }
 
 
+  _rainfall?: RainfallEntity
+
+  // Idiomatic facade: `client.rainfall.list()` / `client.rainfall.load({ id })`.
+  get rainfall(): RainfallEntity {
+    return (this._rainfall ??= new RainfallEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.rainfall` instead. */
   Rainfall(data?: any) {
     const self = this
     return new RainfallEntity(self,data)
   }
 
 
+  _relative_humidity?: RelativeHumidityEntity
+
+  // Idiomatic facade: `client.relative_humidity.list()` / `client.relative_humidity.load({ id })`.
+  get relative_humidity(): RelativeHumidityEntity {
+    return (this._relative_humidity ??= new RelativeHumidityEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.relative_humidity` instead. */
   RelativeHumidity(data?: any) {
     const self = this
     return new RelativeHumidityEntity(self,data)
   }
 
 
+  _wind_direction?: WindDirectionEntity
+
+  // Idiomatic facade: `client.wind_direction.list()` / `client.wind_direction.load({ id })`.
+  get wind_direction(): WindDirectionEntity {
+    return (this._wind_direction ??= new WindDirectionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.wind_direction` instead. */
   WindDirection(data?: any) {
     const self = this
     return new WindDirectionEntity(self,data)
   }
 
 
+  _wind_speed?: WindSpeedEntity
+
+  // Idiomatic facade: `client.wind_speed.list()` / `client.wind_speed.load({ id })`.
+  get wind_speed(): WindSpeedEntity {
+    return (this._wind_speed ??= new WindSpeedEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.wind_speed` instead. */
   WindSpeed(data?: any) {
     const self = this
     return new WindSpeedEntity(self,data)

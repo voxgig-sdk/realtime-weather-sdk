@@ -9,9 +9,12 @@ The TypeScript SDK for the RealtimeWeather API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/realtime-weather
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/realtime-weather-sdk/releases](https://github.com/voxgig-sdk/realtime-weather-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { RealtimeWeatherSDK } from 'realtime-weather'
+import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
 
-const client = new RealtimeWeatherSDK({
-  apikey: process.env.REALTIME-WEATHER_APIKEY,
-})
+const client = new RealtimeWeatherSDK()
 ```
 
 ### 2. List airtemperatures
 
 ```ts
-const result = await client.AirTemperature().list()
+const result = await client.airtemperature.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = RealtimeWeatherSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.airtemperature.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new RealtimeWeatherSDK({ apikey: '...' })
+const client = new RealtimeWeatherSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.airtemperature
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new RealtimeWeatherSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new RealtimeWeatherSDK({
 Create a `.env.local` file at the project root:
 
 ```
-REALTIME-WEATHER_TEST_LIVE=TRUE
-REALTIME-WEATHER_APIKEY=<your-key>
+REALTIME_WEATHER_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new RealtimeWeatherSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new RealtimeWeatherSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -336,7 +333,7 @@ API path: `/collections/{collectionId}/wind-speed`
 
 ### AirTemperature
 
-Create an instance: `const air_temperature = client.AirTemperature()`
+Create an instance: `const air_temperature = client.air_temperature`
 
 #### Operations
 
@@ -355,13 +352,13 @@ Create an instance: `const air_temperature = client.AirTemperature()`
 #### Example: List
 
 ```ts
-const air_temperatures = await client.AirTemperature().list()
+const air_temperatures = await client.air_temperature.list()
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.Collection()`
+Create an instance: `const collection = client.collection`
 
 #### Operations
 
@@ -381,13 +378,13 @@ Create an instance: `const collection = client.Collection()`
 #### Example: List
 
 ```ts
-const collections = await client.Collection().list()
+const collections = await client.collection.list()
 ```
 
 
 ### Rainfall
 
-Create an instance: `const rainfall = client.Rainfall()`
+Create an instance: `const rainfall = client.rainfall`
 
 #### Operations
 
@@ -406,13 +403,13 @@ Create an instance: `const rainfall = client.Rainfall()`
 #### Example: List
 
 ```ts
-const rainfalls = await client.Rainfall().list()
+const rainfalls = await client.rainfall.list()
 ```
 
 
 ### RelativeHumidity
 
-Create an instance: `const relative_humidity = client.RelativeHumidity()`
+Create an instance: `const relative_humidity = client.relative_humidity`
 
 #### Operations
 
@@ -431,13 +428,13 @@ Create an instance: `const relative_humidity = client.RelativeHumidity()`
 #### Example: List
 
 ```ts
-const relative_humiditys = await client.RelativeHumidity().list()
+const relative_humiditys = await client.relative_humidity.list()
 ```
 
 
 ### WindDirection
 
-Create an instance: `const wind_direction = client.WindDirection()`
+Create an instance: `const wind_direction = client.wind_direction`
 
 #### Operations
 
@@ -456,13 +453,13 @@ Create an instance: `const wind_direction = client.WindDirection()`
 #### Example: List
 
 ```ts
-const wind_directions = await client.WindDirection().list()
+const wind_directions = await client.wind_direction.list()
 ```
 
 
 ### WindSpeed
 
-Create an instance: `const wind_speed = client.WindSpeed()`
+Create an instance: `const wind_speed = client.wind_speed`
 
 #### Operations
 
@@ -481,7 +478,7 @@ Create an instance: `const wind_speed = client.WindSpeed()`
 #### Example: List
 
 ```ts
-const wind_speeds = await client.WindSpeed().list()
+const wind_speeds = await client.wind_speed.list()
 ```
 
 
@@ -542,7 +539,7 @@ realtime-weather/
 Import the SDK from the package root:
 
 ```ts
-import { RealtimeWeatherSDK } from 'realtime-weather'
+import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
 ```
 
 ### Entity state
@@ -552,11 +549,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const airtemperature = client.airtemperature
+await airtemperature.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// airtemperature.data() now returns the loaded airtemperature data
+// airtemperature.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

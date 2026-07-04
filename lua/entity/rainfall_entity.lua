@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RainfallListMatch
+---@param ctrl? table
+---@return Rainfall[]
+---@return string? err
 function RainfallEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

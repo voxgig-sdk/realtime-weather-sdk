@@ -45,6 +45,7 @@ class WindDirectionEntity
     end
   end
 
+  # @return [WindDirection, Hash] the current WindDirection data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class WindDirectionEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of WindDirection fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class WindDirectionEntity
   
 
   
+  # List WindDirection items matching the given filter.
+  #
+  # @param reqmatch [WindDirectionListMatch, Hash, nil] match filter (any subset of WindDirection fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<WindDirection>, Array] the matching WindDirection items; raises RealtimeWeatherError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

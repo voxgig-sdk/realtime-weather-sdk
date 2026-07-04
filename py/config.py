@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://api-production.data.gov.sg/v2/public/api",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -73,6 +70,7 @@ def make_config():
                       "orig": "collection_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -180,6 +178,7 @@ def make_config():
                       "orig": "collection_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -257,6 +256,7 @@ def make_config():
                       "orig": "collection_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -357,6 +357,7 @@ def make_config():
                       "orig": "collection_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -457,6 +458,7 @@ def make_config():
                       "orig": "collection_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -557,6 +559,7 @@ def make_config():
                       "orig": "collection_id",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

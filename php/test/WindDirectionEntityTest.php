@@ -52,8 +52,7 @@ class WindDirectionEntityTest extends TestCase
             "collection_id" => $setup["idmap"]["collection01"],
         ];
 
-        [$wind_direction_ref01_list_result, $err] = $wind_direction_ref01_ent->list($wind_direction_ref01_match, null);
-        $this->assertNull($err);
+        $wind_direction_ref01_list_result = $wind_direction_ref01_ent->list($wind_direction_ref01_match, null);
         $this->assertIsArray($wind_direction_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function wind_direction_basic_setup($extra)
         "REALTIMEWEATHER_TEST_WIND_DIRECTION_ENTID" => $idmap,
         "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
         "REALTIMEWEATHER_TEST_EXPLAIN" => "FALSE",
-        "REALTIMEWEATHER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function wind_direction_basic_setup($extra)
     if ($env["REALTIMEWEATHER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["REALTIMEWEATHER_APIKEY"],
             ],
             $extra ?? [],
         ]);

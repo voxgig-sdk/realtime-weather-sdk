@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://api-production.data.gov.sg/v2/public/api",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -72,6 +69,7 @@ local function make_config()
                       ["orig"] = "collection_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -179,6 +177,7 @@ local function make_config()
                       ["orig"] = "collection_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                 },
@@ -256,6 +255,7 @@ local function make_config()
                       ["orig"] = "collection_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -356,6 +356,7 @@ local function make_config()
                       ["orig"] = "collection_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -456,6 +457,7 @@ local function make_config()
                       ["orig"] = "collection_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
@@ -556,6 +558,7 @@ local function make_config()
                       ["orig"] = "collection_id",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

@@ -52,8 +52,7 @@ class TestCollectionEntity:
             "collection_id": setup["idmap"]["collection01"],
         }
 
-        collection_ref01_list_result, err = collection_ref01_ent.list(collection_ref01_match, None)
-        assert err is None
+        collection_ref01_list_result = collection_ref01_ent.list(collection_ref01_match, None)
         assert isinstance(collection_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _collection_basic_setup(extra):
         "REALTIMEWEATHER_TEST_COLLECTION_ENTID": idmap,
         "REALTIMEWEATHER_TEST_LIVE": "FALSE",
         "REALTIMEWEATHER_TEST_EXPLAIN": "FALSE",
-        "REALTIMEWEATHER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _collection_basic_setup(extra):
     if env.get("REALTIMEWEATHER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("REALTIMEWEATHER_APIKEY"),
             },
             extra or {},
         ])

@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "National Environment Agency (NEA)"
         url: "https://data.gov.sg"

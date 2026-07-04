@@ -118,14 +118,12 @@ func air_temperatureDirectSetup(mockres any) *air_temperatureDirectSetupResult {
 	env := envOverride(map[string]any{
 		"REALTIMEWEATHER_TEST_AIR_TEMPERATURE_ENTID": map[string]any{},
 		"REALTIMEWEATHER_TEST_LIVE":    "FALSE",
-		"REALTIMEWEATHER_APIKEY":       "NONE",
 	})
 
 	live := env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["REALTIMEWEATHER_APIKEY"],
 		}
 		client := sdk.NewRealtimeWeatherSDK(mergedOpts)
 

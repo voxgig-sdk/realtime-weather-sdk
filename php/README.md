@@ -9,9 +9,10 @@ The PHP SDK for the RealtimeWeather API — an entity-oriented client using PHP 
 
 
 ## Install
-```bash
-composer require voxgig-sdk/realtime-weather
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/realtime-weather-sdk/releases](https://github.com/voxgig-sdk/realtime-weather-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,22 +26,22 @@ loading a specific record.
 <?php
 require_once 'realtimeweather_sdk.php';
 
-$client = new RealtimeWeatherSDK([
-    "apikey" => getenv("REALTIME-WEATHER_APIKEY"),
-]);
+$client = new RealtimeWeatherSDK();
 ```
 
 ### 2. List airtemperatures
 
 ```php
-[$result, $err] = $client->AirTemperature()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->airtemperature()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +53,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +91,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = RealtimeWeatherSDK::test();
 
-[$result, $err] = $client->RealtimeWeather()->load(["id" => "test01"]);
+$result = $client->airtemperature()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -121,8 +125,7 @@ $client = new RealtimeWeatherSDK([
 Create a `.env.local` file at the project root:
 
 ```
-REALTIME-WEATHER_TEST_LIVE=TRUE
-REALTIME-WEATHER_APIKEY=<your-key>
+REALTIME_WEATHER_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -145,7 +148,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -196,8 +198,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -290,7 +296,7 @@ API path: `/collections/{collectionId}/wind-speed`
 
 ### AirTemperature
 
-Create an instance: `const air_temperature = client.AirTemperature()`
+Create an instance: `const air_temperature = client.air_temperature`
 
 #### Operations
 
@@ -309,13 +315,13 @@ Create an instance: `const air_temperature = client.AirTemperature()`
 #### Example: List
 
 ```ts
-const air_temperatures = await client.AirTemperature().list()
+const air_temperatures = await client.air_temperature.list()
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.Collection()`
+Create an instance: `const collection = client.collection`
 
 #### Operations
 
@@ -335,13 +341,13 @@ Create an instance: `const collection = client.Collection()`
 #### Example: List
 
 ```ts
-const collections = await client.Collection().list()
+const collections = await client.collection.list()
 ```
 
 
 ### Rainfall
 
-Create an instance: `const rainfall = client.Rainfall()`
+Create an instance: `const rainfall = client.rainfall`
 
 #### Operations
 
@@ -360,13 +366,13 @@ Create an instance: `const rainfall = client.Rainfall()`
 #### Example: List
 
 ```ts
-const rainfalls = await client.Rainfall().list()
+const rainfalls = await client.rainfall.list()
 ```
 
 
 ### RelativeHumidity
 
-Create an instance: `const relative_humidity = client.RelativeHumidity()`
+Create an instance: `const relative_humidity = client.relative_humidity`
 
 #### Operations
 
@@ -385,13 +391,13 @@ Create an instance: `const relative_humidity = client.RelativeHumidity()`
 #### Example: List
 
 ```ts
-const relative_humiditys = await client.RelativeHumidity().list()
+const relative_humiditys = await client.relative_humidity.list()
 ```
 
 
 ### WindDirection
 
-Create an instance: `const wind_direction = client.WindDirection()`
+Create an instance: `const wind_direction = client.wind_direction`
 
 #### Operations
 
@@ -410,13 +416,13 @@ Create an instance: `const wind_direction = client.WindDirection()`
 #### Example: List
 
 ```ts
-const wind_directions = await client.WindDirection().list()
+const wind_directions = await client.wind_direction.list()
 ```
 
 
 ### WindSpeed
 
-Create an instance: `const wind_speed = client.WindSpeed()`
+Create an instance: `const wind_speed = client.wind_speed`
 
 #### Operations
 
@@ -435,7 +441,7 @@ Create an instance: `const wind_speed = client.WindSpeed()`
 #### Example: List
 
 ```ts
-const wind_speeds = await client.WindSpeed().list()
+const wind_speeds = await client.wind_speed.list()
 ```
 
 
@@ -510,11 +516,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$airtemperature = $client->airtemperature();
+$airtemperature->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $airtemperature->dataGet() now returns the loaded airtemperature data
+// $airtemperature->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

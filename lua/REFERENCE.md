@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -104,7 +103,7 @@ same parameters as `direct()`.
 ## AirTemperatureEntity
 
 ```lua
-local air_temperature = client:AirTemperature(nil)
+local air_temperature = client:air_temperature(nil)
 ```
 
 ### Fields
@@ -122,7 +121,7 @@ local air_temperature = client:AirTemperature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:AirTemperature():list()
+local results, err = client:air_temperature():list()
 ```
 
 ### Common Methods
@@ -158,7 +157,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```lua
-local collection = client:Collection(nil)
+local collection = client:collection(nil)
 ```
 
 ### Fields
@@ -177,7 +176,7 @@ local collection = client:Collection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Collection():list()
+local results, err = client:collection():list()
 ```
 
 ### Common Methods
@@ -213,7 +212,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```lua
-local rainfall = client:Rainfall(nil)
+local rainfall = client:rainfall(nil)
 ```
 
 ### Fields
@@ -231,7 +230,7 @@ local rainfall = client:Rainfall(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Rainfall():list()
+local results, err = client:rainfall():list()
 ```
 
 ### Common Methods
@@ -267,7 +266,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```lua
-local relative_humidity = client:RelativeHumidity(nil)
+local relative_humidity = client:relative_humidity(nil)
 ```
 
 ### Fields
@@ -285,7 +284,7 @@ local relative_humidity = client:RelativeHumidity(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:RelativeHumidity():list()
+local results, err = client:relative_humidity():list()
 ```
 
 ### Common Methods
@@ -321,7 +320,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```lua
-local wind_direction = client:WindDirection(nil)
+local wind_direction = client:wind_direction(nil)
 ```
 
 ### Fields
@@ -339,7 +338,7 @@ local wind_direction = client:WindDirection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WindDirection():list()
+local results, err = client:wind_direction():list()
 ```
 
 ### Common Methods
@@ -375,7 +374,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```lua
-local wind_speed = client:WindSpeed(nil)
+local wind_speed = client:wind_speed(nil)
 ```
 
 ### Fields
@@ -393,7 +392,7 @@ local wind_speed = client:WindSpeed(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WindSpeed():list()
+local results, err = client:wind_speed():list()
 ```
 
 ### Common Methods

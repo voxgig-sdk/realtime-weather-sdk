@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AirTemperatureListMatch
+---@param ctrl? table
+---@return AirTemperature[]
+---@return string? err
 function AirTemperatureEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

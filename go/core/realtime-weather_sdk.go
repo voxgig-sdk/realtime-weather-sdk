@@ -245,31 +245,49 @@ func (sdk *RealtimeWeatherSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// AirTemperature returns a AirTemperature entity bound to this client.
+// Idiomatic usage: client.AirTemperature(nil).List(nil, nil) or
+// client.AirTemperature(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RealtimeWeatherSDK) AirTemperature(data map[string]any) RealtimeWeatherEntity {
 	return NewAirTemperatureEntityFunc(sdk, data)
 }
 
 
+// Collection returns a Collection entity bound to this client.
+// Idiomatic usage: client.Collection(nil).List(nil, nil) or
+// client.Collection(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RealtimeWeatherSDK) Collection(data map[string]any) RealtimeWeatherEntity {
 	return NewCollectionEntityFunc(sdk, data)
 }
 
 
+// Rainfall returns a Rainfall entity bound to this client.
+// Idiomatic usage: client.Rainfall(nil).List(nil, nil) or
+// client.Rainfall(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RealtimeWeatherSDK) Rainfall(data map[string]any) RealtimeWeatherEntity {
 	return NewRainfallEntityFunc(sdk, data)
 }
 
 
+// RelativeHumidity returns a RelativeHumidity entity bound to this client.
+// Idiomatic usage: client.RelativeHumidity(nil).List(nil, nil) or
+// client.RelativeHumidity(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RealtimeWeatherSDK) RelativeHumidity(data map[string]any) RealtimeWeatherEntity {
 	return NewRelativeHumidityEntityFunc(sdk, data)
 }
 
 
+// WindDirection returns a WindDirection entity bound to this client.
+// Idiomatic usage: client.WindDirection(nil).List(nil, nil) or
+// client.WindDirection(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RealtimeWeatherSDK) WindDirection(data map[string]any) RealtimeWeatherEntity {
 	return NewWindDirectionEntityFunc(sdk, data)
 }
 
 
+// WindSpeed returns a WindSpeed entity bound to this client.
+// Idiomatic usage: client.WindSpeed(nil).List(nil, nil) or
+// client.WindSpeed(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RealtimeWeatherSDK) WindSpeed(data map[string]any) RealtimeWeatherEntity {
 	return NewWindSpeedEntityFunc(sdk, data)
 }

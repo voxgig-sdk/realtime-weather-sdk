@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RelativeHumidityListMatch
+---@param ctrl? table
+---@return RelativeHumidity[]
+---@return string? err
 function RelativeHumidityEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

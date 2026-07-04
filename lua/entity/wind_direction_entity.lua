@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch WindDirectionListMatch
+---@param ctrl? table
+---@return WindDirection[]
+---@return string? err
 function WindDirectionEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

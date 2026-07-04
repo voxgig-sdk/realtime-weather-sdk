@@ -45,6 +45,7 @@ class RelativeHumidityEntity
     end
   end
 
+  # @return [RelativeHumidity, Hash] the current RelativeHumidity data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class RelativeHumidityEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of RelativeHumidity fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class RelativeHumidityEntity
   
 
   
+  # List RelativeHumidity items matching the given filter.
+  #
+  # @param reqmatch [RelativeHumidityListMatch, Hash, nil] match filter (any subset of RelativeHumidity fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<RelativeHumidity>, Array] the matching RelativeHumidity items; raises RealtimeWeatherError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

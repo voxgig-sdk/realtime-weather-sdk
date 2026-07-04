@@ -45,6 +45,7 @@ class RainfallEntity
     end
   end
 
+  # @return [Rainfall, Hash] the current Rainfall data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class RainfallEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Rainfall fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class RainfallEntity
   
 
   
+  # List Rainfall items matching the given filter.
+  #
+  # @param reqmatch [RainfallListMatch, Hash, nil] match filter (any subset of Rainfall fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Rainfall>, Array] the matching Rainfall items; raises RealtimeWeatherError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

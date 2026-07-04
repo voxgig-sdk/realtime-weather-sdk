@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -74,9 +73,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -90,14 +91,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -105,7 +106,7 @@ same parameters as `direct()`.
 ## AirTemperatureEntity
 
 ```ruby
-air_temperature = client.AirTemperature
+air_temperature = client.air_temperature
 ```
 
 ### Fields
@@ -118,12 +119,12 @@ air_temperature = client.AirTemperature
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.AirTemperature.list(nil)
+results = client.air_temperature.list(nil)
 ```
 
 ### Common Methods
@@ -159,7 +160,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```ruby
-collection = client.Collection
+collection = client.collection
 ```
 
 ### Fields
@@ -173,12 +174,12 @@ collection = client.Collection
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Collection.list(nil)
+results = client.collection.list(nil)
 ```
 
 ### Common Methods
@@ -214,7 +215,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```ruby
-rainfall = client.Rainfall
+rainfall = client.rainfall
 ```
 
 ### Fields
@@ -227,12 +228,12 @@ rainfall = client.Rainfall
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Rainfall.list(nil)
+results = client.rainfall.list(nil)
 ```
 
 ### Common Methods
@@ -268,7 +269,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```ruby
-relative_humidity = client.RelativeHumidity
+relative_humidity = client.relative_humidity
 ```
 
 ### Fields
@@ -281,12 +282,12 @@ relative_humidity = client.RelativeHumidity
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.RelativeHumidity.list(nil)
+results = client.relative_humidity.list(nil)
 ```
 
 ### Common Methods
@@ -322,7 +323,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```ruby
-wind_direction = client.WindDirection
+wind_direction = client.wind_direction
 ```
 
 ### Fields
@@ -335,12 +336,12 @@ wind_direction = client.WindDirection
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.WindDirection.list(nil)
+results = client.wind_direction.list(nil)
 ```
 
 ### Common Methods
@@ -376,7 +377,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```ruby
-wind_speed = client.WindSpeed
+wind_speed = client.wind_speed
 ```
 
 ### Fields
@@ -389,12 +390,12 @@ wind_speed = client.WindSpeed
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.WindSpeed.list(nil)
+results = client.wind_speed.list(nil)
 ```
 
 ### Common Methods

@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api-production.data.gov.sg/v2/public/api',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -112,7 +108,8 @@ class Config {
                     "name": "collection_id",
                     "orig": "collection_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -219,7 +216,8 @@ class Config {
                     "name": "id",
                     "orig": "collection_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -296,7 +294,8 @@ class Config {
                     "name": "collection_id",
                     "orig": "collection_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -396,7 +395,8 @@ class Config {
                     "name": "collection_id",
                     "orig": "collection_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -496,7 +496,8 @@ class Config {
                     "name": "collection_id",
                     "orig": "collection_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -596,7 +597,8 @@ class Config {
                     "name": "collection_id",
                     "orig": "collection_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ],
                 "query": [

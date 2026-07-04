@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  WindSpeed,
+  WindSpeedListMatch,
+} from '../RealtimeWeatherTypes'
 
 // TODO: needs Entity superclass
-class WindSpeedEntity extends RealtimeWeatherEntityBase {
+class WindSpeedEntity extends RealtimeWeatherEntityBase<WindSpeed> {
 
   constructor(client: RealtimeWeatherSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class WindSpeedEntity extends RealtimeWeatherEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: WindSpeedListMatch, ctrl?: Control): Promise<WindSpeed[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class WindSpeedEntity extends RealtimeWeatherEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<WindSpeed[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
