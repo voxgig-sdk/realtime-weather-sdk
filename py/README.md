@@ -31,14 +31,16 @@ from realtimeweather_sdk import RealtimeWeatherSDK
 client = RealtimeWeatherSDK()
 ```
 
-### 2. List airtemperatures
+### 2. List airtemperature records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.airtemperature.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    airtemperatures = client.AirTemperature().list({})
+    for airtemperature in airtemperatures:
+        print(airtemperature)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = RealtimeWeatherSDK.test()
 
-result = client.airtemperature.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+airtemperature = client.AirTemperature().load({"id": "test01"})
+# airtemperature contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `AirTemperature` | `(data) -> AirTemperatureEntity` | Create a AirTemperature entity instance. |
+| `AirTemperature` | `(data) -> AirTemperatureEntity` | Create an AirTemperature entity instance. |
 | `Collection` | `(data) -> CollectionEntity` | Create a Collection entity instance. |
 | `Rainfall` | `(data) -> RainfallEntity` | Create a Rainfall entity instance. |
 | `RelativeHumidity` | `(data) -> RelativeHumidityEntity` | Create a RelativeHumidity entity instance. |
@@ -288,7 +291,7 @@ API path: `/collections/{collectionId}/wind-speed`
 
 ### AirTemperature
 
-Create an instance: `const air_temperature = client.air_temperature`
+Create an instance: `air_temperature = client.AirTemperature()`
 
 #### Operations
 
@@ -306,14 +309,14 @@ Create an instance: `const air_temperature = client.air_temperature`
 
 #### Example: List
 
-```ts
-const air_temperatures = await client.air_temperature.list()
+```python
+air_temperatures = client.AirTemperature().list({})
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.collection`
+Create an instance: `collection = client.Collection()`
 
 #### Operations
 
@@ -332,14 +335,14 @@ Create an instance: `const collection = client.collection`
 
 #### Example: List
 
-```ts
-const collections = await client.collection.list()
+```python
+collections = client.Collection().list({})
 ```
 
 
 ### Rainfall
 
-Create an instance: `const rainfall = client.rainfall`
+Create an instance: `rainfall = client.Rainfall()`
 
 #### Operations
 
@@ -357,14 +360,14 @@ Create an instance: `const rainfall = client.rainfall`
 
 #### Example: List
 
-```ts
-const rainfalls = await client.rainfall.list()
+```python
+rainfalls = client.Rainfall().list({})
 ```
 
 
 ### RelativeHumidity
 
-Create an instance: `const relative_humidity = client.relative_humidity`
+Create an instance: `relative_humidity = client.RelativeHumidity()`
 
 #### Operations
 
@@ -382,14 +385,14 @@ Create an instance: `const relative_humidity = client.relative_humidity`
 
 #### Example: List
 
-```ts
-const relative_humiditys = await client.relative_humidity.list()
+```python
+relative_humiditys = client.RelativeHumidity().list({})
 ```
 
 
 ### WindDirection
 
-Create an instance: `const wind_direction = client.wind_direction`
+Create an instance: `wind_direction = client.WindDirection()`
 
 #### Operations
 
@@ -407,14 +410,14 @@ Create an instance: `const wind_direction = client.wind_direction`
 
 #### Example: List
 
-```ts
-const wind_directions = await client.wind_direction.list()
+```python
+wind_directions = client.WindDirection().list({})
 ```
 
 
 ### WindSpeed
 
-Create an instance: `const wind_speed = client.wind_speed`
+Create an instance: `wind_speed = client.WindSpeed()`
 
 #### Operations
 
@@ -432,8 +435,8 @@ Create an instance: `const wind_speed = client.wind_speed`
 
 #### Example: List
 
-```ts
-const wind_speeds = await client.wind_speed.list()
+```python
+wind_speeds = client.WindSpeed().list({})
 ```
 
 
@@ -507,7 +510,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-airtemperature = client.airtemperature
+airtemperature = client.AirTemperature()
 airtemperature.load({"id": "example_id"})
 
 # airtemperature.data_get() now returns the loaded airtemperature data

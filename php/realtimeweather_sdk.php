@@ -233,10 +233,10 @@ class RealtimeWeatherSDK
 
     private $_air_temperature = null;
 
-    // Idiomatic facade: $client->air_temperature()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias AirTemperature() (PHP method
-    // names are case-insensitive).
-    public function air_temperature($data = null)
+    // Canonical facade: $client->AirTemperature()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->air_temperature()
+    // resolves here too.
+    public function AirTemperature($data = null)
     {
         require_once __DIR__ . '/entity/air_temperature_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class RealtimeWeatherSDK
 
     private $_collection = null;
 
-    // Idiomatic facade: $client->collection()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Collection() (PHP method
-    // names are case-insensitive).
-    public function collection($data = null)
+    // Canonical facade: $client->Collection()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->collection()
+    // resolves here too.
+    public function Collection($data = null)
     {
         require_once __DIR__ . '/entity/collection_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class RealtimeWeatherSDK
 
     private $_rainfall = null;
 
-    // Idiomatic facade: $client->rainfall()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Rainfall() (PHP method
-    // names are case-insensitive).
-    public function rainfall($data = null)
+    // Canonical facade: $client->Rainfall()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->rainfall()
+    // resolves here too.
+    public function Rainfall($data = null)
     {
         require_once __DIR__ . '/entity/rainfall_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class RealtimeWeatherSDK
 
     private $_relative_humidity = null;
 
-    // Idiomatic facade: $client->relative_humidity()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RelativeHumidity() (PHP method
-    // names are case-insensitive).
-    public function relative_humidity($data = null)
+    // Canonical facade: $client->RelativeHumidity()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->relative_humidity()
+    // resolves here too.
+    public function RelativeHumidity($data = null)
     {
         require_once __DIR__ . '/entity/relative_humidity_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class RealtimeWeatherSDK
 
     private $_wind_direction = null;
 
-    // Idiomatic facade: $client->wind_direction()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WindDirection() (PHP method
-    // names are case-insensitive).
-    public function wind_direction($data = null)
+    // Canonical facade: $client->WindDirection()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->wind_direction()
+    // resolves here too.
+    public function WindDirection($data = null)
     {
         require_once __DIR__ . '/entity/wind_direction_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class RealtimeWeatherSDK
 
     private $_wind_speed = null;
 
-    // Idiomatic facade: $client->wind_speed()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WindSpeed() (PHP method
-    // names are case-insensitive).
-    public function wind_speed($data = null)
+    // Canonical facade: $client->WindSpeed()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->wind_speed()
+    // resolves here too.
+    public function WindSpeed($data = null)
     {
         require_once __DIR__ . '/entity/wind_speed_entity.php';
         if ($data === null) {

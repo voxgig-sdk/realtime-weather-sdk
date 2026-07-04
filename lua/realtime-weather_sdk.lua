@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:air_temperature():list() / client:air_temperature():load({ id = ... })
-function RealtimeWeatherSDK:air_temperature(data)
+-- Idiomatic facade: client:AirTemperature():list() / client:AirTemperature():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RealtimeWeatherSDK:AirTemperature(data)
   local EntityMod = require("entity.air_temperature_entity")
   if data == nil then
     if self._air_temperature == nil then
@@ -256,15 +257,10 @@ function RealtimeWeatherSDK:air_temperature(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:air_temperature() instead.
-function RealtimeWeatherSDK:AirTemperature(data)
-  local EntityMod = require("entity.air_temperature_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:collection():list() / client:collection():load({ id = ... })
-function RealtimeWeatherSDK:collection(data)
+-- Idiomatic facade: client:Collection():list() / client:Collection():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RealtimeWeatherSDK:Collection(data)
   local EntityMod = require("entity.collection_entity")
   if data == nil then
     if self._collection == nil then
@@ -275,15 +271,10 @@ function RealtimeWeatherSDK:collection(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:collection() instead.
-function RealtimeWeatherSDK:Collection(data)
-  local EntityMod = require("entity.collection_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:rainfall():list() / client:rainfall():load({ id = ... })
-function RealtimeWeatherSDK:rainfall(data)
+-- Idiomatic facade: client:Rainfall():list() / client:Rainfall():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RealtimeWeatherSDK:Rainfall(data)
   local EntityMod = require("entity.rainfall_entity")
   if data == nil then
     if self._rainfall == nil then
@@ -294,15 +285,10 @@ function RealtimeWeatherSDK:rainfall(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:rainfall() instead.
-function RealtimeWeatherSDK:Rainfall(data)
-  local EntityMod = require("entity.rainfall_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:relative_humidity():list() / client:relative_humidity():load({ id = ... })
-function RealtimeWeatherSDK:relative_humidity(data)
+-- Idiomatic facade: client:RelativeHumidity():list() / client:RelativeHumidity():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RealtimeWeatherSDK:RelativeHumidity(data)
   local EntityMod = require("entity.relative_humidity_entity")
   if data == nil then
     if self._relative_humidity == nil then
@@ -313,15 +299,10 @@ function RealtimeWeatherSDK:relative_humidity(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:relative_humidity() instead.
-function RealtimeWeatherSDK:RelativeHumidity(data)
-  local EntityMod = require("entity.relative_humidity_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:wind_direction():list() / client:wind_direction():load({ id = ... })
-function RealtimeWeatherSDK:wind_direction(data)
+-- Idiomatic facade: client:WindDirection():list() / client:WindDirection():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RealtimeWeatherSDK:WindDirection(data)
   local EntityMod = require("entity.wind_direction_entity")
   if data == nil then
     if self._wind_direction == nil then
@@ -332,15 +313,10 @@ function RealtimeWeatherSDK:wind_direction(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:wind_direction() instead.
-function RealtimeWeatherSDK:WindDirection(data)
-  local EntityMod = require("entity.wind_direction_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:wind_speed():list() / client:wind_speed():load({ id = ... })
-function RealtimeWeatherSDK:wind_speed(data)
+-- Idiomatic facade: client:WindSpeed():list() / client:WindSpeed():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RealtimeWeatherSDK:WindSpeed(data)
   local EntityMod = require("entity.wind_speed_entity")
   if data == nil then
     if self._wind_speed == nil then
@@ -348,12 +324,6 @@ function RealtimeWeatherSDK:wind_speed(data)
     end
     return self._wind_speed
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:wind_speed() instead.
-function RealtimeWeatherSDK:WindSpeed(data)
-  local EntityMod = require("entity.wind_speed_entity")
   return EntityMod.new(self, data)
 end
 

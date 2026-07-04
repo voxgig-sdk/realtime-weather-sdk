@@ -28,16 +28,14 @@ require_relative "RealtimeWeather_sdk"
 client = RealtimeWeatherSDK.new
 ```
 
-### 2. List airtemperatures
+### 2. List airtemperature records
 
 ```ruby
 begin
-  result = client.airtemperature.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of AirTemperature records — iterate directly.
+  airtemperatures = client.AirTemperature.list
+  airtemperatures.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = RealtimeWeatherSDK.test
+client = RealtimeWeatherSDK.test({
+  "entity" => { "airtemperature" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.airtemperature.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+airtemperature = client.AirTemperature.load({ "id" => "test01" })
+puts airtemperature
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `AirTemperature` | `(data) -> AirTemperatureEntity` | Create a AirTemperature entity instance. |
+| `AirTemperature` | `(data) -> AirTemperatureEntity` | Create an AirTemperature entity instance. |
 | `Collection` | `(data) -> CollectionEntity` | Create a Collection entity instance. |
 | `Rainfall` | `(data) -> RainfallEntity` | Create a Rainfall entity instance. |
 | `RelativeHumidity` | `(data) -> RelativeHumidityEntity` | Create a RelativeHumidity entity instance. |
@@ -291,7 +293,7 @@ API path: `/collections/{collectionId}/wind-speed`
 
 ### AirTemperature
 
-Create an instance: `const air_temperature = client.air_temperature`
+Create an instance: `air_temperature = client.AirTemperature`
 
 #### Operations
 
@@ -309,14 +311,15 @@ Create an instance: `const air_temperature = client.air_temperature`
 
 #### Example: List
 
-```ts
-const air_temperatures = await client.air_temperature.list()
+```ruby
+# list returns an Array of AirTemperature records (raises on error).
+air_temperatures = client.AirTemperature.list
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.collection`
+Create an instance: `collection = client.Collection`
 
 #### Operations
 
@@ -335,14 +338,15 @@ Create an instance: `const collection = client.collection`
 
 #### Example: List
 
-```ts
-const collections = await client.collection.list()
+```ruby
+# list returns an Array of Collection records (raises on error).
+collections = client.Collection.list
 ```
 
 
 ### Rainfall
 
-Create an instance: `const rainfall = client.rainfall`
+Create an instance: `rainfall = client.Rainfall`
 
 #### Operations
 
@@ -360,14 +364,15 @@ Create an instance: `const rainfall = client.rainfall`
 
 #### Example: List
 
-```ts
-const rainfalls = await client.rainfall.list()
+```ruby
+# list returns an Array of Rainfall records (raises on error).
+rainfalls = client.Rainfall.list
 ```
 
 
 ### RelativeHumidity
 
-Create an instance: `const relative_humidity = client.relative_humidity`
+Create an instance: `relative_humidity = client.RelativeHumidity`
 
 #### Operations
 
@@ -385,14 +390,15 @@ Create an instance: `const relative_humidity = client.relative_humidity`
 
 #### Example: List
 
-```ts
-const relative_humiditys = await client.relative_humidity.list()
+```ruby
+# list returns an Array of RelativeHumidity records (raises on error).
+relative_humiditys = client.RelativeHumidity.list
 ```
 
 
 ### WindDirection
 
-Create an instance: `const wind_direction = client.wind_direction`
+Create an instance: `wind_direction = client.WindDirection`
 
 #### Operations
 
@@ -410,14 +416,15 @@ Create an instance: `const wind_direction = client.wind_direction`
 
 #### Example: List
 
-```ts
-const wind_directions = await client.wind_direction.list()
+```ruby
+# list returns an Array of WindDirection records (raises on error).
+wind_directions = client.WindDirection.list
 ```
 
 
 ### WindSpeed
 
-Create an instance: `const wind_speed = client.wind_speed`
+Create an instance: `wind_speed = client.WindSpeed`
 
 #### Operations
 
@@ -435,8 +442,9 @@ Create an instance: `const wind_speed = client.wind_speed`
 
 #### Example: List
 
-```ts
-const wind_speeds = await client.wind_speed.list()
+```ruby
+# list returns an Array of WindSpeed records (raises on error).
+wind_speeds = client.WindSpeed.list
 ```
 
 
@@ -511,7 +519,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-airtemperature = client.airtemperature
+airtemperature = client.AirTemperature
 airtemperature.load({ "id" => "example_id" })
 
 # airtemperature.data_get now returns the loaded airtemperature data

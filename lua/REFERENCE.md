@@ -103,7 +103,7 @@ same parameters as `direct()`.
 ## AirTemperatureEntity
 
 ```lua
-local air_temperature = client:air_temperature(nil)
+local air_temperature = client:AirTemperature(nil)
 ```
 
 ### Fields
@@ -121,7 +121,7 @@ local air_temperature = client:air_temperature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:air_temperature():list()
+local results, err = client:AirTemperature():list()
 ```
 
 ### Common Methods
@@ -157,7 +157,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```lua
-local collection = client:collection(nil)
+local collection = client:Collection(nil)
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ local collection = client:collection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:collection():list()
+local results, err = client:Collection():list()
 ```
 
 ### Common Methods
@@ -212,7 +212,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```lua
-local rainfall = client:rainfall(nil)
+local rainfall = client:Rainfall(nil)
 ```
 
 ### Fields
@@ -230,7 +230,7 @@ local rainfall = client:rainfall(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:rainfall():list()
+local results, err = client:Rainfall():list()
 ```
 
 ### Common Methods
@@ -266,7 +266,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```lua
-local relative_humidity = client:relative_humidity(nil)
+local relative_humidity = client:RelativeHumidity(nil)
 ```
 
 ### Fields
@@ -284,7 +284,7 @@ local relative_humidity = client:relative_humidity(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:relative_humidity():list()
+local results, err = client:RelativeHumidity():list()
 ```
 
 ### Common Methods
@@ -320,7 +320,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```lua
-local wind_direction = client:wind_direction(nil)
+local wind_direction = client:WindDirection(nil)
 ```
 
 ### Fields
@@ -338,7 +338,7 @@ local wind_direction = client:wind_direction(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:wind_direction():list()
+local results, err = client:WindDirection():list()
 ```
 
 ### Common Methods
@@ -374,7 +374,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```lua
-local wind_speed = client:wind_speed(nil)
+local wind_speed = client:WindSpeed(nil)
 ```
 
 ### Fields
@@ -392,7 +392,7 @@ local wind_speed = client:wind_speed(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:wind_speed():list()
+local results, err = client:WindSpeed():list()
 ```
 
 ### Common Methods

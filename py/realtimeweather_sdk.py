@@ -220,105 +220,45 @@ class RealtimeWeatherSDK:
         }
 
 
-    @property
-    def air_temperature(self):
-        """Idiomatic facade: client.air_temperature.list() / client.air_temperature.load({"id": ...})."""
-        from entity.air_temperature_entity import AirTemperatureEntity
-        cached = getattr(self, "_air_temperature", None)
-        if cached is None:
-            cached = AirTemperatureEntity(self, None)
-            self._air_temperature = cached
-        return cached
-
-    def AirTemperature(self, data=None):
-        # Deprecated: use client.air_temperature instead.
+    def AirTemperature(self, data=None) -> "AirTemperatureEntity":
+        """Entity factory: client.AirTemperature().list({}) / client.AirTemperature().load({"id": ...})."""
         from entity.air_temperature_entity import AirTemperatureEntity
         return AirTemperatureEntity(self, data)
 
 
-    @property
-    def collection(self):
-        """Idiomatic facade: client.collection.list() / client.collection.load({"id": ...})."""
-        from entity.collection_entity import CollectionEntity
-        cached = getattr(self, "_collection", None)
-        if cached is None:
-            cached = CollectionEntity(self, None)
-            self._collection = cached
-        return cached
-
-    def Collection(self, data=None):
-        # Deprecated: use client.collection instead.
+    def Collection(self, data=None) -> "CollectionEntity":
+        """Entity factory: client.Collection().list({}) / client.Collection().load({"id": ...})."""
         from entity.collection_entity import CollectionEntity
         return CollectionEntity(self, data)
 
 
-    @property
-    def rainfall(self):
-        """Idiomatic facade: client.rainfall.list() / client.rainfall.load({"id": ...})."""
-        from entity.rainfall_entity import RainfallEntity
-        cached = getattr(self, "_rainfall", None)
-        if cached is None:
-            cached = RainfallEntity(self, None)
-            self._rainfall = cached
-        return cached
-
-    def Rainfall(self, data=None):
-        # Deprecated: use client.rainfall instead.
+    def Rainfall(self, data=None) -> "RainfallEntity":
+        """Entity factory: client.Rainfall().list({}) / client.Rainfall().load({"id": ...})."""
         from entity.rainfall_entity import RainfallEntity
         return RainfallEntity(self, data)
 
 
-    @property
-    def relative_humidity(self):
-        """Idiomatic facade: client.relative_humidity.list() / client.relative_humidity.load({"id": ...})."""
-        from entity.relative_humidity_entity import RelativeHumidityEntity
-        cached = getattr(self, "_relative_humidity", None)
-        if cached is None:
-            cached = RelativeHumidityEntity(self, None)
-            self._relative_humidity = cached
-        return cached
-
-    def RelativeHumidity(self, data=None):
-        # Deprecated: use client.relative_humidity instead.
+    def RelativeHumidity(self, data=None) -> "RelativeHumidityEntity":
+        """Entity factory: client.RelativeHumidity().list({}) / client.RelativeHumidity().load({"id": ...})."""
         from entity.relative_humidity_entity import RelativeHumidityEntity
         return RelativeHumidityEntity(self, data)
 
 
-    @property
-    def wind_direction(self):
-        """Idiomatic facade: client.wind_direction.list() / client.wind_direction.load({"id": ...})."""
-        from entity.wind_direction_entity import WindDirectionEntity
-        cached = getattr(self, "_wind_direction", None)
-        if cached is None:
-            cached = WindDirectionEntity(self, None)
-            self._wind_direction = cached
-        return cached
-
-    def WindDirection(self, data=None):
-        # Deprecated: use client.wind_direction instead.
+    def WindDirection(self, data=None) -> "WindDirectionEntity":
+        """Entity factory: client.WindDirection().list({}) / client.WindDirection().load({"id": ...})."""
         from entity.wind_direction_entity import WindDirectionEntity
         return WindDirectionEntity(self, data)
 
 
-    @property
-    def wind_speed(self):
-        """Idiomatic facade: client.wind_speed.list() / client.wind_speed.load({"id": ...})."""
-        from entity.wind_speed_entity import WindSpeedEntity
-        cached = getattr(self, "_wind_speed", None)
-        if cached is None:
-            cached = WindSpeedEntity(self, None)
-            self._wind_speed = cached
-        return cached
-
-    def WindSpeed(self, data=None):
-        # Deprecated: use client.wind_speed instead.
+    def WindSpeed(self, data=None) -> "WindSpeedEntity":
+        """Entity factory: client.WindSpeed().list({}) / client.WindSpeed().load({"id": ...})."""
         from entity.wind_speed_entity import WindSpeedEntity
         return WindSpeedEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "RealtimeWeatherSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -338,3 +278,14 @@ class RealtimeWeatherSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.air_temperature_entity import AirTemperatureEntity
+    from entity.collection_entity import CollectionEntity
+    from entity.rainfall_entity import RainfallEntity
+    from entity.relative_humidity_entity import RelativeHumidityEntity
+    from entity.wind_direction_entity import WindDirectionEntity
+    from entity.wind_speed_entity import WindSpeedEntity

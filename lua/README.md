@@ -31,17 +31,17 @@ local sdk = require("realtime-weather_sdk")
 local client = sdk.new()
 ```
 
-### 2. List airtemperatures
+### 2. List airtemperature records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:airtemperature():list()
+local airtemperatures, err = client:AirTemperature():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(airtemperatures) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:airtemperature():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:AirTemperature():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `AirTemperature` | `(data) -> AirTemperatureEntity` | Create a AirTemperature entity instance. |
+| `AirTemperature` | `(data) -> AirTemperatureEntity` | Create an AirTemperature entity instance. |
 | `Collection` | `(data) -> CollectionEntity` | Create a Collection entity instance. |
 | `Rainfall` | `(data) -> RainfallEntity` | Create a Rainfall entity instance. |
 | `RelativeHumidity` | `(data) -> RelativeHumidityEntity` | Create a RelativeHumidity entity instance. |
@@ -194,17 +194,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local air_temperature, err = client:AirTemperature():load({ id = "example_id" })
+    if err then error(err) end
+    -- air_temperature is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -288,7 +293,7 @@ API path: `/collections/{collectionId}/wind-speed`
 
 ### AirTemperature
 
-Create an instance: `const air_temperature = client.air_temperature`
+Create an instance: `local air_temperature = client:AirTemperature(nil)`
 
 #### Operations
 
@@ -306,14 +311,14 @@ Create an instance: `const air_temperature = client.air_temperature`
 
 #### Example: List
 
-```ts
-const air_temperatures = await client.air_temperature.list()
+```lua
+local air_temperatures, err = client:AirTemperature():list()
 ```
 
 
 ### Collection
 
-Create an instance: `const collection = client.collection`
+Create an instance: `local collection = client:Collection(nil)`
 
 #### Operations
 
@@ -332,14 +337,14 @@ Create an instance: `const collection = client.collection`
 
 #### Example: List
 
-```ts
-const collections = await client.collection.list()
+```lua
+local collections, err = client:Collection():list()
 ```
 
 
 ### Rainfall
 
-Create an instance: `const rainfall = client.rainfall`
+Create an instance: `local rainfall = client:Rainfall(nil)`
 
 #### Operations
 
@@ -357,14 +362,14 @@ Create an instance: `const rainfall = client.rainfall`
 
 #### Example: List
 
-```ts
-const rainfalls = await client.rainfall.list()
+```lua
+local rainfalls, err = client:Rainfall():list()
 ```
 
 
 ### RelativeHumidity
 
-Create an instance: `const relative_humidity = client.relative_humidity`
+Create an instance: `local relative_humidity = client:RelativeHumidity(nil)`
 
 #### Operations
 
@@ -382,14 +387,14 @@ Create an instance: `const relative_humidity = client.relative_humidity`
 
 #### Example: List
 
-```ts
-const relative_humiditys = await client.relative_humidity.list()
+```lua
+local relative_humiditys, err = client:RelativeHumidity():list()
 ```
 
 
 ### WindDirection
 
-Create an instance: `const wind_direction = client.wind_direction`
+Create an instance: `local wind_direction = client:WindDirection(nil)`
 
 #### Operations
 
@@ -407,14 +412,14 @@ Create an instance: `const wind_direction = client.wind_direction`
 
 #### Example: List
 
-```ts
-const wind_directions = await client.wind_direction.list()
+```lua
+local wind_directions, err = client:WindDirection():list()
 ```
 
 
 ### WindSpeed
 
-Create an instance: `const wind_speed = client.wind_speed`
+Create an instance: `local wind_speed = client:WindSpeed(nil)`
 
 #### Operations
 
@@ -432,8 +437,8 @@ Create an instance: `const wind_speed = client.wind_speed`
 
 #### Example: List
 
-```ts
-const wind_speeds = await client.wind_speed.list()
+```lua
+local wind_speeds, err = client:WindSpeed():list()
 ```
 
 
@@ -508,7 +513,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local airtemperature = client:airtemperature()
+local airtemperature = client:AirTemperature()
 airtemperature:load({ id = "example_id" })
 
 -- airtemperature:data_get() now returns the loaded airtemperature data

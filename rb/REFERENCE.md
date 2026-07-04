@@ -106,7 +106,7 @@ same parameters as `direct()`. Raises on error.
 ## AirTemperatureEntity
 
 ```ruby
-air_temperature = client.air_temperature
+air_temperature = client.AirTemperature
 ```
 
 ### Fields
@@ -124,7 +124,7 @@ air_temperature = client.air_temperature
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.air_temperature.list(nil)
+results = client.AirTemperature.list(nil)
 ```
 
 ### Common Methods
@@ -160,7 +160,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```ruby
-collection = client.collection
+collection = client.Collection
 ```
 
 ### Fields
@@ -179,7 +179,7 @@ collection = client.collection
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.collection.list(nil)
+results = client.Collection.list(nil)
 ```
 
 ### Common Methods
@@ -215,7 +215,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```ruby
-rainfall = client.rainfall
+rainfall = client.Rainfall
 ```
 
 ### Fields
@@ -233,7 +233,7 @@ rainfall = client.rainfall
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.rainfall.list(nil)
+results = client.Rainfall.list(nil)
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```ruby
-relative_humidity = client.relative_humidity
+relative_humidity = client.RelativeHumidity
 ```
 
 ### Fields
@@ -287,7 +287,7 @@ relative_humidity = client.relative_humidity
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.relative_humidity.list(nil)
+results = client.RelativeHumidity.list(nil)
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```ruby
-wind_direction = client.wind_direction
+wind_direction = client.WindDirection
 ```
 
 ### Fields
@@ -341,7 +341,7 @@ wind_direction = client.wind_direction
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.wind_direction.list(nil)
+results = client.WindDirection.list(nil)
 ```
 
 ### Common Methods
@@ -377,7 +377,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```ruby
-wind_speed = client.wind_speed
+wind_speed = client.WindSpeed
 ```
 
 ### Fields
@@ -395,7 +395,7 @@ wind_speed = client.wind_speed
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.wind_speed.list(nil)
+results = client.WindSpeed.list(nil)
 ```
 
 ### Common Methods

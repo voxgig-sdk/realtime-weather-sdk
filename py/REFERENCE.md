@@ -100,7 +100,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AirTemperatureEntity
 
 ```python
-air_temperature = client.air_temperature
+air_temperature = client.AirTemperature()
 ```
 
 ### Fields
@@ -118,7 +118,9 @@ air_temperature = client.air_temperature
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.air_temperature.list({})
+results = client.AirTemperature().list({})
+for air_temperature in results:
+    print(air_temperature)
 ```
 
 ### Common Methods
@@ -153,7 +155,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```python
-collection = client.collection
+collection = client.Collection()
 ```
 
 ### Fields
@@ -172,7 +174,9 @@ collection = client.collection
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.collection.list({})
+results = client.Collection().list({})
+for collection in results:
+    print(collection)
 ```
 
 ### Common Methods
@@ -207,7 +211,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```python
-rainfall = client.rainfall
+rainfall = client.Rainfall()
 ```
 
 ### Fields
@@ -225,7 +229,9 @@ rainfall = client.rainfall
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.rainfall.list({})
+results = client.Rainfall().list({})
+for rainfall in results:
+    print(rainfall)
 ```
 
 ### Common Methods
@@ -260,7 +266,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```python
-relative_humidity = client.relative_humidity
+relative_humidity = client.RelativeHumidity()
 ```
 
 ### Fields
@@ -278,7 +284,9 @@ relative_humidity = client.relative_humidity
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.relative_humidity.list({})
+results = client.RelativeHumidity().list({})
+for relative_humidity in results:
+    print(relative_humidity)
 ```
 
 ### Common Methods
@@ -313,7 +321,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```python
-wind_direction = client.wind_direction
+wind_direction = client.WindDirection()
 ```
 
 ### Fields
@@ -331,7 +339,9 @@ wind_direction = client.wind_direction
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.wind_direction.list({})
+results = client.WindDirection().list({})
+for wind_direction in results:
+    print(wind_direction)
 ```
 
 ### Common Methods
@@ -366,7 +376,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```python
-wind_speed = client.wind_speed
+wind_speed = client.WindSpeed()
 ```
 
 ### Fields
@@ -384,7 +394,9 @@ wind_speed = client.wind_speed
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.wind_speed.list({})
+results = client.WindSpeed().list({})
+for wind_speed in results:
+    print(wind_speed)
 ```
 
 ### Common Methods

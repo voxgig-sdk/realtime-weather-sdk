@@ -208,78 +208,42 @@ class RealtimeWeatherSDK
   end
 
 
-  # Idiomatic facade: client.air_temperature.list / client.air_temperature.load({ "id" => ... })
-  def air_temperature
-    require_relative 'entity/air_temperature_entity'
-    @air_temperature ||= AirTemperatureEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.air_temperature instead.
+  # Canonical facade: client.AirTemperature.list / client.AirTemperature.load({ "id" => ... })
   def AirTemperature(data = nil)
     require_relative 'entity/air_temperature_entity'
     AirTemperatureEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.collection.list / client.collection.load({ "id" => ... })
-  def collection
-    require_relative 'entity/collection_entity'
-    @collection ||= CollectionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.collection instead.
+  # Canonical facade: client.Collection.list / client.Collection.load({ "id" => ... })
   def Collection(data = nil)
     require_relative 'entity/collection_entity'
     CollectionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.rainfall.list / client.rainfall.load({ "id" => ... })
-  def rainfall
-    require_relative 'entity/rainfall_entity'
-    @rainfall ||= RainfallEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.rainfall instead.
+  # Canonical facade: client.Rainfall.list / client.Rainfall.load({ "id" => ... })
   def Rainfall(data = nil)
     require_relative 'entity/rainfall_entity'
     RainfallEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.relative_humidity.list / client.relative_humidity.load({ "id" => ... })
-  def relative_humidity
-    require_relative 'entity/relative_humidity_entity'
-    @relative_humidity ||= RelativeHumidityEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.relative_humidity instead.
+  # Canonical facade: client.RelativeHumidity.list / client.RelativeHumidity.load({ "id" => ... })
   def RelativeHumidity(data = nil)
     require_relative 'entity/relative_humidity_entity'
     RelativeHumidityEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.wind_direction.list / client.wind_direction.load({ "id" => ... })
-  def wind_direction
-    require_relative 'entity/wind_direction_entity'
-    @wind_direction ||= WindDirectionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.wind_direction instead.
+  # Canonical facade: client.WindDirection.list / client.WindDirection.load({ "id" => ... })
   def WindDirection(data = nil)
     require_relative 'entity/wind_direction_entity'
     WindDirectionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.wind_speed.list / client.wind_speed.load({ "id" => ... })
-  def wind_speed
-    require_relative 'entity/wind_speed_entity'
-    @wind_speed ||= WindSpeedEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.wind_speed instead.
+  # Canonical facade: client.WindSpeed.list / client.WindSpeed.load({ "id" => ... })
   def WindSpeed(data = nil)
     require_relative 'entity/wind_speed_entity'
     WindSpeedEntity.new(self, data)

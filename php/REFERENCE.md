@@ -105,7 +105,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AirTemperatureEntity
 
 ```php
-$air_temperature = $client->air_temperature();
+$air_temperature = $client->AirTemperature();
 ```
 
 ### Fields
@@ -123,7 +123,7 @@ $air_temperature = $client->air_temperature();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->air_temperature()->list([]);
+$results = $client->AirTemperature()->list([]);
 ```
 
 ### Common Methods
@@ -159,7 +159,7 @@ Return the entity name.
 ## CollectionEntity
 
 ```php
-$collection = $client->collection();
+$collection = $client->Collection();
 ```
 
 ### Fields
@@ -178,7 +178,7 @@ $collection = $client->collection();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->collection()->list([]);
+$results = $client->Collection()->list([]);
 ```
 
 ### Common Methods
@@ -214,7 +214,7 @@ Return the entity name.
 ## RainfallEntity
 
 ```php
-$rainfall = $client->rainfall();
+$rainfall = $client->Rainfall();
 ```
 
 ### Fields
@@ -232,7 +232,7 @@ $rainfall = $client->rainfall();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->rainfall()->list([]);
+$results = $client->Rainfall()->list([]);
 ```
 
 ### Common Methods
@@ -268,7 +268,7 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```php
-$relative_humidity = $client->relative_humidity();
+$relative_humidity = $client->RelativeHumidity();
 ```
 
 ### Fields
@@ -286,7 +286,7 @@ $relative_humidity = $client->relative_humidity();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->relative_humidity()->list([]);
+$results = $client->RelativeHumidity()->list([]);
 ```
 
 ### Common Methods
@@ -322,7 +322,7 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```php
-$wind_direction = $client->wind_direction();
+$wind_direction = $client->WindDirection();
 ```
 
 ### Fields
@@ -340,7 +340,7 @@ $wind_direction = $client->wind_direction();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->wind_direction()->list([]);
+$results = $client->WindDirection()->list([]);
 ```
 
 ### Common Methods
@@ -376,7 +376,7 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```php
-$wind_speed = $client->wind_speed();
+$wind_speed = $client->WindSpeed();
 ```
 
 ### Fields
@@ -394,7 +394,7 @@ $wind_speed = $client->wind_speed();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->wind_speed()->list([]);
+$results = $client->WindSpeed()->list([]);
 ```
 
 ### Common Methods

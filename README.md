@@ -26,9 +26,11 @@ import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
 
 const client = new RealtimeWeatherSDK()
 
-// List all airtemperatures
-const airtemperatures = await client.airtemperature.list()
-console.log(airtemperatures.data)
+// List all airtemperatures (returns AirTemperature[])
+const airtemperatures = await client.AirTemperature().list()
+for (const airtemperature of airtemperatures) {
+  console.log(airtemperature)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -88,9 +90,10 @@ from realtimeweather_sdk import RealtimeWeatherSDK
 
 client = RealtimeWeatherSDK()
 
-# List all airtemperatures
-airtemperatures = client.airtemperature.list()
-print(airtemperatures)
+# List all airtemperatures (returns a list, raises on error)
+airtemperatures = client.AirTemperature().list({})
+for airtemperature in airtemperatures:
+    print(airtemperature)
 ```
 
 ### PHP
@@ -101,8 +104,8 @@ require_once 'realtimeweather_sdk.php';
 
 $client = new RealtimeWeatherSDK();
 
-// List all airtemperatures (throws on error)
-$airtemperatures = $client->airtemperature()->list();
+// List all airtemperatures (returns an array; throws on error)
+$airtemperatures = $client->AirTemperature()->list();
 print_r($airtemperatures);
 ```
 
@@ -125,8 +128,8 @@ require_relative "RealtimeWeather_sdk"
 
 client = RealtimeWeatherSDK.new
 
-# List all airtemperatures
-airtemperatures = client.airtemperature.list
+# List all airtemperatures (returns an Array; raises on error)
+airtemperatures = client.AirTemperature.list
 puts airtemperatures
 ```
 
@@ -138,7 +141,7 @@ local sdk = require("realtime-weather_sdk")
 local client = sdk.new()
 
 -- List all airtemperatures
-local airtemperatures, err = client:airtemperature():list()
+local airtemperatures, err = client:AirTemperature():list()
 print(airtemperatures)
 ```
 
@@ -151,22 +154,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = RealtimeWeatherSDK.test()
-const result = await client.airtemperature.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const airtemperature = await client.AirTemperature().load({ id: 'test01' })
+// airtemperature is a bare AirTemperature populated with mock data
+console.log(airtemperature)
 ```
 
 ### Python
 
 ```python
 client = RealtimeWeatherSDK.test()
-result = client.airtemperature.load({"id": "test01"})
+airtemperature = client.AirTemperature().load({"id": "test01"})
+print(airtemperature)
 ```
 
 ### PHP
 
 ```php
-$client = RealtimeWeatherSDK::test();
-$result = $client->airtemperature()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = RealtimeWeatherSDK::test([
+    "entity" => ["airtemperature" => ["test01" => ["id" => "test01"]]],
+]);
+$airtemperature = $client->AirTemperature()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -181,15 +189,18 @@ result, err := client.AirTemperature(nil).Load(
 ### Ruby
 
 ```ruby
-client = RealtimeWeatherSDK.test
-result = client.airtemperature.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = RealtimeWeatherSDK.test({
+  "entity" => { "airtemperature" => { "test01" => { "id" => "test01" } } },
+})
+airtemperature = client.AirTemperature.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:airtemperature():load({ id = "test01" })
+local result, err = client:AirTemperature():load({ id = "test01" })
 ```
 
 ## How it works
@@ -237,6 +248,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

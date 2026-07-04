@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/realtime-weather-sdk/go=../realtime-w
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/realtime-weather-sdk/go"
-    "github.com/voxgig-sdk/realtime-weather-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List airtemperatures
-
-```go
-    result, err := client.AirTemperature(nil).List(nil, nil)
+    // List airtemperature records — the value is the array of records itself.
+    airtemperatures, err := client.AirTemperature(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range airtemperatures.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.AirTemperature(nil).Load(
+airtemperature, err := client.AirTemperature(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(airtemperature) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,7 +189,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `AirTemperature` | `(data map[string]any) RealtimeWeatherEntity` | Create a AirTemperature entity instance. |
+| `AirTemperature` | `(data map[string]any) RealtimeWeatherEntity` | Create an AirTemperature entity instance. |
 | `Collection` | `(data map[string]any) RealtimeWeatherEntity` | Create a Collection entity instance. |
 | `Rainfall` | `(data map[string]any) RealtimeWeatherEntity` | Create a Rainfall entity instance. |
 | `RelativeHumidity` | `(data map[string]any) RealtimeWeatherEntity` | Create a RelativeHumidity entity instance. |
@@ -215,17 +214,24 @@ All entities implement the `RealtimeWeatherEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    airtemperature, err := client.AirTemperature(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // airtemperature is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -328,7 +334,11 @@ Create an instance: `air_temperature := client.AirTemperature(nil)`
 #### Example: List
 
 ```go
-results, err := client.AirTemperature(nil).List(nil, nil)
+air_temperatures, err := client.AirTemperature(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(air_temperatures) // the array of records
 ```
 
 
@@ -354,7 +364,11 @@ Create an instance: `collection := client.Collection(nil)`
 #### Example: List
 
 ```go
-results, err := client.Collection(nil).List(nil, nil)
+collections, err := client.Collection(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(collections) // the array of records
 ```
 
 
@@ -379,7 +393,11 @@ Create an instance: `rainfall := client.Rainfall(nil)`
 #### Example: List
 
 ```go
-results, err := client.Rainfall(nil).List(nil, nil)
+rainfalls, err := client.Rainfall(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(rainfalls) // the array of records
 ```
 
 
@@ -404,7 +422,11 @@ Create an instance: `relative_humidity := client.RelativeHumidity(nil)`
 #### Example: List
 
 ```go
-results, err := client.RelativeHumidity(nil).List(nil, nil)
+relative_humiditys, err := client.RelativeHumidity(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(relative_humiditys) // the array of records
 ```
 
 
@@ -429,7 +451,11 @@ Create an instance: `wind_direction := client.WindDirection(nil)`
 #### Example: List
 
 ```go
-results, err := client.WindDirection(nil).List(nil, nil)
+wind_directions, err := client.WindDirection(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(wind_directions) // the array of records
 ```
 
 
@@ -454,7 +480,11 @@ Create an instance: `wind_speed := client.WindSpeed(nil)`
 #### Example: List
 
 ```go
-results, err := client.WindSpeed(nil).List(nil, nil)
+wind_speeds, err := client.WindSpeed(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(wind_speeds) // the array of records
 ```
 
 

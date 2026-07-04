@@ -169,7 +169,7 @@ Alias for `RealtimeWeatherSDK.test()`.
 ## AirTemperatureEntity
 
 ```ts
-const air_temperature = client.air_temperature
+const air_temperature = client.AirTemperature()
 ```
 
 ### Fields
@@ -187,7 +187,7 @@ const air_temperature = client.air_temperature
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.air_temperature.list()
+const results = await client.AirTemperature().list()
 ```
 
 ### Common Methods
@@ -221,7 +221,7 @@ Return a copy of the entity options.
 ## CollectionEntity
 
 ```ts
-const collection = client.collection
+const collection = client.Collection()
 ```
 
 ### Fields
@@ -240,7 +240,7 @@ const collection = client.collection
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.collection.list()
+const results = await client.Collection().list()
 ```
 
 ### Common Methods
@@ -274,7 +274,7 @@ Return a copy of the entity options.
 ## RainfallEntity
 
 ```ts
-const rainfall = client.rainfall
+const rainfall = client.Rainfall()
 ```
 
 ### Fields
@@ -292,7 +292,7 @@ const rainfall = client.rainfall
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.rainfall.list()
+const results = await client.Rainfall().list()
 ```
 
 ### Common Methods
@@ -326,7 +326,7 @@ Return a copy of the entity options.
 ## RelativeHumidityEntity
 
 ```ts
-const relative_humidity = client.relative_humidity
+const relative_humidity = client.RelativeHumidity()
 ```
 
 ### Fields
@@ -344,7 +344,7 @@ const relative_humidity = client.relative_humidity
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.relative_humidity.list()
+const results = await client.RelativeHumidity().list()
 ```
 
 ### Common Methods
@@ -378,7 +378,7 @@ Return a copy of the entity options.
 ## WindDirectionEntity
 
 ```ts
-const wind_direction = client.wind_direction
+const wind_direction = client.WindDirection()
 ```
 
 ### Fields
@@ -396,7 +396,7 @@ const wind_direction = client.wind_direction
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.wind_direction.list()
+const results = await client.WindDirection().list()
 ```
 
 ### Common Methods
@@ -430,7 +430,7 @@ Return a copy of the entity options.
 ## WindSpeedEntity
 
 ```ts
-const wind_speed = client.wind_speed
+const wind_speed = client.WindSpeed()
 ```
 
 ### Fields
@@ -448,7 +448,7 @@ const wind_speed = client.wind_speed
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.wind_speed.list()
+const results = await client.WindSpeed().list()
 ```
 
 ### Common Methods

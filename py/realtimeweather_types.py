@@ -4,82 +4,74 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class AirTemperature:
-    station_id: Optional[str] = None
-    timestamp: Optional[str] = None
-    value: Optional[float] = None
+class AirTemperature(TypedDict, total=False):
+    station_id: str
+    timestamp: str
+    value: float
 
 
-@dataclass
-class AirTemperatureListMatch:
+class AirTemperatureListMatch(TypedDict):
     collection_id: int
 
 
-@dataclass
-class Collection:
-    coverage: Optional[str] = None
-    dataset_id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+class Collection(TypedDict, total=False):
+    coverage: str
+    dataset_id: str
+    name: str
+    type: str
 
 
-@dataclass
-class CollectionListMatch:
+class CollectionListMatch(TypedDict):
     id: int
 
 
-@dataclass
-class Rainfall:
-    station_id: Optional[str] = None
-    timestamp: Optional[str] = None
-    value: Optional[float] = None
+class Rainfall(TypedDict, total=False):
+    station_id: str
+    timestamp: str
+    value: float
 
 
-@dataclass
-class RainfallListMatch:
+class RainfallListMatch(TypedDict):
     collection_id: int
 
 
-@dataclass
-class RelativeHumidity:
-    station_id: Optional[str] = None
-    timestamp: Optional[str] = None
-    value: Optional[float] = None
+class RelativeHumidity(TypedDict, total=False):
+    station_id: str
+    timestamp: str
+    value: float
 
 
-@dataclass
-class RelativeHumidityListMatch:
+class RelativeHumidityListMatch(TypedDict):
     collection_id: int
 
 
-@dataclass
-class WindDirection:
-    station_id: Optional[str] = None
-    timestamp: Optional[str] = None
-    value: Optional[float] = None
+class WindDirection(TypedDict, total=False):
+    station_id: str
+    timestamp: str
+    value: float
 
 
-@dataclass
-class WindDirectionListMatch:
+class WindDirectionListMatch(TypedDict):
     collection_id: int
 
 
-@dataclass
-class WindSpeed:
-    station_id: Optional[str] = None
-    timestamp: Optional[str] = None
-    value: Optional[float] = None
+class WindSpeed(TypedDict, total=False):
+    station_id: str
+    timestamp: str
+    value: float
 
 
-@dataclass
-class WindSpeedListMatch:
+class WindSpeedListMatch(TypedDict):
     collection_id: int
-
