@@ -8,7 +8,7 @@ Complete API reference for the RealtimeWeather Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'realtime-weather_sdk'
+require_relative 'RealtimeWeather_sdk'
 
 client = RealtimeWeatherSDK.new(options)
 ```
@@ -113,18 +113,18 @@ air_temperature = client.AirTemperature
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `value` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.AirTemperature.list(nil)
+results = client.AirTemperature.list
 ```
 
 ### Common Methods
@@ -167,19 +167,19 @@ collection = client.Collection
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | ``$STRING`` | No |  |
-| `dataset_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `coverage` | `String` | No |  |
+| `dataset_id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Collection.list(nil)
+results = client.Collection.list
 ```
 
 ### Common Methods
@@ -222,18 +222,18 @@ rainfall = client.Rainfall
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `value` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Rainfall.list(nil)
+results = client.Rainfall.list
 ```
 
 ### Common Methods
@@ -276,18 +276,18 @@ relative_humidity = client.RelativeHumidity
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `value` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.RelativeHumidity.list(nil)
+results = client.RelativeHumidity.list
 ```
 
 ### Common Methods
@@ -330,18 +330,18 @@ wind_direction = client.WindDirection
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `value` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.WindDirection.list(nil)
+results = client.WindDirection.list
 ```
 
 ### Common Methods
@@ -384,18 +384,18 @@ wind_speed = client.WindSpeed
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `String` | No |  |
+| `timestamp` | `String` | No |  |
+| `value` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.WindSpeed.list(nil)
+results = client.WindSpeed.list
 ```
 
 ### Common Methods

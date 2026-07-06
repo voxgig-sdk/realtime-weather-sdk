@@ -17,8 +17,6 @@ go build -o realtime-weather-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./realtime-weather-cli list air_temperature
-./realtime-weather-cli load 1 air_temperature
-./realtime-weather-cli load '{id:1}' air_temperature
 
 # REPL
 ./realtime-weather-cli
@@ -29,8 +27,6 @@ go build -o realtime-weather-cli ./...
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
-| `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

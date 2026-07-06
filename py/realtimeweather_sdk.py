@@ -221,37 +221,37 @@ class RealtimeWeatherSDK:
 
 
     def AirTemperature(self, data=None) -> "AirTemperatureEntity":
-        """Entity factory: client.AirTemperature().list({}) / client.AirTemperature().load({"id": ...})."""
+        """Entity factory: client.AirTemperature().list() / client.AirTemperature().load({"id": ...})."""
         from entity.air_temperature_entity import AirTemperatureEntity
         return AirTemperatureEntity(self, data)
 
 
     def Collection(self, data=None) -> "CollectionEntity":
-        """Entity factory: client.Collection().list({}) / client.Collection().load({"id": ...})."""
+        """Entity factory: client.Collection().list() / client.Collection().load({"id": ...})."""
         from entity.collection_entity import CollectionEntity
         return CollectionEntity(self, data)
 
 
     def Rainfall(self, data=None) -> "RainfallEntity":
-        """Entity factory: client.Rainfall().list({}) / client.Rainfall().load({"id": ...})."""
+        """Entity factory: client.Rainfall().list() / client.Rainfall().load({"id": ...})."""
         from entity.rainfall_entity import RainfallEntity
         return RainfallEntity(self, data)
 
 
     def RelativeHumidity(self, data=None) -> "RelativeHumidityEntity":
-        """Entity factory: client.RelativeHumidity().list({}) / client.RelativeHumidity().load({"id": ...})."""
+        """Entity factory: client.RelativeHumidity().list() / client.RelativeHumidity().load({"id": ...})."""
         from entity.relative_humidity_entity import RelativeHumidityEntity
         return RelativeHumidityEntity(self, data)
 
 
     def WindDirection(self, data=None) -> "WindDirectionEntity":
-        """Entity factory: client.WindDirection().list({}) / client.WindDirection().load({"id": ...})."""
+        """Entity factory: client.WindDirection().list() / client.WindDirection().load({"id": ...})."""
         from entity.wind_direction_entity import WindDirectionEntity
         return WindDirectionEntity(self, data)
 
 
     def WindSpeed(self, data=None) -> "WindSpeedEntity":
-        """Entity factory: client.WindSpeed().list({}) / client.WindSpeed().load({"id": ...})."""
+        """Entity factory: client.WindSpeed().list() / client.WindSpeed().load({"id": ...})."""
         from entity.wind_speed_entity import WindSpeedEntity
         return WindSpeedEntity(self, data)
 

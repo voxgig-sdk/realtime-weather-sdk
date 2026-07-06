@@ -4,6 +4,8 @@
 
 The Golang SDK for the RealtimeWeather API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.AirTemperature(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -60,6 +62,35 @@ func main() {
 ```
 
 
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+airtemperatures, err := client.AirTemperature(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = airtemperatures
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -106,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-airtemperature, err := client.AirTemperature(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+airtemperature, err := client.AirTemperature(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(airtemperature) // the loaded mock data
+fmt.Println(airtemperature) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -202,11 +233,7 @@ All entities implement the `RealtimeWeatherEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -219,16 +246,15 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    airtemperature, err := client.AirTemperature(nil).Load(map[string]any{"id": "example_id"}, nil)
+    airtemperature, err := client.AirTemperature(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // airtemperature is the loaded record
+    // airtemperature is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -327,9 +353,9 @@ Create an instance: `air_temperature := client.AirTemperature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `value` | ``$NUMBER`` |  |
+| `station_id` | `string` |  |
+| `timestamp` | `string` |  |
+| `value` | `float64` |  |
 
 #### Example: List
 
@@ -356,10 +382,10 @@ Create an instance: `collection := client.Collection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | ``$STRING`` |  |
-| `dataset_id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `coverage` | `string` |  |
+| `dataset_id` | `string` |  |
+| `name` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -386,9 +412,9 @@ Create an instance: `rainfall := client.Rainfall(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `value` | ``$NUMBER`` |  |
+| `station_id` | `string` |  |
+| `timestamp` | `string` |  |
+| `value` | `float64` |  |
 
 #### Example: List
 
@@ -415,9 +441,9 @@ Create an instance: `relative_humidity := client.RelativeHumidity(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `value` | ``$NUMBER`` |  |
+| `station_id` | `string` |  |
+| `timestamp` | `string` |  |
+| `value` | `float64` |  |
 
 #### Example: List
 
@@ -444,9 +470,9 @@ Create an instance: `wind_direction := client.WindDirection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `value` | ``$NUMBER`` |  |
+| `station_id` | `string` |  |
+| `timestamp` | `string` |  |
+| `value` | `float64` |  |
 
 #### Example: List
 
@@ -473,9 +499,9 @@ Create an instance: `wind_speed := client.WindSpeed(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | ``$STRING`` |  |
-| `timestamp` | ``$STRING`` |  |
-| `value` | ``$NUMBER`` |  |
+| `station_id` | `string` |  |
+| `timestamp` | `string` |  |
+| `value` | `float64` |  |
 
 #### Example: List
 
@@ -488,12 +514,16 @@ fmt.Println(wind_speeds) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -510,9 +540,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -553,14 +583,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 airtemperature := client.AirTemperature(nil)
-airtemperature.Load(map[string]any{"id": "example_id"}, nil)
+airtemperature.List(nil, nil)
 
-// airtemperature.Data() now returns the loaded airtemperature data
+// airtemperature.Data() now returns the airtemperature data from the last list
 // airtemperature.Match() returns the last match criteria
 ```
 

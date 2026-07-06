@@ -176,9 +176,9 @@ const air_temperature = client.AirTemperature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -228,10 +228,10 @@ const collection = client.Collection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | ``$STRING`` | No |  |
-| `dataset_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `coverage` | `string` | No |  |
+| `dataset_id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -281,9 +281,9 @@ const rainfall = client.Rainfall()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -333,9 +333,9 @@ const relative_humidity = client.RelativeHumidity()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -385,9 +385,9 @@ const wind_direction = client.WindDirection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -437,9 +437,9 @@ const wind_speed = client.WindSpeed()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 

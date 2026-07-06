@@ -110,9 +110,9 @@ local air_temperature = client:AirTemperature(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -164,10 +164,10 @@ local collection = client:Collection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | ``$STRING`` | No |  |
-| `dataset_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `coverage` | `string` | No |  |
+| `dataset_id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -219,9 +219,9 @@ local rainfall = client:Rainfall(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -273,9 +273,9 @@ local relative_humidity = client:RelativeHumidity(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -327,9 +327,9 @@ local wind_direction = client:WindDirection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 
@@ -381,9 +381,9 @@ local wind_speed = client:WindSpeed(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `string` | No |  |
+| `timestamp` | `string` | No |  |
+| `value` | `number` | No |  |
 
 ### Operations
 

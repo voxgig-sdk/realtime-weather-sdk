@@ -8,7 +8,7 @@ Complete API reference for the RealtimeWeather Python SDK.
 ### Constructor
 
 ```python
-from realtime-weather_sdk import RealtimeWeatherSDK
+from realtimeweather_sdk import RealtimeWeatherSDK
 
 client = RealtimeWeatherSDK(options)
 ```
@@ -107,18 +107,18 @@ air_temperature = client.AirTemperature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `value` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.AirTemperature().list({})
+results = client.AirTemperature().list()
 for air_temperature in results:
     print(air_temperature)
 ```
@@ -162,19 +162,19 @@ collection = client.Collection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | ``$STRING`` | No |  |
-| `dataset_id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `coverage` | `str` | No |  |
+| `dataset_id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Collection().list({})
+results = client.Collection().list()
 for collection in results:
     print(collection)
 ```
@@ -218,18 +218,18 @@ rainfall = client.Rainfall()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `value` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Rainfall().list({})
+results = client.Rainfall().list()
 for rainfall in results:
     print(rainfall)
 ```
@@ -273,18 +273,18 @@ relative_humidity = client.RelativeHumidity()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `value` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.RelativeHumidity().list({})
+results = client.RelativeHumidity().list()
 for relative_humidity in results:
     print(relative_humidity)
 ```
@@ -328,18 +328,18 @@ wind_direction = client.WindDirection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `value` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.WindDirection().list({})
+results = client.WindDirection().list()
 for wind_direction in results:
     print(wind_direction)
 ```
@@ -383,18 +383,18 @@ wind_speed = client.WindSpeed()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | ``$STRING`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `value` | ``$NUMBER`` | No |  |
+| `station_id` | `str` | No |  |
+| `timestamp` | `str` | No |  |
+| `value` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.WindSpeed().list({})
+results = client.WindSpeed().list()
 for wind_speed in results:
     print(wind_speed)
 ```
