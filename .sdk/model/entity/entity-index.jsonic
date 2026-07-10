@@ -1,8 +1,0 @@
-# Entity Models
-
-@"air_temperature.jsonic"
-@"collection.jsonic"
-@"rainfall.jsonic"
-@"relative_humidity.jsonic"
-@"wind_direction.jsonic"
-@"wind_speed.jsonic"

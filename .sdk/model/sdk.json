@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -874,14 +871,17 @@
           "name": "Open Data Licence",
           "url": "https://data.gov.sg"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://api-production.data.gov.sg/v2/public/api"
           }
         ],
+        "summary": "This API provides real-time readings of temperature, humidity, precipitation, and wind conditions across various weather stations in Singapore at intervals of up to one minute.",
         "title": "Realtime Weather API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "website": "https://data.gov.sg/collections/1459/view"
       },
       "option": {},
       "target": {
@@ -934,6 +934,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -984,6 +987,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

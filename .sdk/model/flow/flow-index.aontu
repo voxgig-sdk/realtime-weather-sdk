@@ -1,0 +1,8 @@
+# Flows
+
+@"BasicAirTemperatureFlow.aontu"
+@"BasicCollectionFlow.aontu"
+@"BasicRainfallFlow.aontu"
+@"BasicRelativeHumidityFlow.aontu"
+@"BasicWindDirectionFlow.aontu"
+@"BasicWindSpeedFlow.aontu"

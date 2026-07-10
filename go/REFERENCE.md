@@ -110,7 +110,8 @@ same parameters as `Direct()`.
 ## AirTemperatureEntity
 
 ```go
-air_temperature := client.AirTemperature(nil)
+airTemperature := client.AirTemperature(nil)
+fmt.Println(airTemperature.GetName()) // "air_temperature"
 ```
 
 ### Fields
@@ -129,6 +130,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.AirTemperature(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -159,6 +164,7 @@ Return the entity name.
 
 ```go
 collection := client.Collection(nil)
+fmt.Println(collection.GetName()) // "collection"
 ```
 
 ### Fields
@@ -178,6 +184,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Collection(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -208,6 +218,7 @@ Return the entity name.
 
 ```go
 rainfall := client.Rainfall(nil)
+fmt.Println(rainfall.GetName()) // "rainfall"
 ```
 
 ### Fields
@@ -226,6 +237,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Rainfall(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -255,7 +270,8 @@ Return the entity name.
 ## RelativeHumidityEntity
 
 ```go
-relative_humidity := client.RelativeHumidity(nil)
+relativeHumidity := client.RelativeHumidity(nil)
+fmt.Println(relativeHumidity.GetName()) // "relative_humidity"
 ```
 
 ### Fields
@@ -274,6 +290,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.RelativeHumidity(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -303,7 +323,8 @@ Return the entity name.
 ## WindDirectionEntity
 
 ```go
-wind_direction := client.WindDirection(nil)
+windDirection := client.WindDirection(nil)
+fmt.Println(windDirection.GetName()) // "wind_direction"
 ```
 
 ### Fields
@@ -322,6 +343,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.WindDirection(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -351,7 +376,8 @@ Return the entity name.
 ## WindSpeedEntity
 
 ```go
-wind_speed := client.WindSpeed(nil)
+windSpeed := client.WindSpeed(nil)
+fmt.Println(windSpeed.GetName()) // "wind_speed"
 ```
 
 ### Fields
@@ -370,6 +396,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.WindSpeed(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
