@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'RealtimeWeather',
   }
 
 
@@ -71,7 +71,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "station_id",
+          "name": "stationId",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -131,6 +131,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/air-temperature",
               "parts": [
@@ -179,7 +180,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "dataset_id",
+          "name": "datasetId",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -221,6 +222,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/metadata",
               "parts": [
@@ -241,7 +243,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.datasets`"
               },
               "index$": 0
             }
@@ -257,7 +259,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "station_id",
+          "name": "stationId",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -317,6 +319,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/rainfall",
               "parts": [
@@ -358,7 +361,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "station_id",
+          "name": "stationId",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -418,6 +421,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/relative-humidity",
               "parts": [
@@ -459,7 +463,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "station_id",
+          "name": "stationId",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -519,6 +523,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/wind-direction",
               "parts": [
@@ -560,7 +565,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "station_id",
+          "name": "stationId",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -620,6 +625,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/wind-speed",
               "parts": [

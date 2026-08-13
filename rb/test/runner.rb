@@ -23,8 +23,8 @@ module RealtimeWeatherTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("REALTIMEWEATHER_TEST_LIVE")
-    override = getenv("REALTIMEWEATHER_TEST_OVERRIDE")
+    live = getenv("REALTIME_WEATHER_TEST_LIVE")
+    override = getenv("REALTIME_WEATHER_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module RealtimeWeatherTestRunner
       end
     end
 
-    explain = getenv("REALTIMEWEATHER_TEST_EXPLAIN")
-    m["REALTIMEWEATHER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("REALTIME_WEATHER_TEST_EXPLAIN")
+    m["REALTIME_WEATHER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

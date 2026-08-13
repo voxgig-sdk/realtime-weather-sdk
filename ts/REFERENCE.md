@@ -176,7 +176,7 @@ const air_temperature = client.AirTemperature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -187,7 +187,7 @@ const air_temperature = client.AirTemperature()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.AirTemperature().list()
+const results = await client.AirTemperature().list({ collection_id: 1 })
 ```
 
 ### Common Methods
@@ -229,9 +229,29 @@ const collection = client.Collection()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `coverage` | `string` | No |  |
-| `dataset_id` | `string` | No |  |
+| `datasetId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `metadata` | `/collections/{collectionId}/metadata` | `client.Collection().list({ $action: 'metadata', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Collection record — check the API definition for its shape.
+
+```ts
+const result = await client.Collection().list({
+  $action: 'metadata',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -240,7 +260,7 @@ const collection = client.Collection()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Collection().list()
+const results = await client.Collection().list({ id: 1 })
 ```
 
 ### Common Methods
@@ -281,7 +301,7 @@ const rainfall = client.Rainfall()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -292,7 +312,7 @@ const rainfall = client.Rainfall()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Rainfall().list()
+const results = await client.Rainfall().list({ collection_id: 1 })
 ```
 
 ### Common Methods
@@ -333,7 +353,7 @@ const relative_humidity = client.RelativeHumidity()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -344,7 +364,7 @@ const relative_humidity = client.RelativeHumidity()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.RelativeHumidity().list()
+const results = await client.RelativeHumidity().list({ collection_id: 1 })
 ```
 
 ### Common Methods
@@ -385,7 +405,7 @@ const wind_direction = client.WindDirection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -396,7 +416,7 @@ const wind_direction = client.WindDirection()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.WindDirection().list()
+const results = await client.WindDirection().list({ collection_id: 1 })
 ```
 
 ### Common Methods
@@ -437,7 +457,7 @@ const wind_speed = client.WindSpeed()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -448,7 +468,7 @@ const wind_speed = client.WindSpeed()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.WindSpeed().list()
+const results = await client.WindSpeed().list({ collection_id: 1 })
 ```
 
 ### Common Methods

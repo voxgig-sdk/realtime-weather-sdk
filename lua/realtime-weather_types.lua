@@ -7,7 +7,7 @@
 -- edit by hand.
 
 ---@class AirTemperature
----@field station_id? string
+---@field stationId? string
 ---@field timestamp? string
 ---@field value? number
 
@@ -16,7 +16,7 @@
 
 ---@class Collection
 ---@field coverage? string
----@field dataset_id? string
+---@field datasetId? string
 ---@field name? string
 ---@field type? string
 
@@ -24,7 +24,7 @@
 ---@field id number
 
 ---@class Rainfall
----@field station_id? string
+---@field stationId? string
 ---@field timestamp? string
 ---@field value? number
 
@@ -32,7 +32,7 @@
 ---@field collection_id number
 
 ---@class RelativeHumidity
----@field station_id? string
+---@field stationId? string
 ---@field timestamp? string
 ---@field value? number
 
@@ -40,7 +40,7 @@
 ---@field collection_id number
 
 ---@class WindDirection
----@field station_id? string
+---@field stationId? string
 ---@field timestamp? string
 ---@field value? number
 
@@ -48,7 +48,7 @@
 ---@field collection_id number
 
 ---@class WindSpeed
----@field station_id? string
+---@field stationId? string
 ---@field timestamp? string
 ---@field value? number
 

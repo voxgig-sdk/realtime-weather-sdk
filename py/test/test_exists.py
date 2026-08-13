@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# RealtimeWeather SDK exists test
 
 import pytest
 from realtimeweather_sdk import RealtimeWeatherSDK

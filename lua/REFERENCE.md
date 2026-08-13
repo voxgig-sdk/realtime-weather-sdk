@@ -110,7 +110,7 @@ local air_temperature = client:AirTemperature(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -165,7 +165,7 @@ local collection = client:Collection(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `coverage` | `string` | No |  |
-| `dataset_id` | `string` | No |  |
+| `datasetId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -219,7 +219,7 @@ local rainfall = client:Rainfall(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -273,7 +273,7 @@ local relative_humidity = client:RelativeHumidity(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -327,7 +327,7 @@ local wind_direction = client:WindDirection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 
@@ -381,7 +381,7 @@ local wind_speed = client:WindSpeed(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `number` | No |  |
 

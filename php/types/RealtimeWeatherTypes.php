@@ -15,7 +15,7 @@ declare(strict_types=1);
 /** AirTemperature entity data model. */
 class AirTemperature
 {
-    public ?string $station_id = null;
+    public ?string $stationId = null;
     public ?string $timestamp = null;
     public ?float $value = null;
 }
@@ -30,7 +30,7 @@ class AirTemperatureListMatch
 class Collection
 {
     public ?string $coverage = null;
-    public ?string $dataset_id = null;
+    public ?string $datasetId = null;
     public ?string $name = null;
     public ?string $type = null;
 }
@@ -44,7 +44,7 @@ class CollectionListMatch
 /** Rainfall entity data model. */
 class Rainfall
 {
-    public ?string $station_id = null;
+    public ?string $stationId = null;
     public ?string $timestamp = null;
     public ?float $value = null;
 }
@@ -58,7 +58,7 @@ class RainfallListMatch
 /** RelativeHumidity entity data model. */
 class RelativeHumidity
 {
-    public ?string $station_id = null;
+    public ?string $stationId = null;
     public ?string $timestamp = null;
     public ?float $value = null;
 }
@@ -72,7 +72,7 @@ class RelativeHumidityListMatch
 /** WindDirection entity data model. */
 class WindDirection
 {
-    public ?string $station_id = null;
+    public ?string $stationId = null;
     public ?string $timestamp = null;
     public ?float $value = null;
 }
@@ -86,7 +86,7 @@ class WindDirectionListMatch
 /** WindSpeed entity data model. */
 class WindSpeed
 {
-    public ?string $station_id = null;
+    public ?string $stationId = null;
     public ?string $timestamp = null;
     public ?float $value = null;
 }

@@ -43,7 +43,7 @@ local airtemperatures, err = client:AirTemperature():list()
 if err then error(err) end
 
 for _, item in ipairs(airtemperatures) do
-  print(item["station_id"])
+  print(item["stationId"])
 end
 ```
 
@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local airtemperatures, err = client:AirTemperature():list()
+local winddirections, err = client:WindDirection():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:AirTemperature():list()
+local result, err = client:WindDirection():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -223,9 +223,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local air_temperature, err = client:AirTemperature():load()
+    local air_temperature, err = client:AirTemperature():list()
     if err then error(err) end
-    -- air_temperature is the loaded record
+    -- air_temperature is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -236,7 +236,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -249,7 +249,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | Field | Description |
 | --- | --- |
 | `coverage` |  |
-| `dataset_id` |  |
+| `datasetId` |  |
 | `name` |  |
 | `type` |  |
 
@@ -261,7 +261,7 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -273,7 +273,7 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -285,7 +285,7 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -297,7 +297,7 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -324,7 +324,7 @@ Create an instance: `local air_temperature = client:AirTemperature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
@@ -350,7 +350,7 @@ Create an instance: `local collection = client:Collection(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `coverage` | `string` |  |
-| `dataset_id` | `string` |  |
+| `datasetId` | `string` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
@@ -375,7 +375,7 @@ Create an instance: `local rainfall = client:Rainfall(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
@@ -400,7 +400,7 @@ Create an instance: `local relative_humidity = client:RelativeHumidity(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
@@ -425,7 +425,7 @@ Create an instance: `local wind_direction = client:WindDirection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
@@ -450,7 +450,7 @@ Create an instance: `local wind_speed = client:WindSpeed(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
@@ -537,11 +537,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local airtemperature = client:AirTemperature()
-airtemperature:list()
+local winddirection = client:WindDirection()
+winddirection:list()
 
--- airtemperature:data_get() now returns the airtemperature data from the last list
--- airtemperature:match_get() returns the last match criteria
+-- winddirection:data_get() now returns the winddirection data from the last list
+-- winddirection:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

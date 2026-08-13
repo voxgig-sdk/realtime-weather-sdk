@@ -32,7 +32,7 @@ module RealtimeWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "station_id",
+              "name" => "stationId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -92,6 +92,7 @@ module RealtimeWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collections/{collectionId}/air-temperature",
                   "parts" => [
@@ -140,7 +141,7 @@ module RealtimeWeatherConfig
             },
             {
               "active" => true,
-              "name" => "dataset_id",
+              "name" => "datasetId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -182,6 +183,7 @@ module RealtimeWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collections/{collectionId}/metadata",
                   "parts" => [
@@ -202,7 +204,7 @@ module RealtimeWeatherConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.datasets`",
                   },
                   "index$" => 0,
                 },
@@ -218,7 +220,7 @@ module RealtimeWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "station_id",
+              "name" => "stationId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -278,6 +280,7 @@ module RealtimeWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collections/{collectionId}/rainfall",
                   "parts" => [
@@ -319,7 +322,7 @@ module RealtimeWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "station_id",
+              "name" => "stationId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -379,6 +382,7 @@ module RealtimeWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collections/{collectionId}/relative-humidity",
                   "parts" => [
@@ -420,7 +424,7 @@ module RealtimeWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "station_id",
+              "name" => "stationId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -480,6 +484,7 @@ module RealtimeWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collections/{collectionId}/wind-direction",
                   "parts" => [
@@ -521,7 +526,7 @@ module RealtimeWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "station_id",
+              "name" => "stationId",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
@@ -581,6 +586,7 @@ module RealtimeWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/collections/{collectionId}/wind-speed",
                   "parts" => [

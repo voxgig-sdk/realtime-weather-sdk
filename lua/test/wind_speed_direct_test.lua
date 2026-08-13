@@ -75,11 +75,11 @@ function wind_speed_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["REALTIMEWEATHER_TEST_WIND_SPEED_ENTID"] = {},
-    ["REALTIMEWEATHER_TEST_LIVE"] = "FALSE",
+    ["REALTIME_WEATHER_TEST_WIND_SPEED_ENTID"] = {},
+    ["REALTIME_WEATHER_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
+  local live = env["REALTIME_WEATHER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

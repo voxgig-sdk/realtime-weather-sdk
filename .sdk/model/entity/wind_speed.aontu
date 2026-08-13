@@ -6,7 +6,7 @@ main: kit: entity: wind_speed: {
 
   fields: [
     {
-      name: "station_id"
+      name: "stationId"
       req: false
       type: "`$STRING`"
     }

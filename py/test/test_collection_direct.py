@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from realtimeweather_sdk.utility.voxgig_struct import voxgig_struct as vs
 from realtimeweather_sdk import RealtimeWeatherSDK
-from core import helpers
+from realtimeweather_sdk.core import helpers
 from test import runner
 
 
@@ -70,11 +70,11 @@ def _collection_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "REALTIMEWEATHER_TEST_COLLECTION_ENTID": {},
-        "REALTIMEWEATHER_TEST_LIVE": "FALSE",
+        "REALTIME_WEATHER_TEST_COLLECTION_ENTID": {},
+        "REALTIME_WEATHER_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("REALTIMEWEATHER_TEST_LIVE") == "TRUE"
+    live = env.get("REALTIME_WEATHER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

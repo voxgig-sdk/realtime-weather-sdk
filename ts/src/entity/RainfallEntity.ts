@@ -37,7 +37,7 @@ class RainfallEntity extends RealtimeWeatherEntityBase<Rainfall> {
 
 
 
-  async list(this: any, reqmatch?: RainfallListMatch, ctrl?: Control): Promise<Rainfall[]> {
+  async list(this: any, reqmatch?: RainfallListMatch, ctrl?: Control): Promise<RainfallEntity[]> {
 
     const utility = this._utility
 

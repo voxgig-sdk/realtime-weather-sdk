@@ -113,7 +113,7 @@ air_temperature = client.AirTemperature
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `String` | No |  |
+| `stationId` | `String` | No |  |
 | `timestamp` | `String` | No |  |
 | `value` | `Float` | No |  |
 
@@ -168,7 +168,7 @@ collection = client.Collection
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `coverage` | `String` | No |  |
-| `dataset_id` | `String` | No |  |
+| `datasetId` | `String` | No |  |
 | `name` | `String` | No |  |
 | `type` | `String` | No |  |
 
@@ -222,7 +222,7 @@ rainfall = client.Rainfall
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `String` | No |  |
+| `stationId` | `String` | No |  |
 | `timestamp` | `String` | No |  |
 | `value` | `Float` | No |  |
 
@@ -276,7 +276,7 @@ relative_humidity = client.RelativeHumidity
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `String` | No |  |
+| `stationId` | `String` | No |  |
 | `timestamp` | `String` | No |  |
 | `value` | `Float` | No |  |
 
@@ -330,7 +330,7 @@ wind_direction = client.WindDirection
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `String` | No |  |
+| `stationId` | `String` | No |  |
 | `timestamp` | `String` | No |  |
 | `value` | `Float` | No |  |
 
@@ -384,7 +384,7 @@ wind_speed = client.WindSpeed
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `String` | No |  |
+| `stationId` | `String` | No |  |
 | `timestamp` | `String` | No |  |
 | `value` | `Float` | No |  |
 

@@ -38,7 +38,7 @@ try {
     // list() returns an array of AirTemperature records — iterate directly.
     $airtemperatures = $client->AirTemperature()->list();
     foreach ($airtemperatures as $item) {
-        echo $item["station_id"] . "\n";
+        echo $item["stationId"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $airtemperatures = $client->AirTemperature()->list();
+    $winddirections = $client->WindDirection()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = RealtimeWeatherSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$airtemperature = $client->AirTemperature()->list();
-print_r($airtemperature);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$winddirection = $client->WindDirection()->list();
+print_r($winddirection);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +230,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -251,7 +252,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -264,7 +265,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | Field | Description |
 | --- | --- |
 | `coverage` |  |
-| `dataset_id` |  |
+| `datasetId` |  |
 | `name` |  |
 | `type` |  |
 
@@ -276,7 +277,7 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -288,7 +289,7 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -300,7 +301,7 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -312,7 +313,7 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -339,7 +340,7 @@ Create an instance: `$air_temperature = $client->AirTemperature();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float` |  |
 
@@ -366,7 +367,7 @@ Create an instance: `$collection = $client->Collection();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `coverage` | `string` |  |
-| `dataset_id` | `string` |  |
+| `datasetId` | `string` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
@@ -392,7 +393,7 @@ Create an instance: `$rainfall = $client->Rainfall();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float` |  |
 
@@ -418,7 +419,7 @@ Create an instance: `$relative_humidity = $client->RelativeHumidity();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float` |  |
 
@@ -444,7 +445,7 @@ Create an instance: `$wind_direction = $client->WindDirection();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float` |  |
 
@@ -470,7 +471,7 @@ Create an instance: `$wind_speed = $client->WindSpeed();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float` |  |
 
@@ -558,11 +559,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$airtemperature = $client->AirTemperature();
-$airtemperature->list();
+$winddirection = $client->WindDirection();
+$winddirection->list();
 
-// $airtemperature->data_get() now returns the airtemperature data from the last list
-// $airtemperature->match_get() returns the last match criteria
+// $winddirection->data_get() now returns the winddirection data from the last list
+// $winddirection->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

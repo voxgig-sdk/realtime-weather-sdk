@@ -37,7 +37,7 @@ class RealtimeWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'station_id',
+              'name' => 'stationId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -97,6 +97,7 @@ class RealtimeWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/air-temperature',
                   'parts' => [
@@ -145,7 +146,7 @@ class RealtimeWeatherConfig
             ],
             [
               'active' => true,
-              'name' => 'dataset_id',
+              'name' => 'datasetId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
@@ -187,6 +188,7 @@ class RealtimeWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/metadata',
                   'parts' => [
@@ -207,7 +209,7 @@ class RealtimeWeatherConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.datasets`',
                   ],
                   'index$' => 0,
                 ],
@@ -223,7 +225,7 @@ class RealtimeWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'station_id',
+              'name' => 'stationId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -283,6 +285,7 @@ class RealtimeWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/rainfall',
                   'parts' => [
@@ -324,7 +327,7 @@ class RealtimeWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'station_id',
+              'name' => 'stationId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -384,6 +387,7 @@ class RealtimeWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/relative-humidity',
                   'parts' => [
@@ -425,7 +429,7 @@ class RealtimeWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'station_id',
+              'name' => 'stationId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -485,6 +489,7 @@ class RealtimeWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/wind-direction',
                   'parts' => [
@@ -526,7 +531,7 @@ class RealtimeWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'station_id',
+              'name' => 'stationId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -586,6 +591,7 @@ class RealtimeWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/wind-speed',
                   'parts' => [

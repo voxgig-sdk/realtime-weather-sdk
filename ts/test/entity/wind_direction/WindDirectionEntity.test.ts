@@ -26,8 +26,8 @@ import {
 describe('WindDirectionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when REALTIMEWEATHER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('REALTIMEWEATHER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when REALTIME_WEATHER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('REALTIME_WEATHER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = RealtimeWeatherSDK.test()
@@ -64,7 +64,7 @@ describe('WindDirectionEntity', async () => {
     const wind_direction_ref01_match: any = {}
     wind_direction_ref01_match['collection_id'] = setup.idmap['collection01']
 
-    const wind_direction_ref01_list = await wind_direction_ref01_ent.list(wind_direction_ref01_match)
+    const wind_direction_ref01_list = (await wind_direction_ref01_ent.list(wind_direction_ref01_match)).map((e: any) => e.data())
 
 
   })

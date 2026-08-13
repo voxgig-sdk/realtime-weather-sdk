@@ -74,11 +74,11 @@ def relative_humidity_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "REALTIMEWEATHER_TEST_RELATIVE_HUMIDITY_ENTID" => {},
-    "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
+    "REALTIME_WEATHER_TEST_RELATIVE_HUMIDITY_ENTID" => {},
+    "REALTIME_WEATHER_TEST_LIVE" => "FALSE",
   })
 
-  live = env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
+  live = env["REALTIME_WEATHER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

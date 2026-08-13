@@ -72,7 +72,7 @@ class WindSpeedEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set REALTIMEWEATHER_TEST_WIND_SPEED_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set REALTIME_WEATHER_TEST_WIND_SPEED_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -119,22 +119,22 @@ function wind_speed_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("REALTIMEWEATHER_TEST_WIND_SPEED_ENTID");
+    $entid_env_raw = getenv("REALTIME_WEATHER_TEST_WIND_SPEED_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "REALTIMEWEATHER_TEST_WIND_SPEED_ENTID" => $idmap,
-        "REALTIMEWEATHER_TEST_LIVE" => "FALSE",
-        "REALTIMEWEATHER_TEST_EXPLAIN" => "FALSE",
+        "REALTIME_WEATHER_TEST_WIND_SPEED_ENTID" => $idmap,
+        "REALTIME_WEATHER_TEST_LIVE" => "FALSE",
+        "REALTIME_WEATHER_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["REALTIMEWEATHER_TEST_WIND_SPEED_ENTID"]);
+        $env["REALTIME_WEATHER_TEST_WIND_SPEED_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["REALTIMEWEATHER_TEST_LIVE"] === "TRUE") {
+    if ($env["REALTIME_WEATHER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -143,13 +143,13 @@ function wind_speed_basic_setup($extra)
         $client = new RealtimeWeatherSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["REALTIMEWEATHER_TEST_LIVE"] === "TRUE";
+    $live = $env["REALTIME_WEATHER_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["REALTIMEWEATHER_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["REALTIME_WEATHER_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

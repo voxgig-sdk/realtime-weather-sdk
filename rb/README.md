@@ -37,7 +37,7 @@ begin
   # list returns an Array of AirTemperature records — iterate directly.
   airtemperatures = client.AirTemperature.list
   airtemperatures.each do |item|
-    puts "#{item["station_id"]}"
+    puts "#{item["stationId"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  airtemperatures = client.AirTemperature.list()
+  winddirections = client.WindDirection.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = RealtimeWeatherSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-airtemperature = client.AirTemperature.list()
-puts airtemperature
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+winddirection = client.WindDirection.list()
+puts winddirection
 ```
 
 ### Use a custom fetch function
@@ -241,7 +242,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -254,7 +255,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | Field | Description |
 | --- | --- |
 | `coverage` |  |
-| `dataset_id` |  |
+| `datasetId` |  |
 | `name` |  |
 | `type` |  |
 
@@ -266,7 +267,7 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -278,7 +279,7 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -290,7 +291,7 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -302,7 +303,7 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -329,7 +330,7 @@ Create an instance: `air_temperature = client.AirTemperature`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `String` |  |
+| `stationId` | `String` |  |
 | `timestamp` | `String` |  |
 | `value` | `Float` |  |
 
@@ -356,7 +357,7 @@ Create an instance: `collection = client.Collection`
 | Field | Type | Description |
 | --- | --- | --- |
 | `coverage` | `String` |  |
-| `dataset_id` | `String` |  |
+| `datasetId` | `String` |  |
 | `name` | `String` |  |
 | `type` | `String` |  |
 
@@ -382,7 +383,7 @@ Create an instance: `rainfall = client.Rainfall`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `String` |  |
+| `stationId` | `String` |  |
 | `timestamp` | `String` |  |
 | `value` | `Float` |  |
 
@@ -408,7 +409,7 @@ Create an instance: `relative_humidity = client.RelativeHumidity`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `String` |  |
+| `stationId` | `String` |  |
 | `timestamp` | `String` |  |
 | `value` | `Float` |  |
 
@@ -434,7 +435,7 @@ Create an instance: `wind_direction = client.WindDirection`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `String` |  |
+| `stationId` | `String` |  |
 | `timestamp` | `String` |  |
 | `value` | `Float` |  |
 
@@ -460,7 +461,7 @@ Create an instance: `wind_speed = client.WindSpeed`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `String` |  |
+| `stationId` | `String` |  |
 | `timestamp` | `String` |  |
 | `value` | `Float` |  |
 
@@ -548,11 +549,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-airtemperature = client.AirTemperature
-airtemperature.list()
+winddirection = client.WindDirection
+winddirection.list()
 
-# airtemperature.data_get now returns the airtemperature data from the last list
-# airtemperature.match_get returns the last match criteria
+# winddirection.data_get now returns the winddirection data from the last list
+# winddirection.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

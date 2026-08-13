@@ -23,7 +23,7 @@ support (`list`):
 
 ```ts
 const client = new RealtimeWeatherSDK()
-const items = await client.AirTemperature().list()
+const items = await client.AirTemperature().list({ collection_id: 1 })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = RealtimeWeatherSDK.test()
-const airtemperatures = await client.AirTemperature().list()
-// airtemperatures is an array of bare AirTemperature records populated with mock data
-console.log(airtemperatures)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = RealtimeWeatherSDK.test({
+  entity: {
+    wind_direction: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const winddirections = await client.WindDirection().list()
+// winddirections is an array of WindDirection entities, populated with mock data
+// — call winddirections[0].data() for the record itself
+console.log(winddirections)
 ```
 
 ### Python
 
 ```python
 client = RealtimeWeatherSDK.test()
-airtemperatures = client.AirTemperature().list()
-print(airtemperatures)
+winddirections = client.WindDirection().list()
+print(winddirections)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(airtemperatures)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = RealtimeWeatherSDK::test([
-    "entity" => ["airtemperature" => ["test01" => []]],
+    "entity" => ["winddirection" => ["test01" => []]],
 ]);
-$airtemperatures = $client->AirTemperature()->list();
+$winddirections = $client->WindDirection()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.AirTemperature(nil).List(
+result, err := client.WindDirection(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.AirTemperature(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = RealtimeWeatherSDK.test({
-  "entity" => { "airtemperature" => { "test01" => {} } },
+  "entity" => { "winddirection" => { "test01" => {} } },
 })
-airtemperatures = client.AirTemperature.list()
+winddirections = client.WindDirection.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:AirTemperature():list()
+local results, err = client:WindDirection():list()
 ```
 
 ## Packages
@@ -110,8 +119,8 @@ import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
 
 const client = new RealtimeWeatherSDK()
 
-// List all airtemperatures (returns AirTemperature[])
-const airtemperatures = await client.AirTemperature().list()
+// List all airtemperatures (returns AirTemperatureEntity[] — .data() for the record)
+const airtemperatures = await client.AirTemperature().list({ collection_id: 1 })
 for (const airtemperature of airtemperatures) {
   console.log(airtemperature)
 }
@@ -175,7 +184,7 @@ from realtimeweather_sdk import RealtimeWeatherSDK
 client = RealtimeWeatherSDK()
 
 # List all airtemperatures (returns a list, raises on error)
-airtemperatures = client.AirTemperature().list()
+airtemperatures = client.AirTemperature().list({"collection_id": 1})
 for airtemperature in airtemperatures:
     print(airtemperature)
 ```
@@ -348,6 +357,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://data.gov.sg](https://data.gov.sg)
 

@@ -6,7 +6,7 @@ main: kit: entity: rainfall: {
 
   fields: [
     {
-      name: "station_id"
+      name: "stationId"
       req: false
       type: "`$STRING`"
     }

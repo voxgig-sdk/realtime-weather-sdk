@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    airtemperatures = client.AirTemperature().list()
+    airtemperatures = client.AirTemperature().list({"collection_id": 1})
     for airtemperature in airtemperatures:
         print(airtemperature)
 except Exception as err:
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    airtemperatures = client.AirTemperature().list()
-    print(airtemperatures)
+    winddirections = client.WindDirection().list()
+    print(winddirections)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = RealtimeWeatherSDK.test()
 
-# Entity ops return the bare record and raise on error.
-airtemperature = client.AirTemperature().list()
-# airtemperature contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+winddirection = client.WindDirection().list()
+# winddirection contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -247,7 +248,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -260,7 +261,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | Field | Description |
 | --- | --- |
 | `coverage` |  |
-| `dataset_id` |  |
+| `datasetId` |  |
 | `name` |  |
 | `type` |  |
 
@@ -272,7 +273,7 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -284,7 +285,7 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -296,7 +297,7 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -308,7 +309,7 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -335,14 +336,14 @@ Create an instance: `air_temperature = client.AirTemperature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `str` |  |
+| `stationId` | `str` |  |
 | `timestamp` | `str` |  |
 | `value` | `float` |  |
 
 #### Example: List
 
 ```python
-air_temperatures = client.AirTemperature().list()
+air_temperatures = client.AirTemperature().list({"collection_id": 1})
 ```
 
 
@@ -361,14 +362,14 @@ Create an instance: `collection = client.Collection()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `coverage` | `str` |  |
-| `dataset_id` | `str` |  |
+| `datasetId` | `str` |  |
 | `name` | `str` |  |
 | `type` | `str` |  |
 
 #### Example: List
 
 ```python
-collections = client.Collection().list()
+collections = client.Collection().list({"id": 1})
 ```
 
 
@@ -386,14 +387,14 @@ Create an instance: `rainfall = client.Rainfall()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `str` |  |
+| `stationId` | `str` |  |
 | `timestamp` | `str` |  |
 | `value` | `float` |  |
 
 #### Example: List
 
 ```python
-rainfalls = client.Rainfall().list()
+rainfalls = client.Rainfall().list({"collection_id": 1})
 ```
 
 
@@ -411,14 +412,14 @@ Create an instance: `relative_humidity = client.RelativeHumidity()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `str` |  |
+| `stationId` | `str` |  |
 | `timestamp` | `str` |  |
 | `value` | `float` |  |
 
 #### Example: List
 
 ```python
-relative_humiditys = client.RelativeHumidity().list()
+relative_humiditys = client.RelativeHumidity().list({"collection_id": 1})
 ```
 
 
@@ -436,14 +437,14 @@ Create an instance: `wind_direction = client.WindDirection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `str` |  |
+| `stationId` | `str` |  |
 | `timestamp` | `str` |  |
 | `value` | `float` |  |
 
 #### Example: List
 
 ```python
-wind_directions = client.WindDirection().list()
+wind_directions = client.WindDirection().list({"collection_id": 1})
 ```
 
 
@@ -461,14 +462,14 @@ Create an instance: `wind_speed = client.WindSpeed()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `str` |  |
+| `stationId` | `str` |  |
 | `timestamp` | `str` |  |
 | `value` | `float` |  |
 
 #### Example: List
 
 ```python
-wind_speeds = client.WindSpeed().list()
+wind_speeds = client.WindSpeed().list({"collection_id": 1})
 ```
 
 
@@ -547,11 +548,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-airtemperature = client.AirTemperature()
-airtemperature.list()
+winddirection = client.WindDirection()
+winddirection.list()
 
-# airtemperature.data_get() now returns the airtemperature data from the last list
-# airtemperature.match_get() returns the last match criteria
+# winddirection.data_get() now returns the winddirection data from the last list
+# winddirection.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

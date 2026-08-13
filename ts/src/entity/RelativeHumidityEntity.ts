@@ -37,7 +37,7 @@ class RelativeHumidityEntity extends RealtimeWeatherEntityBase<RelativeHumidity>
 
 
 
-  async list(this: any, reqmatch?: RelativeHumidityListMatch, ctrl?: Control): Promise<RelativeHumidity[]> {
+  async list(this: any, reqmatch?: RelativeHumidityListMatch, ctrl?: Control): Promise<RelativeHumidityEntity[]> {
 
     const utility = this._utility
 

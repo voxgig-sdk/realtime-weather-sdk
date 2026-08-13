@@ -37,7 +37,7 @@ class AirTemperatureEntity extends RealtimeWeatherEntityBase<AirTemperature> {
 
 
 
-  async list(this: any, reqmatch?: AirTemperatureListMatch, ctrl?: Control): Promise<AirTemperature[]> {
+  async list(this: any, reqmatch?: AirTemperatureListMatch, ctrl?: Control): Promise<AirTemperatureEntity[]> {
 
     const utility = this._utility
 

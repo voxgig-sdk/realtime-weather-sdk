@@ -10,7 +10,7 @@
 
 # AirTemperature entity data model.
 #
-# @!attribute [rw] station_id
+# @!attribute [rw] stationId
 #   @return [String, nil]
 #
 # @!attribute [rw] timestamp
@@ -19,7 +19,7 @@
 # @!attribute [rw] value
 #   @return [Float, nil]
 AirTemperature = Struct.new(
-  :station_id,
+  :stationId,
   :timestamp,
   :value,
   keyword_init: true
@@ -39,7 +39,7 @@ AirTemperatureListMatch = Struct.new(
 # @!attribute [rw] coverage
 #   @return [String, nil]
 #
-# @!attribute [rw] dataset_id
+# @!attribute [rw] datasetId
 #   @return [String, nil]
 #
 # @!attribute [rw] name
@@ -49,7 +49,7 @@ AirTemperatureListMatch = Struct.new(
 #   @return [String, nil]
 Collection = Struct.new(
   :coverage,
-  :dataset_id,
+  :datasetId,
   :name,
   :type,
   keyword_init: true
@@ -66,7 +66,7 @@ CollectionListMatch = Struct.new(
 
 # Rainfall entity data model.
 #
-# @!attribute [rw] station_id
+# @!attribute [rw] stationId
 #   @return [String, nil]
 #
 # @!attribute [rw] timestamp
@@ -75,7 +75,7 @@ CollectionListMatch = Struct.new(
 # @!attribute [rw] value
 #   @return [Float, nil]
 Rainfall = Struct.new(
-  :station_id,
+  :stationId,
   :timestamp,
   :value,
   keyword_init: true
@@ -92,7 +92,7 @@ RainfallListMatch = Struct.new(
 
 # RelativeHumidity entity data model.
 #
-# @!attribute [rw] station_id
+# @!attribute [rw] stationId
 #   @return [String, nil]
 #
 # @!attribute [rw] timestamp
@@ -101,7 +101,7 @@ RainfallListMatch = Struct.new(
 # @!attribute [rw] value
 #   @return [Float, nil]
 RelativeHumidity = Struct.new(
-  :station_id,
+  :stationId,
   :timestamp,
   :value,
   keyword_init: true
@@ -118,7 +118,7 @@ RelativeHumidityListMatch = Struct.new(
 
 # WindDirection entity data model.
 #
-# @!attribute [rw] station_id
+# @!attribute [rw] stationId
 #   @return [String, nil]
 #
 # @!attribute [rw] timestamp
@@ -127,7 +127,7 @@ RelativeHumidityListMatch = Struct.new(
 # @!attribute [rw] value
 #   @return [Float, nil]
 WindDirection = Struct.new(
-  :station_id,
+  :stationId,
   :timestamp,
   :value,
   keyword_init: true
@@ -144,7 +144,7 @@ WindDirectionListMatch = Struct.new(
 
 # WindSpeed entity data model.
 #
-# @!attribute [rw] station_id
+# @!attribute [rw] stationId
 #   @return [String, nil]
 #
 # @!attribute [rw] timestamp
@@ -153,7 +153,7 @@ WindDirectionListMatch = Struct.new(
 # @!attribute [rw] value
 #   @return [Float, nil]
 WindSpeed = Struct.new(
-  :station_id,
+  :stationId,
   :timestamp,
   :value,
   keyword_init: true

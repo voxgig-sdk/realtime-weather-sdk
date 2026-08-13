@@ -92,7 +92,7 @@ func TestWindSpeedEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set REALTIMEWEATHER_TEST_WIND_SPEED_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set REALTIME_WEATHER_TEST_WIND_SPEED_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -162,21 +162,21 @@ func wind_speedBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("REALTIMEWEATHER_TEST_WIND_SPEED_ENTID")
+	entidEnvRaw := os.Getenv("REALTIME_WEATHER_TEST_WIND_SPEED_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"REALTIMEWEATHER_TEST_WIND_SPEED_ENTID": idmap,
-		"REALTIMEWEATHER_TEST_LIVE":      "FALSE",
-		"REALTIMEWEATHER_TEST_EXPLAIN":   "FALSE",
+		"REALTIME_WEATHER_TEST_WIND_SPEED_ENTID": idmap,
+		"REALTIME_WEATHER_TEST_LIVE":      "FALSE",
+		"REALTIME_WEATHER_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["REALTIMEWEATHER_TEST_WIND_SPEED_ENTID"])
+	idmapResolved := core.ToMapAny(env["REALTIME_WEATHER_TEST_WIND_SPEED_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE" {
+	if env["REALTIME_WEATHER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -185,13 +185,13 @@ func wind_speedBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewRealtimeWeatherSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["REALTIMEWEATHER_TEST_LIVE"] == "TRUE"
+	live := env["REALTIME_WEATHER_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["REALTIMEWEATHER_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["REALTIME_WEATHER_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

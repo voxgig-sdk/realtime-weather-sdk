@@ -118,7 +118,7 @@ fmt.Println(airTemperature.GetName()) // "air_temperature"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float64` | No |  |
 
@@ -172,7 +172,7 @@ fmt.Println(collection.GetName()) // "collection"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `coverage` | `string` | No |  |
-| `dataset_id` | `string` | No |  |
+| `datasetId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -225,7 +225,7 @@ fmt.Println(rainfall.GetName()) // "rainfall"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float64` | No |  |
 
@@ -278,7 +278,7 @@ fmt.Println(relativeHumidity.GetName()) // "relative_humidity"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float64` | No |  |
 
@@ -331,7 +331,7 @@ fmt.Println(windDirection.GetName()) // "wind_direction"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float64` | No |  |
 
@@ -384,7 +384,7 @@ fmt.Println(windSpeed.GetName()) // "wind_speed"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float64` | No |  |
 

@@ -37,7 +37,7 @@ class WindDirectionEntity extends RealtimeWeatherEntityBase<WindDirection> {
 
 
 
-  async list(this: any, reqmatch?: WindDirectionListMatch, ctrl?: Control): Promise<WindDirection[]> {
+  async list(this: any, reqmatch?: WindDirectionListMatch, ctrl?: Control): Promise<WindDirectionEntity[]> {
 
     const utility = this._utility
 

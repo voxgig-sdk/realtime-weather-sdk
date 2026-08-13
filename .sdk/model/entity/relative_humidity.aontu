@@ -6,7 +6,7 @@ main: kit: entity: relative_humidity: {
 
   fields: [
     {
-      name: "station_id"
+      name: "stationId"
       req: false
       type: "`$STRING`"
     }

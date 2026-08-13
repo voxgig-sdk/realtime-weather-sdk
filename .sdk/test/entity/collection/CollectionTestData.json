@@ -3,19 +3,19 @@
     "collection": {
       "COLLECTION00": {
         "coverage": "s28",
-        "dataset_id": "DATASET01",
+        "datasetId": "s29",
         "name": "s2a",
         "type": "s2b"
       },
       "COLLECTION01": {
         "coverage": "s50",
-        "dataset_id": "DATASET01",
+        "datasetId": "s51",
         "name": "s52",
         "type": "s53"
       },
       "COLLECTION02": {
         "coverage": "s78",
-        "dataset_id": "DATASET01",
+        "datasetId": "s79",
         "name": "s7a",
         "type": "s7b"
       }
@@ -25,7 +25,7 @@
     "collection": {
       "collection_ref01": {
         "coverage": "sa0",
-        "dataset_id": "DATASET01",
+        "datasetId": "sa1",
         "name": "sa2",
         "type": "sa3"
       }

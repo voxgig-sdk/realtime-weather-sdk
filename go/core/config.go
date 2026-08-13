@@ -31,7 +31,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "station_id",
+						"name": "stationId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -91,6 +91,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/air-temperature",
 								"parts": []any{
@@ -117,7 +118,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -139,7 +139,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "dataset_id",
+						"name": "datasetId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
@@ -181,6 +181,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/metadata",
 								"parts": []any{
@@ -201,12 +202,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.datasets`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -217,7 +217,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "station_id",
+						"name": "stationId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -277,6 +277,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/rainfall",
 								"parts": []any{
@@ -303,7 +304,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -318,7 +318,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "station_id",
+						"name": "stationId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -378,6 +378,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/relative-humidity",
 								"parts": []any{
@@ -404,7 +405,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -419,7 +419,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "station_id",
+						"name": "stationId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -479,6 +479,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/wind-direction",
 								"parts": []any{
@@ -505,7 +506,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -520,7 +520,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "station_id",
+						"name": "stationId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -580,6 +580,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/wind-speed",
 								"parts": []any{
@@ -606,7 +607,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

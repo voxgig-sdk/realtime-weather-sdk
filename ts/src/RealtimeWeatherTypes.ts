@@ -6,7 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface AirTemperature {
-  station_id?: string
+  stationId?: string
   timestamp?: string
   value?: number
 }
@@ -17,17 +17,23 @@ export interface AirTemperatureListMatch {
 
 export interface Collection {
   coverage?: string
-  dataset_id?: string
+  datasetId?: string
   name?: string
   type?: string
 }
 
 export interface CollectionListMatch {
   id: number
+
+  // Selects a custom action instead of the plain list:
+  //   'metadata'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Rainfall {
-  station_id?: string
+  stationId?: string
   timestamp?: string
   value?: number
 }
@@ -37,7 +43,7 @@ export interface RainfallListMatch {
 }
 
 export interface RelativeHumidity {
-  station_id?: string
+  stationId?: string
   timestamp?: string
   value?: number
 }
@@ -47,7 +53,7 @@ export interface RelativeHumidityListMatch {
 }
 
 export interface WindDirection {
-  station_id?: string
+  stationId?: string
   timestamp?: string
   value?: number
 }
@@ -57,7 +63,7 @@ export interface WindDirectionListMatch {
 }
 
 export interface WindSpeed {
-  station_id?: string
+  stationId?: string
   timestamp?: string
   value?: number
 }

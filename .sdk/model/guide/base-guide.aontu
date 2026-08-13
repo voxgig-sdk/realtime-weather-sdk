@@ -17,6 +17,7 @@ guide: {
       action: "metadata": {}
       rename: param: "collectionId": *"id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.datasets`")|top
     }
   }
 

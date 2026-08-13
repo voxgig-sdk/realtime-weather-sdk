@@ -6,7 +6,7 @@ main: kit: entity: air_temperature: {
 
   fields: [
     {
-      name: "station_id"
+      name: "stationId"
       req: false
       type: "`$STRING`"
     }

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ RealtimeWeatherUtility.registrar = ->(u) {
   u.prepare_params = RealtimeWeatherUtilities::PrepareParams
   u.prepare_path = RealtimeWeatherUtilities::PreparePath
   u.prepare_query = RealtimeWeatherUtilities::PrepareQuery
+  u.graphql_body = RealtimeWeatherUtilities::GraphqlBody
+  u.graphql_errors = RealtimeWeatherUtilities::GraphqlErrors
   u.result_basic = RealtimeWeatherUtilities::ResultBasic
   u.result_body = RealtimeWeatherUtilities::ResultBody
   u.result_headers = RealtimeWeatherUtilities::ResultHeaders

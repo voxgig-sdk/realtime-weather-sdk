@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import RealtimeWeatherSDK
-from core.error import RealtimeWeatherError
-from core.result import RealtimeWeatherResult
-from core.response import RealtimeWeatherResponse
-from core.spec import RealtimeWeatherSpec
-from feature.base_feature import RealtimeWeatherBaseFeature
+from projectname_sdk.core.error import RealtimeWeatherError
+from projectname_sdk.core.result import RealtimeWeatherResult
+from projectname_sdk.core.response import RealtimeWeatherResponse
+from projectname_sdk.core.spec import RealtimeWeatherSpec
+from projectname_sdk.feature.base_feature import RealtimeWeatherBaseFeature
 
 
 def _client():

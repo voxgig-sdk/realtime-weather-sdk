@@ -2,19 +2,19 @@
   "existing": {
     "rainfall": {
       "RAINFALL00": {
-        "station_id": "STATION01",
+        "stationId": "s1e",
         "timestamp": "s1f",
         "value": 32,
         "collection_id": "COLLECTION01"
       },
       "RAINFALL01": {
-        "station_id": "STATION01",
+        "stationId": "s3c",
         "timestamp": "s3d",
         "value": 62,
         "collection_id": "COLLECTION01"
       },
       "RAINFALL02": {
-        "station_id": "STATION01",
+        "stationId": "s5a",
         "timestamp": "s5b",
         "value": 92,
         "collection_id": "COLLECTION01"
@@ -24,7 +24,7 @@
   "new": {
     "rainfall": {
       "rainfall_ref01": {
-        "station_id": "STATION01",
+        "stationId": "s78",
         "timestamp": "s79",
         "value": 122
       }

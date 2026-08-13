@@ -43,8 +43,8 @@ class RealtimeWeatherTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('REALTIMEWEATHER_TEST_LIVE');
-        $override = self::getenv('REALTIMEWEATHER_TEST_OVERRIDE');
+        $live = self::getenv('REALTIME_WEATHER_TEST_LIVE');
+        $override = self::getenv('REALTIME_WEATHER_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class RealtimeWeatherTestRunner
             }
         }
 
-        $explain = self::getenv('REALTIMEWEATHER_TEST_EXPLAIN');
+        $explain = self::getenv('REALTIME_WEATHER_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['REALTIMEWEATHER_TEST_EXPLAIN'] = $explain;
+            $m['REALTIME_WEATHER_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

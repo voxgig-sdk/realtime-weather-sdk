@@ -112,7 +112,7 @@ $air_temperature = $client->AirTemperature();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float` | No |  |
 
@@ -167,7 +167,7 @@ $collection = $client->Collection();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `coverage` | `string` | No |  |
-| `dataset_id` | `string` | No |  |
+| `datasetId` | `string` | No |  |
 | `name` | `string` | No |  |
 | `type` | `string` | No |  |
 
@@ -221,7 +221,7 @@ $rainfall = $client->Rainfall();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float` | No |  |
 
@@ -275,7 +275,7 @@ $relative_humidity = $client->RelativeHumidity();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float` | No |  |
 
@@ -329,7 +329,7 @@ $wind_direction = $client->WindDirection();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float` | No |  |
 
@@ -383,7 +383,7 @@ $wind_speed = $client->WindSpeed();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `station_id` | `string` | No |  |
+| `stationId` | `string` | No |  |
 | `timestamp` | `string` | No |  |
 | `value` | `float` | No |  |
 

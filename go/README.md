@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-airtemperatures, err := client.AirTemperature(nil).List(nil, nil)
+winddirections, err := client.WindDirection(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = airtemperatures
+_ = winddirections
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-airTemperature, err := client.AirTemperature(nil).List(
+windDirection, err := client.WindDirection(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(airTemperature) // the returned mock data
+fmt.Println(windDirection) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -265,7 +265,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"station_id"` |  |
+| `"stationId"` |  |
 | `"timestamp"` |  |
 | `"value"` |  |
 
@@ -278,7 +278,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | Field | Description |
 | --- | --- |
 | `"coverage"` |  |
-| `"dataset_id"` |  |
+| `"datasetId"` |  |
 | `"name"` |  |
 | `"type"` |  |
 
@@ -290,7 +290,7 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `"station_id"` |  |
+| `"stationId"` |  |
 | `"timestamp"` |  |
 | `"value"` |  |
 
@@ -302,7 +302,7 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `"station_id"` |  |
+| `"stationId"` |  |
 | `"timestamp"` |  |
 | `"value"` |  |
 
@@ -314,7 +314,7 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `"station_id"` |  |
+| `"stationId"` |  |
 | `"timestamp"` |  |
 | `"value"` |  |
 
@@ -326,7 +326,7 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `"station_id"` |  |
+| `"stationId"` |  |
 | `"timestamp"` |  |
 | `"value"` |  |
 
@@ -353,7 +353,7 @@ Create an instance: `airTemperature := client.AirTemperature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float64` |  |
 
@@ -383,7 +383,7 @@ Create an instance: `collection := client.Collection(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `coverage` | `string` |  |
-| `dataset_id` | `string` |  |
+| `datasetId` | `string` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
@@ -412,7 +412,7 @@ Create an instance: `rainfall := client.Rainfall(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float64` |  |
 
@@ -441,7 +441,7 @@ Create an instance: `relativeHumidity := client.RelativeHumidity(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float64` |  |
 
@@ -470,7 +470,7 @@ Create an instance: `windDirection := client.WindDirection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float64` |  |
 
@@ -499,7 +499,7 @@ Create an instance: `windSpeed := client.WindSpeed(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `float64` |  |
 
@@ -587,11 +587,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-airtemperature := client.AirTemperature(nil)
-airtemperature.List(nil, nil)
+winddirection := client.WindDirection(nil)
+winddirection.List(nil, nil)
 
-// airtemperature.Data() now returns the airtemperature data from the last list
-// airtemperature.Match() returns the last match criteria
+// winddirection.Data() now returns the winddirection data from the last list
+// winddirection.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

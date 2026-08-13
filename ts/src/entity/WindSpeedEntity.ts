@@ -37,7 +37,7 @@ class WindSpeedEntity extends RealtimeWeatherEntityBase<WindSpeed> {
 
 
 
-  async list(this: any, reqmatch?: WindSpeedListMatch, ctrl?: Control): Promise<WindSpeed[]> {
+  async list(this: any, reqmatch?: WindSpeedListMatch, ctrl?: Control): Promise<WindSpeedEntity[]> {
 
     const utility = this._utility
 

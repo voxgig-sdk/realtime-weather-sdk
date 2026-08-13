@@ -35,10 +35,12 @@ const client = new RealtimeWeatherSDK()
 
 ### 2. List airtemperature records
 
-`list()` resolves to an array of AirTemperature objects — iterate it directly:
+`list()` resolves to an array of AirTemperature ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
-const airtemperatures = await client.AirTemperature().list()
+const airtemperatures = await client.AirTemperature().list({ collection_id: 1 })
 
 for (const airtemperature of airtemperatures) {
   console.log(airtemperature)
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const airtemperatures = await client.AirTemperature().list()
-  console.log(airtemperatures)
+  const winddirections = await client.WindDirection().list()
+  console.log(winddirections)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = RealtimeWeatherSDK.test()
 
-const airtemperature = await client.AirTemperature().list()
-// airtemperature is a bare entity populated with mock response data
-console.log(airtemperature)
+const winddirection = await client.WindDirection().list()
+// winddirection is the entity, populated with mock response data
+// — call winddirection.data() for the record itself
+console.log(winddirection)
 ```
 
 You can also use the instance method:
@@ -136,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.AirTemperature()
+const entity = client.WindDirection()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -289,7 +292,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -302,7 +305,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | Field | Description |
 | --- | --- |
 | `coverage` |  |
-| `dataset_id` |  |
+| `datasetId` |  |
 | `name` |  |
 | `type` |  |
 
@@ -314,7 +317,7 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -326,7 +329,7 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -338,7 +341,7 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -350,7 +353,7 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `station_id` |  |
+| `stationId` |  |
 | `timestamp` |  |
 | `value` |  |
 
@@ -377,14 +380,14 @@ Create an instance: `const air_temperature = client.AirTemperature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
 #### Example: List
 
 ```ts
-const air_temperatures = await client.AirTemperature().list()
+const air_temperatures = await client.AirTemperature().list({ collection_id: 1 })
 ```
 
 
@@ -403,14 +406,14 @@ Create an instance: `const collection = client.Collection()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `coverage` | `string` |  |
-| `dataset_id` | `string` |  |
+| `datasetId` | `string` |  |
 | `name` | `string` |  |
 | `type` | `string` |  |
 
 #### Example: List
 
 ```ts
-const collections = await client.Collection().list()
+const collections = await client.Collection().list({ id: 1 })
 ```
 
 
@@ -428,14 +431,14 @@ Create an instance: `const rainfall = client.Rainfall()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
 #### Example: List
 
 ```ts
-const rainfalls = await client.Rainfall().list()
+const rainfalls = await client.Rainfall().list({ collection_id: 1 })
 ```
 
 
@@ -453,14 +456,14 @@ Create an instance: `const relative_humidity = client.RelativeHumidity()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
 #### Example: List
 
 ```ts
-const relative_humiditys = await client.RelativeHumidity().list()
+const relative_humiditys = await client.RelativeHumidity().list({ collection_id: 1 })
 ```
 
 
@@ -478,14 +481,14 @@ Create an instance: `const wind_direction = client.WindDirection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
 #### Example: List
 
 ```ts
-const wind_directions = await client.WindDirection().list()
+const wind_directions = await client.WindDirection().list({ collection_id: 1 })
 ```
 
 
@@ -503,14 +506,14 @@ Create an instance: `const wind_speed = client.WindSpeed()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `station_id` | `string` |  |
+| `stationId` | `string` |  |
 | `timestamp` | `string` |  |
 | `value` | `number` |  |
 
 #### Example: List
 
 ```ts
-const wind_speeds = await client.WindSpeed().list()
+const wind_speeds = await client.WindSpeed().list({ collection_id: 1 })
 ```
 
 
@@ -583,11 +586,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const airtemperature = client.AirTemperature()
-await airtemperature.list()
+const winddirection = client.WindDirection()
+await winddirection.list()
 
-// airtemperature.data() now returns the airtemperature data from the last `list`
-// airtemperature.match() returns the last match criteria
+// winddirection.data() now returns the winddirection data from the last `list`
+// winddirection.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
