@@ -28,7 +28,7 @@ class RealtimeWeatherSDK
     utility = RealtimeWeatherUtility.new
     @_utility = utility
 
-    config = RealtimeWeatherConfig.make_config
+    config = RealtimeWeatherConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

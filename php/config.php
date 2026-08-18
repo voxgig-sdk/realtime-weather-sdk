@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class RealtimeWeatherConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -36,25 +59,16 @@ class RealtimeWeatherConfig
         'air_temperature' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'stationId',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'value',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
           ],
           'name' => 'air_temperature',
@@ -64,35 +78,28 @@ class RealtimeWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1459,
                         'kind' => 'param',
                         'name' => 'collection_id',
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'datetime',
                         'orig' => 'datetime',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -121,10 +128,8 @@ class RealtimeWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -138,32 +143,20 @@ class RealtimeWeatherConfig
         'collection' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'coverage',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'datasetId',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'name',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'type',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'collection',
@@ -173,18 +166,15 @@ class RealtimeWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1459,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -211,10 +201,8 @@ class RealtimeWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body.datasets`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -224,25 +212,16 @@ class RealtimeWeatherConfig
         'rainfall' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'stationId',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'value',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
           ],
           'name' => 'rainfall',
@@ -252,35 +231,28 @@ class RealtimeWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1459,
                         'kind' => 'param',
                         'name' => 'collection_id',
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'datetime',
                         'orig' => 'datetime',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -309,10 +281,8 @@ class RealtimeWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -326,25 +296,16 @@ class RealtimeWeatherConfig
         'relative_humidity' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'stationId',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'value',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
           ],
           'name' => 'relative_humidity',
@@ -354,35 +315,28 @@ class RealtimeWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1459,
                         'kind' => 'param',
                         'name' => 'collection_id',
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'datetime',
                         'orig' => 'datetime',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -411,10 +365,8 @@ class RealtimeWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -428,25 +380,16 @@ class RealtimeWeatherConfig
         'wind_direction' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'stationId',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'value',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
           ],
           'name' => 'wind_direction',
@@ -456,35 +399,28 @@ class RealtimeWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1459,
                         'kind' => 'param',
                         'name' => 'collection_id',
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'datetime',
                         'orig' => 'datetime',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -513,10 +449,8 @@ class RealtimeWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -530,25 +464,16 @@ class RealtimeWeatherConfig
         'wind_speed' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'stationId',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'value',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
           ],
           'name' => 'wind_speed',
@@ -558,35 +483,28 @@ class RealtimeWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'params' => [
                       [
-                        'active' => true,
                         'example' => 1459,
                         'kind' => 'param',
                         'name' => 'collection_id',
                         'orig' => 'collection_id',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
-                        'index$' => 0,
                       ],
                     ],
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'datetime',
                         'orig' => 'datetime',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -615,10 +533,8 @@ class RealtimeWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [

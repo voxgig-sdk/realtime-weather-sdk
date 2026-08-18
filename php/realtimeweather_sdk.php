@@ -40,7 +40,7 @@ class RealtimeWeatherSDK
         $utility = new RealtimeWeatherUtility();
         $this->_utility = $utility;
 
-        $config = RealtimeWeatherConfig::make_config();
+        $config = RealtimeWeatherConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

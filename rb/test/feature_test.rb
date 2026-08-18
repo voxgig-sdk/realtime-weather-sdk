@@ -15,7 +15,7 @@ require_relative "../RealtimeWeather_sdk"
 module RealtimeWeatherFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = RealtimeWeatherConfig.make_config["feature"]
+    f = RealtimeWeatherConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
