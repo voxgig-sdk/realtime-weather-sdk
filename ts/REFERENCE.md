@@ -176,9 +176,9 @@ const air_temperature = client.AirTemperature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -228,10 +228,10 @@ const collection = client.Collection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | `string` | No |  |
-| `datasetId` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `coverage` | `string` | No | Time coverage of the dataset |
+| `datasetId` | `string` | No | Unique identifier for the dataset |
+| `name` | `string` | No | Name of the dataset |
+| `type` | `string` | No | Type of dataset |
 
 ### Actions
 
@@ -301,9 +301,9 @@ const rainfall = client.Rainfall()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -353,9 +353,9 @@ const relative_humidity = client.RelativeHumidity()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -405,9 +405,9 @@ const wind_direction = client.WindDirection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -457,9 +457,9 @@ const wind_speed = client.WindSpeed()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 

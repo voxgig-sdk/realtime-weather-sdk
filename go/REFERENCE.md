@@ -118,9 +118,9 @@ fmt.Println(airTemperature.GetName()) // "air_temperature"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `float64` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `float64` | No | The measured value |
 
 ### Operations
 
@@ -171,10 +171,10 @@ fmt.Println(collection.GetName()) // "collection"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | `string` | No |  |
-| `datasetId` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `coverage` | `string` | No | Time coverage of the dataset |
+| `datasetId` | `string` | No | Unique identifier for the dataset |
+| `name` | `string` | No | Name of the dataset |
+| `type` | `string` | No | Type of dataset |
 
 ### Operations
 
@@ -225,9 +225,9 @@ fmt.Println(rainfall.GetName()) // "rainfall"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `float64` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `float64` | No | The measured value |
 
 ### Operations
 
@@ -278,9 +278,9 @@ fmt.Println(relativeHumidity.GetName()) // "relative_humidity"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `float64` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `float64` | No | The measured value |
 
 ### Operations
 
@@ -331,9 +331,9 @@ fmt.Println(windDirection.GetName()) // "wind_direction"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `float64` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `float64` | No | The measured value |
 
 ### Operations
 
@@ -384,9 +384,9 @@ fmt.Println(windSpeed.GetName()) // "wind_speed"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `float64` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `float64` | No | The measured value |
 
 ### Operations
 

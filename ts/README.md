@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -292,9 +292,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: list.
 
@@ -304,10 +304,10 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `coverage` |  |
-| `datasetId` |  |
-| `name` |  |
-| `type` |  |
+| `coverage` | Time coverage of the dataset |
+| `datasetId` | Unique identifier for the dataset |
+| `name` | Name of the dataset |
+| `type` | Type of dataset |
 
 Operations: list.
 
@@ -317,9 +317,9 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: list.
 
@@ -329,9 +329,9 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: list.
 
@@ -341,9 +341,9 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: list.
 
@@ -353,9 +353,9 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: list.
 
@@ -380,9 +380,9 @@ Create an instance: `const air_temperature = client.AirTemperature()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -405,10 +405,10 @@ Create an instance: `const collection = client.Collection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `string` |  |
-| `datasetId` | `string` |  |
-| `name` | `string` |  |
-| `type` | `string` |  |
+| `coverage` | `string` | Time coverage of the dataset |
+| `datasetId` | `string` | Unique identifier for the dataset |
+| `name` | `string` | Name of the dataset |
+| `type` | `string` | Type of dataset |
 
 #### Example: List
 
@@ -431,9 +431,9 @@ Create an instance: `const rainfall = client.Rainfall()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -456,9 +456,9 @@ Create an instance: `const relative_humidity = client.RelativeHumidity()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -481,9 +481,9 @@ Create an instance: `const wind_direction = client.WindDirection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -506,9 +506,9 @@ Create an instance: `const wind_speed = client.WindSpeed()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 

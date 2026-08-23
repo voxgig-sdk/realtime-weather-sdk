@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'RealtimeWeather',
+        slug: "realtime-weather",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -71,14 +82,17 @@ class Config {
       "fields": [
         {
           "name": "stationId",
+          "short": "Station identifier",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp",
+          "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
           "name": "value",
+          "short": "The measured value",
           "type": "`$NUMBER`"
         }
       ],
@@ -155,18 +169,22 @@ class Config {
       "fields": [
         {
           "name": "coverage",
+          "short": "Time coverage of the dataset",
           "type": "`$STRING`"
         },
         {
           "name": "datasetId",
+          "short": "Unique identifier for the dataset",
           "type": "`$STRING`"
         },
         {
           "name": "name",
+          "short": "Name of the dataset",
           "type": "`$STRING`"
         },
         {
           "name": "type",
+          "short": "Type of dataset",
           "type": "`$STRING`"
         }
       ],
@@ -224,14 +242,17 @@ class Config {
       "fields": [
         {
           "name": "stationId",
+          "short": "Station identifier",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp",
+          "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
           "name": "value",
+          "short": "The measured value",
           "type": "`$NUMBER`"
         }
       ],
@@ -308,14 +329,17 @@ class Config {
       "fields": [
         {
           "name": "stationId",
+          "short": "Station identifier",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp",
+          "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
           "name": "value",
+          "short": "The measured value",
           "type": "`$NUMBER`"
         }
       ],
@@ -392,14 +416,17 @@ class Config {
       "fields": [
         {
           "name": "stationId",
+          "short": "Station identifier",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp",
+          "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
           "name": "value",
+          "short": "The measured value",
           "type": "`$NUMBER`"
         }
       ],
@@ -476,14 +503,17 @@ class Config {
       "fields": [
         {
           "name": "stationId",
+          "short": "Station identifier",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp",
+          "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
           "name": "value",
+          "short": "The measured value",
           "type": "`$NUMBER`"
         }
       ],

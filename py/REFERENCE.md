@@ -107,9 +107,9 @@ air_temperature = client.AirTemperature()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `str` | No |  |
-| `timestamp` | `str` | No |  |
-| `value` | `float` | No |  |
+| `stationId` | `str` | No | Station identifier |
+| `timestamp` | `str` | No | Timestamp of the reading |
+| `value` | `float` | No | The measured value |
 
 ### Operations
 
@@ -162,10 +162,10 @@ collection = client.Collection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | `str` | No |  |
-| `datasetId` | `str` | No |  |
-| `name` | `str` | No |  |
-| `type` | `str` | No |  |
+| `coverage` | `str` | No | Time coverage of the dataset |
+| `datasetId` | `str` | No | Unique identifier for the dataset |
+| `name` | `str` | No | Name of the dataset |
+| `type` | `str` | No | Type of dataset |
 
 ### Operations
 
@@ -218,9 +218,9 @@ rainfall = client.Rainfall()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `str` | No |  |
-| `timestamp` | `str` | No |  |
-| `value` | `float` | No |  |
+| `stationId` | `str` | No | Station identifier |
+| `timestamp` | `str` | No | Timestamp of the reading |
+| `value` | `float` | No | The measured value |
 
 ### Operations
 
@@ -273,9 +273,9 @@ relative_humidity = client.RelativeHumidity()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `str` | No |  |
-| `timestamp` | `str` | No |  |
-| `value` | `float` | No |  |
+| `stationId` | `str` | No | Station identifier |
+| `timestamp` | `str` | No | Timestamp of the reading |
+| `value` | `float` | No | The measured value |
 
 ### Operations
 
@@ -328,9 +328,9 @@ wind_direction = client.WindDirection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `str` | No |  |
-| `timestamp` | `str` | No |  |
-| `value` | `float` | No |  |
+| `stationId` | `str` | No | Station identifier |
+| `timestamp` | `str` | No | Timestamp of the reading |
+| `value` | `float` | No | The measured value |
 
 ### Operations
 
@@ -383,9 +383,9 @@ wind_speed = client.WindSpeed()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `str` | No |  |
-| `timestamp` | `str` | No |  |
-| `value` | `float` | No |  |
+| `stationId` | `str` | No | Station identifier |
+| `timestamp` | `str` | No | Timestamp of the reading |
+| `value` | `float` | No | The measured value |
 
 ### Operations
 

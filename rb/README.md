@@ -242,9 +242,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -254,10 +254,10 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `coverage` |  |
-| `datasetId` |  |
-| `name` |  |
-| `type` |  |
+| `coverage` | Time coverage of the dataset |
+| `datasetId` | Unique identifier for the dataset |
+| `name` | Name of the dataset |
+| `type` | Type of dataset |
 
 Operations: List.
 
@@ -267,9 +267,9 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -279,9 +279,9 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -291,9 +291,9 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -303,9 +303,9 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -330,9 +330,9 @@ Create an instance: `air_temperature = client.AirTemperature`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `String` |  |
-| `timestamp` | `String` |  |
-| `value` | `Float` |  |
+| `stationId` | `String` | Station identifier |
+| `timestamp` | `String` | Timestamp of the reading |
+| `value` | `Float` | The measured value |
 
 #### Example: List
 
@@ -356,10 +356,10 @@ Create an instance: `collection = client.Collection`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `String` |  |
-| `datasetId` | `String` |  |
-| `name` | `String` |  |
-| `type` | `String` |  |
+| `coverage` | `String` | Time coverage of the dataset |
+| `datasetId` | `String` | Unique identifier for the dataset |
+| `name` | `String` | Name of the dataset |
+| `type` | `String` | Type of dataset |
 
 #### Example: List
 
@@ -383,9 +383,9 @@ Create an instance: `rainfall = client.Rainfall`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `String` |  |
-| `timestamp` | `String` |  |
-| `value` | `Float` |  |
+| `stationId` | `String` | Station identifier |
+| `timestamp` | `String` | Timestamp of the reading |
+| `value` | `Float` | The measured value |
 
 #### Example: List
 
@@ -409,9 +409,9 @@ Create an instance: `relative_humidity = client.RelativeHumidity`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `String` |  |
-| `timestamp` | `String` |  |
-| `value` | `Float` |  |
+| `stationId` | `String` | Station identifier |
+| `timestamp` | `String` | Timestamp of the reading |
+| `value` | `Float` | The measured value |
 
 #### Example: List
 
@@ -435,9 +435,9 @@ Create an instance: `wind_direction = client.WindDirection`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `String` |  |
-| `timestamp` | `String` |  |
-| `value` | `Float` |  |
+| `stationId` | `String` | Station identifier |
+| `timestamp` | `String` | Timestamp of the reading |
+| `value` | `Float` | The measured value |
 
 #### Example: List
 
@@ -461,9 +461,9 @@ Create an instance: `wind_speed = client.WindSpeed`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `String` |  |
-| `timestamp` | `String` |  |
-| `value` | `Float` |  |
+| `stationId` | `String` | Station identifier |
+| `timestamp` | `String` | Timestamp of the reading |
+| `value` | `Float` | The measured value |
 
 #### Example: List
 

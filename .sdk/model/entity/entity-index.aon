@@ -1,0 +1,8 @@
+# Entity Models
+
+@"air_temperature.aon"
+@"collection.aon"
+@"rainfall.aon"
+@"relative_humidity.aon"
+@"wind_direction.aon"
+@"wind_speed.aon"

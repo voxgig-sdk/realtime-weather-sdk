@@ -6,7 +6,7 @@ The Golang SDK for the RealtimeWeather API — an entity-oriented client using s
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.AirTemperature(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -265,9 +265,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"stationId"` |  |
-| `"timestamp"` |  |
-| `"value"` |  |
+| `"stationId"` | Station identifier |
+| `"timestamp"` | Timestamp of the reading |
+| `"value"` | The measured value |
 
 Operations: List.
 
@@ -277,10 +277,10 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `"coverage"` |  |
-| `"datasetId"` |  |
-| `"name"` |  |
-| `"type"` |  |
+| `"coverage"` | Time coverage of the dataset |
+| `"datasetId"` | Unique identifier for the dataset |
+| `"name"` | Name of the dataset |
+| `"type"` | Type of dataset |
 
 Operations: List.
 
@@ -290,9 +290,9 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `"stationId"` |  |
-| `"timestamp"` |  |
-| `"value"` |  |
+| `"stationId"` | Station identifier |
+| `"timestamp"` | Timestamp of the reading |
+| `"value"` | The measured value |
 
 Operations: List.
 
@@ -302,9 +302,9 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `"stationId"` |  |
-| `"timestamp"` |  |
-| `"value"` |  |
+| `"stationId"` | Station identifier |
+| `"timestamp"` | Timestamp of the reading |
+| `"value"` | The measured value |
 
 Operations: List.
 
@@ -314,9 +314,9 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `"stationId"` |  |
-| `"timestamp"` |  |
-| `"value"` |  |
+| `"stationId"` | Station identifier |
+| `"timestamp"` | Timestamp of the reading |
+| `"value"` | The measured value |
 
 Operations: List.
 
@@ -326,9 +326,9 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `"stationId"` |  |
-| `"timestamp"` |  |
-| `"value"` |  |
+| `"stationId"` | Station identifier |
+| `"timestamp"` | Timestamp of the reading |
+| `"value"` | The measured value |
 
 Operations: List.
 
@@ -353,9 +353,9 @@ Create an instance: `airTemperature := client.AirTemperature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `float64` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `float64` | The measured value |
 
 #### Example: List
 
@@ -382,10 +382,10 @@ Create an instance: `collection := client.Collection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `string` |  |
-| `datasetId` | `string` |  |
-| `name` | `string` |  |
-| `type` | `string` |  |
+| `coverage` | `string` | Time coverage of the dataset |
+| `datasetId` | `string` | Unique identifier for the dataset |
+| `name` | `string` | Name of the dataset |
+| `type` | `string` | Type of dataset |
 
 #### Example: List
 
@@ -412,9 +412,9 @@ Create an instance: `rainfall := client.Rainfall(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `float64` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `float64` | The measured value |
 
 #### Example: List
 
@@ -441,9 +441,9 @@ Create an instance: `relativeHumidity := client.RelativeHumidity(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `float64` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `float64` | The measured value |
 
 #### Example: List
 
@@ -470,9 +470,9 @@ Create an instance: `windDirection := client.WindDirection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `float64` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `float64` | The measured value |
 
 #### Example: List
 
@@ -499,9 +499,9 @@ Create an instance: `windSpeed := client.WindSpeed(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `float64` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `float64` | The measured value |
 
 #### Example: List
 

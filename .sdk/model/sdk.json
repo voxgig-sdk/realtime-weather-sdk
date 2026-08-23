@@ -36,18 +36,21 @@
               "active": true,
               "name": "stationId",
               "req": false,
+              "short": "Station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp of the reading",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "The measured value",
               "type": "`$NUMBER`"
             }
           ],
@@ -136,24 +139,28 @@
               "active": true,
               "name": "coverage",
               "req": false,
+              "short": "Time coverage of the dataset",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "datasetId",
               "req": false,
+              "short": "Unique identifier for the dataset",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the dataset",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Type of dataset",
               "type": "`$STRING`"
             }
           ],
@@ -219,18 +226,21 @@
               "active": true,
               "name": "stationId",
               "req": false,
+              "short": "Station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp of the reading",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "The measured value",
               "type": "`$NUMBER`"
             }
           ],
@@ -319,18 +329,21 @@
               "active": true,
               "name": "stationId",
               "req": false,
+              "short": "Station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp of the reading",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "The measured value",
               "type": "`$NUMBER`"
             }
           ],
@@ -419,18 +432,21 @@
               "active": true,
               "name": "stationId",
               "req": false,
+              "short": "Station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp of the reading",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "The measured value",
               "type": "`$NUMBER`"
             }
           ],
@@ -519,18 +535,21 @@
               "active": true,
               "name": "stationId",
               "req": false,
+              "short": "Station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp of the reading",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "The measured value",
               "type": "`$NUMBER`"
             }
           ],

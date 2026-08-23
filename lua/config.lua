@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "RealtimeWeather",
+      slug = "realtime-weather",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -34,14 +37,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "stationId",
+            ["short"] = "Station identifier",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "Timestamp of the reading",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
+            ["short"] = "The measured value",
             ["type"] = "`$NUMBER`",
           },
         },
@@ -118,18 +124,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "coverage",
+            ["short"] = "Time coverage of the dataset",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "datasetId",
+            ["short"] = "Unique identifier for the dataset",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["short"] = "Name of the dataset",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "type",
+            ["short"] = "Type of dataset",
             ["type"] = "`$STRING`",
           },
         },
@@ -187,14 +197,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "stationId",
+            ["short"] = "Station identifier",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "Timestamp of the reading",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
+            ["short"] = "The measured value",
             ["type"] = "`$NUMBER`",
           },
         },
@@ -271,14 +284,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "stationId",
+            ["short"] = "Station identifier",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "Timestamp of the reading",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
+            ["short"] = "The measured value",
             ["type"] = "`$NUMBER`",
           },
         },
@@ -355,14 +371,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "stationId",
+            ["short"] = "Station identifier",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "Timestamp of the reading",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
+            ["short"] = "The measured value",
             ["type"] = "`$NUMBER`",
           },
         },
@@ -439,14 +458,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "stationId",
+            ["short"] = "Station identifier",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "timestamp",
+            ["short"] = "Timestamp of the reading",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
+            ["short"] = "The measured value",
             ["type"] = "`$NUMBER`",
           },
         },

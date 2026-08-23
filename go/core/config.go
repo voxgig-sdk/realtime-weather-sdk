@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "RealtimeWeather",
+			"slug": "realtime-weather",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -38,14 +41,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"short": "Station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "The measured value",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -122,18 +128,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "coverage",
+						"short": "Time coverage of the dataset",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "datasetId",
+						"short": "Unique identifier for the dataset",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the dataset",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "Type of dataset",
 						"type": "`$STRING`",
 					},
 				},
@@ -191,14 +201,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"short": "Station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "The measured value",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -275,14 +288,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"short": "Station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "The measured value",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -359,14 +375,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"short": "Station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "The measured value",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -443,14 +462,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"short": "Station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "The measured value",
 						"type": "`$NUMBER`",
 					},
 				},

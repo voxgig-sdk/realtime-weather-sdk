@@ -110,9 +110,9 @@ local air_temperature = client:AirTemperature(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -164,10 +164,10 @@ local collection = client:Collection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coverage` | `string` | No |  |
-| `datasetId` | `string` | No |  |
-| `name` | `string` | No |  |
-| `type` | `string` | No |  |
+| `coverage` | `string` | No | Time coverage of the dataset |
+| `datasetId` | `string` | No | Unique identifier for the dataset |
+| `name` | `string` | No | Name of the dataset |
+| `type` | `string` | No | Type of dataset |
 
 ### Operations
 
@@ -219,9 +219,9 @@ local rainfall = client:Rainfall(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -273,9 +273,9 @@ local relative_humidity = client:RelativeHumidity(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -327,9 +327,9 @@ local wind_direction = client:WindDirection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 
@@ -381,9 +381,9 @@ local wind_speed = client:WindSpeed(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `stationId` | `string` | No |  |
-| `timestamp` | `string` | No |  |
-| `value` | `number` | No |  |
+| `stationId` | `string` | No | Station identifier |
+| `timestamp` | `string` | No | Timestamp of the reading |
+| `value` | `number` | No | The measured value |
 
 ### Operations
 

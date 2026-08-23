@@ -1,8 +1,0 @@
-# Entity Models
-
-@"air_temperature.aontu"
-@"collection.aontu"
-@"rainfall.aontu"
-@"relative_humidity.aontu"
-@"wind_direction.aontu"
-@"wind_speed.aontu"

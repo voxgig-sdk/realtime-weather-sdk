@@ -236,9 +236,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -248,10 +248,10 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `coverage` |  |
-| `datasetId` |  |
-| `name` |  |
-| `type` |  |
+| `coverage` | Time coverage of the dataset |
+| `datasetId` | Unique identifier for the dataset |
+| `name` | Name of the dataset |
+| `type` | Type of dataset |
 
 Operations: List.
 
@@ -261,9 +261,9 @@ API path: `/collections/{collectionId}/metadata`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -273,9 +273,9 @@ API path: `/collections/{collectionId}/rainfall`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -285,9 +285,9 @@ API path: `/collections/{collectionId}/relative-humidity`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -297,9 +297,9 @@ API path: `/collections/{collectionId}/wind-direction`
 
 | Field | Description |
 | --- | --- |
-| `stationId` |  |
-| `timestamp` |  |
-| `value` |  |
+| `stationId` | Station identifier |
+| `timestamp` | Timestamp of the reading |
+| `value` | The measured value |
 
 Operations: List.
 
@@ -324,9 +324,9 @@ Create an instance: `local air_temperature = client:AirTemperature(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -349,10 +349,10 @@ Create an instance: `local collection = client:Collection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `string` |  |
-| `datasetId` | `string` |  |
-| `name` | `string` |  |
-| `type` | `string` |  |
+| `coverage` | `string` | Time coverage of the dataset |
+| `datasetId` | `string` | Unique identifier for the dataset |
+| `name` | `string` | Name of the dataset |
+| `type` | `string` | Type of dataset |
 
 #### Example: List
 
@@ -375,9 +375,9 @@ Create an instance: `local rainfall = client:Rainfall(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -400,9 +400,9 @@ Create an instance: `local relative_humidity = client:RelativeHumidity(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -425,9 +425,9 @@ Create an instance: `local wind_direction = client:WindDirection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
@@ -450,9 +450,9 @@ Create an instance: `local wind_speed = client:WindSpeed(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `stationId` | `string` |  |
-| `timestamp` | `string` |  |
-| `value` | `number` |  |
+| `stationId` | `string` | Station identifier |
+| `timestamp` | `string` | Timestamp of the reading |
+| `value` | `number` | The measured value |
 
 #### Example: List
 
