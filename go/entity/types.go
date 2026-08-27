@@ -28,6 +28,7 @@ type AirTemperatureListMatch struct {
 type Collection struct {
 	Coverage *string `json:"coverage,omitempty"`
 	DatasetId *string `json:"datasetId,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Type *string `json:"type,omitempty"`
 }

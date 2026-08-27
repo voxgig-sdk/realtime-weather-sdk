@@ -2,32 +2,35 @@
   "existing": {
     "collection": {
       "COLLECTION00": {
-        "coverage": "s28",
-        "datasetId": "s29",
-        "name": "s2a",
-        "type": "s2b"
+        "coverage": "s32",
+        "datasetId": "s33",
+        "id": "COLLECTION00",
+        "name": "s35",
+        "type": "s36"
       },
       "COLLECTION01": {
-        "coverage": "s50",
-        "datasetId": "s51",
-        "name": "s52",
-        "type": "s53"
+        "coverage": "s64",
+        "datasetId": "s65",
+        "id": "COLLECTION01",
+        "name": "s67",
+        "type": "s68"
       },
       "COLLECTION02": {
-        "coverage": "s78",
-        "datasetId": "s79",
-        "name": "s7a",
-        "type": "s7b"
+        "coverage": "s96",
+        "datasetId": "s97",
+        "id": "COLLECTION02",
+        "name": "s99",
+        "type": "s9a"
       }
     }
   },
   "new": {
     "collection": {
       "collection_ref01": {
-        "coverage": "sa0",
-        "datasetId": "sa1",
-        "name": "sa2",
-        "type": "sa3"
+        "coverage": "sc8",
+        "datasetId": "sc9",
+        "name": "scb",
+        "type": "scc"
       }
     }
   }

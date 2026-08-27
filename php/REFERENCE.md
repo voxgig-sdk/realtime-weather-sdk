@@ -168,6 +168,7 @@ $collection = $client->Collection();
 | --- | --- | --- | --- |
 | `coverage` | `string` | No | Time coverage of the dataset |
 | `datasetId` | `string` | No | Unique identifier for the dataset |
+| `id` | `string` | No |  |
 | `name` | `string` | No | Name of the dataset |
 | `type` | `string` | No | Type of dataset |
 

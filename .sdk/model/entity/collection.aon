@@ -18,6 +18,11 @@ main: kit: entity: collection: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "name"
       req: false
       short: "Name of the dataset"
@@ -30,6 +35,11 @@ main: kit: entity: collection: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "collection"
   op: {

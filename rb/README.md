@@ -256,6 +256,7 @@ API path: `/collections/{collectionId}/air-temperature`
 | --- | --- |
 | `coverage` | Time coverage of the dataset |
 | `datasetId` | Unique identifier for the dataset |
+| `id` |  |
 | `name` | Name of the dataset |
 | `type` | Type of dataset |
 
@@ -358,6 +359,7 @@ Create an instance: `collection = client.Collection`
 | --- | --- | --- |
 | `coverage` | `String` | Time coverage of the dataset |
 | `datasetId` | `String` | Unique identifier for the dataset |
+| `id` | `String` |  |
 | `name` | `String` | Name of the dataset |
 | `type` | `String` | Type of dataset |
 

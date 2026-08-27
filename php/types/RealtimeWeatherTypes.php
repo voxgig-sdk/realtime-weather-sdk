@@ -31,6 +31,7 @@ class Collection
 {
     public ?string $coverage = null;
     public ?string $datasetId = null;
+    public ?string $id = null;
     public ?string $name = null;
     public ?string $type = null;
 }

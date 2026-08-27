@@ -18,6 +18,7 @@ export interface AirTemperatureListMatch {
 export interface Collection {
   coverage?: string
   datasetId?: string
+  id?: string
   name?: string
   type?: string
 }

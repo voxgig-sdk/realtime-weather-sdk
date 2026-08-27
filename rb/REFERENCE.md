@@ -169,6 +169,7 @@ collection = client.Collection
 | --- | --- | --- | --- |
 | `coverage` | `String` | No | Time coverage of the dataset |
 | `datasetId` | `String` | No | Unique identifier for the dataset |
+| `id` | `String` | No |  |
 | `name` | `String` | No | Name of the dataset |
 | `type` | `String` | No | Type of dataset |
 

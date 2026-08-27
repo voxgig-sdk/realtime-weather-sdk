@@ -29,6 +29,7 @@ class AirTemperatureListMatch(TypedDict):
 class Collection(TypedDict, total=False):
     coverage: str
     datasetId: str
+    id: str
     name: str
     type: str
 

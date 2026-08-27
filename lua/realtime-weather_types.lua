@@ -17,6 +17,7 @@
 ---@class Collection
 ---@field coverage? string
 ---@field datasetId? string
+---@field id? string
 ---@field name? string
 ---@field type? string
 

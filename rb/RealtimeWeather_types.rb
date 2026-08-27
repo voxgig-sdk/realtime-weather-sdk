@@ -42,6 +42,9 @@ AirTemperatureListMatch = Struct.new(
 # @!attribute [rw] datasetId
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] name
 #   @return [String, nil]
 #
@@ -50,6 +53,7 @@ AirTemperatureListMatch = Struct.new(
 Collection = Struct.new(
   :coverage,
   :datasetId,
+  :id,
   :name,
   :type,
   keyword_init: true

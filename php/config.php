@@ -42,6 +42,7 @@ class RealtimeWeatherConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -156,6 +157,10 @@ class RealtimeWeatherConfig
             [
               'name' => 'datasetId',
               'short' => 'Unique identifier for the dataset',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

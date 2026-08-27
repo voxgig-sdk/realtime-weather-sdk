@@ -28,6 +28,7 @@ module RealtimeWeatherConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -142,6 +143,10 @@ module RealtimeWeatherConfig
             {
               "name" => "datasetId",
               "short" => "Unique identifier for the dataset",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {
