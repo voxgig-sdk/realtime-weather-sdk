@@ -22,6 +22,8 @@ type AirTemperature struct {
 // AirTemperatureListMatch is the typed request payload for AirTemperature.ListTyped.
 type AirTemperatureListMatch struct {
 	CollectionId int `json:"collection_id"`
+	Date *string `json:"date,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 }
 
 // Collection is the typed data model for the collection entity.
@@ -48,6 +50,8 @@ type Rainfall struct {
 // RainfallListMatch is the typed request payload for Rainfall.ListTyped.
 type RainfallListMatch struct {
 	CollectionId int `json:"collection_id"`
+	Date *string `json:"date,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 }
 
 // RelativeHumidity is the typed data model for the relative_humidity entity.
@@ -60,6 +64,8 @@ type RelativeHumidity struct {
 // RelativeHumidityListMatch is the typed request payload for RelativeHumidity.ListTyped.
 type RelativeHumidityListMatch struct {
 	CollectionId int `json:"collection_id"`
+	Date *string `json:"date,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 }
 
 // WindDirection is the typed data model for the wind_direction entity.
@@ -72,6 +78,8 @@ type WindDirection struct {
 // WindDirectionListMatch is the typed request payload for WindDirection.ListTyped.
 type WindDirectionListMatch struct {
 	CollectionId int `json:"collection_id"`
+	Date *string `json:"date,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 }
 
 // WindSpeed is the typed data model for the wind_speed entity.
@@ -84,6 +92,8 @@ type WindSpeed struct {
 // WindSpeedListMatch is the typed request payload for WindSpeed.ListTyped.
 type WindSpeedListMatch struct {
 	CollectionId int `json:"collection_id"`
+	Date *string `json:"date,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

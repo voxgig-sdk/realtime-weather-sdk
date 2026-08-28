@@ -22,8 +22,13 @@ class AirTemperature(TypedDict, total=False):
     value: float
 
 
-class AirTemperatureListMatch(TypedDict):
+class AirTemperatureListMatchRequired(TypedDict):
     collection_id: int
+
+
+class AirTemperatureListMatch(AirTemperatureListMatchRequired, total=False):
+    date: str
+    datetime: str
 
 
 class Collection(TypedDict, total=False):
@@ -44,8 +49,13 @@ class Rainfall(TypedDict, total=False):
     value: float
 
 
-class RainfallListMatch(TypedDict):
+class RainfallListMatchRequired(TypedDict):
     collection_id: int
+
+
+class RainfallListMatch(RainfallListMatchRequired, total=False):
+    date: str
+    datetime: str
 
 
 class RelativeHumidity(TypedDict, total=False):
@@ -54,8 +64,13 @@ class RelativeHumidity(TypedDict, total=False):
     value: float
 
 
-class RelativeHumidityListMatch(TypedDict):
+class RelativeHumidityListMatchRequired(TypedDict):
     collection_id: int
+
+
+class RelativeHumidityListMatch(RelativeHumidityListMatchRequired, total=False):
+    date: str
+    datetime: str
 
 
 class WindDirection(TypedDict, total=False):
@@ -64,8 +79,13 @@ class WindDirection(TypedDict, total=False):
     value: float
 
 
-class WindDirectionListMatch(TypedDict):
+class WindDirectionListMatchRequired(TypedDict):
     collection_id: int
+
+
+class WindDirectionListMatch(WindDirectionListMatchRequired, total=False):
+    date: str
+    datetime: str
 
 
 class WindSpeed(TypedDict, total=False):
@@ -74,5 +94,10 @@ class WindSpeed(TypedDict, total=False):
     value: float
 
 
-class WindSpeedListMatch(TypedDict):
+class WindSpeedListMatchRequired(TypedDict):
     collection_id: int
+
+
+class WindSpeedListMatch(WindSpeedListMatchRequired, total=False):
+    date: str
+    datetime: str

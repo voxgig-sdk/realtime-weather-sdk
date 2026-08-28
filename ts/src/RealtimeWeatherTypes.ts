@@ -13,6 +13,8 @@ export interface AirTemperature {
 
 export interface AirTemperatureListMatch {
   collection_id: number
+  date?: string
+  datetime?: string
 }
 
 export interface Collection {
@@ -41,6 +43,8 @@ export interface Rainfall {
 
 export interface RainfallListMatch {
   collection_id: number
+  date?: string
+  datetime?: string
 }
 
 export interface RelativeHumidity {
@@ -51,6 +55,8 @@ export interface RelativeHumidity {
 
 export interface RelativeHumidityListMatch {
   collection_id: number
+  date?: string
+  datetime?: string
 }
 
 export interface WindDirection {
@@ -61,6 +67,8 @@ export interface WindDirection {
 
 export interface WindDirectionListMatch {
   collection_id: number
+  date?: string
+  datetime?: string
 }
 
 export interface WindSpeed {
@@ -71,5 +79,7 @@ export interface WindSpeed {
 
 export interface WindSpeedListMatch {
   collection_id: number
+  date?: string
+  datetime?: string
 }
 

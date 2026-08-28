@@ -29,8 +29,16 @@ AirTemperature = Struct.new(
 #
 # @!attribute [rw] collection_id
 #   @return [Integer]
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] datetime
+#   @return [String, nil]
 AirTemperatureListMatch = Struct.new(
   :collection_id,
+  :date,
+  :datetime,
   keyword_init: true
 )
 
@@ -89,8 +97,16 @@ Rainfall = Struct.new(
 #
 # @!attribute [rw] collection_id
 #   @return [Integer]
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] datetime
+#   @return [String, nil]
 RainfallListMatch = Struct.new(
   :collection_id,
+  :date,
+  :datetime,
   keyword_init: true
 )
 
@@ -115,8 +131,16 @@ RelativeHumidity = Struct.new(
 #
 # @!attribute [rw] collection_id
 #   @return [Integer]
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] datetime
+#   @return [String, nil]
 RelativeHumidityListMatch = Struct.new(
   :collection_id,
+  :date,
+  :datetime,
   keyword_init: true
 )
 
@@ -141,8 +165,16 @@ WindDirection = Struct.new(
 #
 # @!attribute [rw] collection_id
 #   @return [Integer]
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] datetime
+#   @return [String, nil]
 WindDirectionListMatch = Struct.new(
   :collection_id,
+  :date,
+  :datetime,
   keyword_init: true
 )
 
@@ -167,8 +199,16 @@ WindSpeed = Struct.new(
 #
 # @!attribute [rw] collection_id
 #   @return [Integer]
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] datetime
+#   @return [String, nil]
 WindSpeedListMatch = Struct.new(
   :collection_id,
+  :date,
+  :datetime,
   keyword_init: true
 )
 

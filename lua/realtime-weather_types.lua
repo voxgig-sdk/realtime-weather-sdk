@@ -13,6 +13,8 @@
 
 ---@class AirTemperatureListMatch
 ---@field collection_id number
+---@field date? string
+---@field datetime? string
 
 ---@class Collection
 ---@field coverage? string
@@ -31,6 +33,8 @@
 
 ---@class RainfallListMatch
 ---@field collection_id number
+---@field date? string
+---@field datetime? string
 
 ---@class RelativeHumidity
 ---@field stationId? string
@@ -39,6 +43,8 @@
 
 ---@class RelativeHumidityListMatch
 ---@field collection_id number
+---@field date? string
+---@field datetime? string
 
 ---@class WindDirection
 ---@field stationId? string
@@ -47,6 +53,8 @@
 
 ---@class WindDirectionListMatch
 ---@field collection_id number
+---@field date? string
+---@field datetime? string
 
 ---@class WindSpeed
 ---@field stationId? string
@@ -55,6 +63,8 @@
 
 ---@class WindSpeedListMatch
 ---@field collection_id number
+---@field date? string
+---@field datetime? string
 
 local M = {}
 

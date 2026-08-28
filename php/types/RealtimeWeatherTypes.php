@@ -24,6 +24,8 @@ class AirTemperature
 class AirTemperatureListMatch
 {
     public int $collection_id;
+    public ?string $date = null;
+    public ?string $datetime = null;
 }
 
 /** Collection entity data model. */
@@ -54,6 +56,8 @@ class Rainfall
 class RainfallListMatch
 {
     public int $collection_id;
+    public ?string $date = null;
+    public ?string $datetime = null;
 }
 
 /** RelativeHumidity entity data model. */
@@ -68,6 +72,8 @@ class RelativeHumidity
 class RelativeHumidityListMatch
 {
     public int $collection_id;
+    public ?string $date = null;
+    public ?string $datetime = null;
 }
 
 /** WindDirection entity data model. */
@@ -82,6 +88,8 @@ class WindDirection
 class WindDirectionListMatch
 {
     public int $collection_id;
+    public ?string $date = null;
+    public ?string $datetime = null;
 }
 
 /** WindSpeed entity data model. */
@@ -96,5 +104,7 @@ class WindSpeed
 class WindSpeedListMatch
 {
     public int $collection_id;
+    public ?string $date = null;
+    public ?string $datetime = null;
 }
 
