@@ -68,11 +68,13 @@ class RealtimeWeatherConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Timestamp of the reading',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'value',
               'short' => 'The measured value',
               'type' => '`$NUMBER`',
@@ -114,14 +116,20 @@ class RealtimeWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/air-temperature',
-                  'parts' => [
-                    'collections',
-                    '{collection_id}',
-                    'air-temperature',
-                  ],
                   'rename' => [
                     'param' => [
                       'collectionId' => 'collection_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'collections',
+                    ],
+                    [
+                      'var' => 'collection_id',
+                    ],
+                    [
+                      'lit' => 'air-temperature',
                     ],
                   ],
                   'select' => [
@@ -134,6 +142,11 @@ class RealtimeWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'collections',
+                    '{collection_id}',
+                    'air-temperature',
                   ],
                 ],
               ],
@@ -174,6 +187,10 @@ class RealtimeWeatherConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'collection',
           'op' => [
             'list' => [
@@ -196,14 +213,20 @@ class RealtimeWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/metadata',
-                  'parts' => [
-                    'collections',
-                    '{id}',
-                    'metadata',
-                  ],
                   'rename' => [
                     'param' => [
                       'collectionId' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'collections',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
+                    [
+                      'lit' => 'metadata',
                     ],
                   ],
                   'select' => [
@@ -215,6 +238,11 @@ class RealtimeWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.datasets`',
+                  ],
+                  'parts' => [
+                    'collections',
+                    '{id}',
+                    'metadata',
                   ],
                 ],
               ],
@@ -232,11 +260,13 @@ class RealtimeWeatherConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Timestamp of the reading',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'value',
               'short' => 'The measured value',
               'type' => '`$NUMBER`',
@@ -278,14 +308,20 @@ class RealtimeWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/rainfall',
-                  'parts' => [
-                    'collections',
-                    '{collection_id}',
-                    'rainfall',
-                  ],
                   'rename' => [
                     'param' => [
                       'collectionId' => 'collection_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'collections',
+                    ],
+                    [
+                      'var' => 'collection_id',
+                    ],
+                    [
+                      'lit' => 'rainfall',
                     ],
                   ],
                   'select' => [
@@ -298,6 +334,11 @@ class RealtimeWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'collections',
+                    '{collection_id}',
+                    'rainfall',
                   ],
                 ],
               ],
@@ -319,11 +360,13 @@ class RealtimeWeatherConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Timestamp of the reading',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'value',
               'short' => 'The measured value',
               'type' => '`$NUMBER`',
@@ -365,14 +408,20 @@ class RealtimeWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/relative-humidity',
-                  'parts' => [
-                    'collections',
-                    '{collection_id}',
-                    'relative-humidity',
-                  ],
                   'rename' => [
                     'param' => [
                       'collectionId' => 'collection_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'collections',
+                    ],
+                    [
+                      'var' => 'collection_id',
+                    ],
+                    [
+                      'lit' => 'relative-humidity',
                     ],
                   ],
                   'select' => [
@@ -385,6 +434,11 @@ class RealtimeWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'collections',
+                    '{collection_id}',
+                    'relative-humidity',
                   ],
                 ],
               ],
@@ -406,11 +460,13 @@ class RealtimeWeatherConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Timestamp of the reading',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'value',
               'short' => 'The measured value',
               'type' => '`$NUMBER`',
@@ -452,14 +508,20 @@ class RealtimeWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/wind-direction',
-                  'parts' => [
-                    'collections',
-                    '{collection_id}',
-                    'wind-direction',
-                  ],
                   'rename' => [
                     'param' => [
                       'collectionId' => 'collection_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'collections',
+                    ],
+                    [
+                      'var' => 'collection_id',
+                    ],
+                    [
+                      'lit' => 'wind-direction',
                     ],
                   ],
                   'select' => [
@@ -472,6 +534,11 @@ class RealtimeWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'collections',
+                    '{collection_id}',
+                    'wind-direction',
                   ],
                 ],
               ],
@@ -493,11 +560,13 @@ class RealtimeWeatherConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Timestamp of the reading',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'value',
               'short' => 'The measured value',
               'type' => '`$NUMBER`',
@@ -539,14 +608,20 @@ class RealtimeWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/collections/{collectionId}/wind-speed',
-                  'parts' => [
-                    'collections',
-                    '{collection_id}',
-                    'wind-speed',
-                  ],
                   'rename' => [
                     'param' => [
                       'collectionId' => 'collection_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'collections',
+                    ],
+                    [
+                      'var' => 'collection_id',
+                    ],
+                    [
+                      'lit' => 'wind-speed',
                     ],
                   ],
                   'select' => [
@@ -559,6 +634,11 @@ class RealtimeWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'collections',
+                    '{collection_id}',
+                    'wind-speed',
                   ],
                 ],
               ],

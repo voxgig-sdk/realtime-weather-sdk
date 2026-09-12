@@ -1,6 +1,14 @@
 # RealtimeWeather SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -63,11 +71,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "timestamp",
             "short": "Timestamp of the reading",
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "value",
             "short": "The measured value",
             "type": "`$NUMBER`",
@@ -109,16 +119,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/air-temperature",
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "air-temperature",
-                ],
                 "rename": {
                   "param": {
                     "collectionId": "collection_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "collections",
+                  },
+                  {
+                    "var": "collection_id",
+                  },
+                  {
+                    "lit": "air-temperature",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "collection_id",
@@ -130,6 +146,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "air-temperature",
+                ],
               },
             ],
           },
@@ -169,6 +190,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "collection",
         "op": {
           "list": {
@@ -191,16 +216,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/metadata",
-                "parts": [
-                  "collections",
-                  "{id}",
-                  "metadata",
-                ],
                 "rename": {
                   "param": {
                     "collectionId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "collections",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "metadata",
+                  },
+                ],
                 "select": {
                   "$action": "metadata",
                   "exist": [
@@ -211,6 +242,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.datasets`",
                 },
+                "parts": [
+                  "collections",
+                  "{id}",
+                  "metadata",
+                ],
               },
             ],
           },
@@ -227,11 +263,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "timestamp",
             "short": "Timestamp of the reading",
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "value",
             "short": "The measured value",
             "type": "`$NUMBER`",
@@ -273,16 +311,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/rainfall",
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "rainfall",
-                ],
                 "rename": {
                   "param": {
                     "collectionId": "collection_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "collections",
+                  },
+                  {
+                    "var": "collection_id",
+                  },
+                  {
+                    "lit": "rainfall",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "collection_id",
@@ -294,6 +338,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "rainfall",
+                ],
               },
             ],
           },
@@ -314,11 +363,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "timestamp",
             "short": "Timestamp of the reading",
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "value",
             "short": "The measured value",
             "type": "`$NUMBER`",
@@ -360,16 +411,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/relative-humidity",
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "relative-humidity",
-                ],
                 "rename": {
                   "param": {
                     "collectionId": "collection_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "collections",
+                  },
+                  {
+                    "var": "collection_id",
+                  },
+                  {
+                    "lit": "relative-humidity",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "collection_id",
@@ -381,6 +438,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "relative-humidity",
+                ],
               },
             ],
           },
@@ -401,11 +463,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "timestamp",
             "short": "Timestamp of the reading",
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "value",
             "short": "The measured value",
             "type": "`$NUMBER`",
@@ -447,16 +511,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/wind-direction",
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "wind-direction",
-                ],
                 "rename": {
                   "param": {
                     "collectionId": "collection_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "collections",
+                  },
+                  {
+                    "var": "collection_id",
+                  },
+                  {
+                    "lit": "wind-direction",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "collection_id",
@@ -468,6 +538,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "wind-direction",
+                ],
               },
             ],
           },
@@ -488,11 +563,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "timestamp",
             "short": "Timestamp of the reading",
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "value",
             "short": "The measured value",
             "type": "`$NUMBER`",
@@ -534,16 +611,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/wind-speed",
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "wind-speed",
-                ],
                 "rename": {
                   "param": {
                     "collectionId": "collection_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "collections",
+                  },
+                  {
+                    "var": "collection_id",
+                  },
+                  {
+                    "lit": "wind-speed",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "collection_id",
@@ -555,6 +638,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "wind-speed",
+                ],
               },
             ],
           },

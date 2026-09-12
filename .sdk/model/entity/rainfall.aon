@@ -12,12 +12,14 @@ main: kit: entity: rainfall: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "timestamp"
       req: false
       short: "Timestamp of the reading"
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "value"
       req: false
       short: "The measured value"
@@ -61,16 +63,22 @@ main: kit: entity: rainfall: {
           }
           method: "GET"
           orig: "/collections/{collectionId}/rainfall"
-          parts: [
-            "collections"
-            "{collection_id}"
-            "rainfall"
-          ]
           rename: {
             param: {
               collectionId: "collection_id"
             }
           }
+          segments: [
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+            {
+              lit: "rainfall"
+            }
+          ]
           select: {
             exist: [
               "collection_id"

@@ -12,12 +12,14 @@ main: kit: entity: relative_humidity: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "timestamp"
       req: false
       short: "Timestamp of the reading"
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "value"
       req: false
       short: "The measured value"
@@ -61,16 +63,22 @@ main: kit: entity: relative_humidity: {
           }
           method: "GET"
           orig: "/collections/{collectionId}/relative-humidity"
-          parts: [
-            "collections"
-            "{collection_id}"
-            "relative-humidity"
-          ]
           rename: {
             param: {
               collectionId: "collection_id"
             }
           }
+          segments: [
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+            {
+              lit: "relative-humidity"
+            }
+          ]
           select: {
             exist: [
               "collection_id"

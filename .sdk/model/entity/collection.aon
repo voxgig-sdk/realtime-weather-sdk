@@ -61,16 +61,22 @@ main: kit: entity: collection: {
           }
           method: "GET"
           orig: "/collections/{collectionId}/metadata"
-          parts: [
-            "collections"
-            "{id}"
-            "metadata"
-          ]
           rename: {
             param: {
               collectionId: "id"
             }
           }
+          segments: [
+            {
+              lit: "collections"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "metadata"
+            }
+          ]
           select: {
             "$action": "metadata"
             exist: [

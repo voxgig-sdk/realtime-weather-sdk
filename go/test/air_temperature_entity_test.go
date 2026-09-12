@@ -98,7 +98,7 @@ func TestAirTemperatureEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		airTemperatureRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.air_temperature", setup.data)))
+		airTemperatureRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.air_temperature")))
 		var airTemperatureRef01Data map[string]any
 		if len(airTemperatureRef01DataRaw) > 0 {
 			airTemperatureRef01Data = core.ToMapAny(airTemperatureRef01DataRaw[0][1])
@@ -149,7 +149,7 @@ func air_temperatureBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"air_temperature01", "air_temperature02", "air_temperature03", "collection01", "collection02", "collection03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -177,10 +177,22 @@ func air_temperatureBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["REALTIME_WEATHER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewRealtimeWeatherSDK(core.ToMapAny(mergedOpts))
 	}

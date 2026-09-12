@@ -130,6 +130,9 @@ def collection_basic_setup(extra)
 
   if env["REALTIME_WEATHER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
       },
       extra || {},

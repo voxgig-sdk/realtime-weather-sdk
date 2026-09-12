@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -87,11 +98,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "value",
           "short": "The measured value",
           "type": "`$NUMBER`"
@@ -133,16 +146,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/air-temperature",
-              "parts": [
-                "collections",
-                "{collection_id}",
-                "air-temperature"
-              ],
               "rename": {
                 "param": {
                   "collectionId": "collection_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "collections"
+                },
+                {
+                  "var": "collection_id"
+                },
+                {
+                  "lit": "air-temperature"
+                }
+              ],
               "select": {
                 "exist": [
                   "collection_id",
@@ -153,7 +172,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "collections",
+                "{collection_id}",
+                "air-temperature"
+              ]
             }
           ]
         }
@@ -193,6 +217,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "collection",
       "op": {
         "list": {
@@ -215,16 +243,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/metadata",
-              "parts": [
-                "collections",
-                "{id}",
-                "metadata"
-              ],
               "rename": {
                 "param": {
                   "collectionId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "collections"
+                },
+                {
+                  "var": "id"
+                },
+                {
+                  "lit": "metadata"
+                }
+              ],
               "select": {
                 "$action": "metadata",
                 "exist": [
@@ -234,7 +268,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.datasets`"
-              }
+              },
+              "parts": [
+                "collections",
+                "{id}",
+                "metadata"
+              ]
             }
           ]
         }
@@ -251,11 +290,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "value",
           "short": "The measured value",
           "type": "`$NUMBER`"
@@ -297,16 +338,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/rainfall",
-              "parts": [
-                "collections",
-                "{collection_id}",
-                "rainfall"
-              ],
               "rename": {
                 "param": {
                   "collectionId": "collection_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "collections"
+                },
+                {
+                  "var": "collection_id"
+                },
+                {
+                  "lit": "rainfall"
+                }
+              ],
               "select": {
                 "exist": [
                   "collection_id",
@@ -317,7 +364,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "collections",
+                "{collection_id}",
+                "rainfall"
+              ]
             }
           ]
         }
@@ -338,11 +390,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "value",
           "short": "The measured value",
           "type": "`$NUMBER`"
@@ -384,16 +438,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/relative-humidity",
-              "parts": [
-                "collections",
-                "{collection_id}",
-                "relative-humidity"
-              ],
               "rename": {
                 "param": {
                   "collectionId": "collection_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "collections"
+                },
+                {
+                  "var": "collection_id"
+                },
+                {
+                  "lit": "relative-humidity"
+                }
+              ],
               "select": {
                 "exist": [
                   "collection_id",
@@ -404,7 +464,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "collections",
+                "{collection_id}",
+                "relative-humidity"
+              ]
             }
           ]
         }
@@ -425,11 +490,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "value",
           "short": "The measured value",
           "type": "`$NUMBER`"
@@ -471,16 +538,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/wind-direction",
-              "parts": [
-                "collections",
-                "{collection_id}",
-                "wind-direction"
-              ],
               "rename": {
                 "param": {
                   "collectionId": "collection_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "collections"
+                },
+                {
+                  "var": "collection_id"
+                },
+                {
+                  "lit": "wind-direction"
+                }
+              ],
               "select": {
                 "exist": [
                   "collection_id",
@@ -491,7 +564,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "collections",
+                "{collection_id}",
+                "wind-direction"
+              ]
             }
           ]
         }
@@ -512,11 +590,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "timestamp",
           "short": "Timestamp of the reading",
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "value",
           "short": "The measured value",
           "type": "`$NUMBER`"
@@ -558,16 +638,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/collections/{collectionId}/wind-speed",
-              "parts": [
-                "collections",
-                "{collection_id}",
-                "wind-speed"
-              ],
               "rename": {
                 "param": {
                   "collectionId": "collection_id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "collections"
+                },
+                {
+                  "var": "collection_id"
+                },
+                {
+                  "lit": "wind-speed"
+                }
+              ],
               "select": {
                 "exist": [
                   "collection_id",
@@ -578,7 +664,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "collections",
+                "{collection_id}",
+                "wind-speed"
+              ]
             }
           ]
         }
@@ -598,6 +689,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

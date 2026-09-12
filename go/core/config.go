@@ -46,11 +46,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "value",
 						"short": "The measured value",
 						"type": "`$NUMBER`",
@@ -92,14 +94,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/air-temperature",
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"air-temperature",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"collectionId": "collection_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "collections",
+									},
+									map[string]any{
+										"var": "collection_id",
+									},
+									map[string]any{
+										"lit": "air-temperature",
 									},
 								},
 								"select": map[string]any{
@@ -112,6 +120,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"air-temperature",
 								},
 							},
 						},
@@ -152,6 +165,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "collection",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -174,14 +191,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/metadata",
-								"parts": []any{
-									"collections",
-									"{id}",
-									"metadata",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"collectionId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "collections",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "metadata",
 									},
 								},
 								"select": map[string]any{
@@ -193,6 +216,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.datasets`",
+								},
+								"parts": []any{
+									"collections",
+									"{id}",
+									"metadata",
 								},
 							},
 						},
@@ -210,11 +238,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "value",
 						"short": "The measured value",
 						"type": "`$NUMBER`",
@@ -256,14 +286,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/rainfall",
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"rainfall",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"collectionId": "collection_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "collections",
+									},
+									map[string]any{
+										"var": "collection_id",
+									},
+									map[string]any{
+										"lit": "rainfall",
 									},
 								},
 								"select": map[string]any{
@@ -276,6 +312,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"rainfall",
 								},
 							},
 						},
@@ -297,11 +338,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "value",
 						"short": "The measured value",
 						"type": "`$NUMBER`",
@@ -343,14 +386,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/relative-humidity",
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"relative-humidity",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"collectionId": "collection_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "collections",
+									},
+									map[string]any{
+										"var": "collection_id",
+									},
+									map[string]any{
+										"lit": "relative-humidity",
 									},
 								},
 								"select": map[string]any{
@@ -363,6 +412,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"relative-humidity",
 								},
 							},
 						},
@@ -384,11 +438,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "value",
 						"short": "The measured value",
 						"type": "`$NUMBER`",
@@ -430,14 +486,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/wind-direction",
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"wind-direction",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"collectionId": "collection_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "collections",
+									},
+									map[string]any{
+										"var": "collection_id",
+									},
+									map[string]any{
+										"lit": "wind-direction",
 									},
 								},
 								"select": map[string]any{
@@ -450,6 +512,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"wind-direction",
 								},
 							},
 						},
@@ -471,11 +538,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "timestamp",
 						"short": "Timestamp of the reading",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "value",
 						"short": "The measured value",
 						"type": "`$NUMBER`",
@@ -517,14 +586,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/wind-speed",
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"wind-speed",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"collectionId": "collection_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "collections",
+									},
+									map[string]any{
+										"var": "collection_id",
+									},
+									map[string]any{
+										"lit": "wind-speed",
 									},
 								},
 								"select": map[string]any{
@@ -537,6 +612,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"wind-speed",
 								},
 							},
 						},
@@ -552,6 +632,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (
