@@ -105,7 +105,7 @@ local results, err = client:WindDirection():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
+| TypeScript | `@voxgig-sdk/realtime-weather-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
 | Python | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
 | PHP | `voxgig-sdk/realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/realtime-weather-sdk/go` | `go get github.com/voxgig-sdk/realtime-weather-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:WindDirection():list()
 ### TypeScript
 
 ```ts
-import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
+import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather-sdk'
 
 const client = new RealtimeWeatherSDK()
 

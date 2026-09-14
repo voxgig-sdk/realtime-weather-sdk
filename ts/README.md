@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
+import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather-sdk'
 
 const client = new RealtimeWeatherSDK()
 ```
@@ -601,7 +601,7 @@ realtime-weather/
 Import the SDK from the package root:
 
 ```ts
-import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather'
+import { RealtimeWeatherSDK } from '@voxgig-sdk/realtime-weather-sdk'
 ```
 
 ### Entity state
