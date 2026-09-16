@@ -1,12 +1,18 @@
 # RealtimeWeather SDK feature factory
 
 from realtimeweather_sdk.feature.base_feature import RealtimeWeatherBaseFeature
+from realtimeweather_sdk.feature.ratelimit_feature import RealtimeWeatherRatelimitFeature
+from realtimeweather_sdk.feature.retry_feature import RealtimeWeatherRetryFeature
 from realtimeweather_sdk.feature.test_feature import RealtimeWeatherTestFeature
+from realtimeweather_sdk.feature.timeout_feature import RealtimeWeatherTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: RealtimeWeatherBaseFeature(),
+    "ratelimit": lambda: RealtimeWeatherRatelimitFeature(),
+    "retry": lambda: RealtimeWeatherRetryFeature(),
     "test": lambda: RealtimeWeatherTestFeature(),
+    "timeout": lambda: RealtimeWeatherTimeoutFeature(),
 }
 
 
