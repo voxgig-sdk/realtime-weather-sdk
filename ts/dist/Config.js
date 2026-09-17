@@ -218,27 +218,7 @@ class Config {
         "collection": {
             "fields": [
                 {
-                    "name": "coverage",
-                    "short": "Time coverage of the dataset",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "datasetId",
-                    "short": "Unique identifier for the dataset",
-                    "type": "`$STRING`"
-                },
-                {
                     "name": "id",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "name",
-                    "short": "Name of the dataset",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "type",
-                    "short": "Type of dataset",
                     "type": "`$STRING`"
                 }
             ],

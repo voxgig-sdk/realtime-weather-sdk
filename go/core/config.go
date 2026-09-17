@@ -195,27 +195,7 @@ func MakeConfig() map[string]any {
 			"collection": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "coverage",
-						"short": "Time coverage of the dataset",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "datasetId",
-						"short": "Unique identifier for the dataset",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"name": "id",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "name",
-						"short": "Name of the dataset",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "type",
-						"short": "Type of dataset",
 						"type": "`$STRING`",
 					},
 				},

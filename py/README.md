@@ -260,11 +260,7 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `coverage` | Time coverage of the dataset |
-| `datasetId` | Unique identifier for the dataset |
 | `id` |  |
-| `name` | Name of the dataset |
-| `type` | Type of dataset |
 
 Operations: List.
 
@@ -362,11 +358,7 @@ Create an instance: `collection = client.Collection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `str` | Time coverage of the dataset |
-| `datasetId` | `str` | Unique identifier for the dataset |
 | `id` | `str` |  |
-| `name` | `str` | Name of the dataset |
-| `type` | `str` | Type of dataset |
 
 #### Example: List
 
@@ -617,6 +609,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── realtimeweather_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

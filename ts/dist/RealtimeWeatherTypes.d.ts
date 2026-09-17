@@ -9,11 +9,7 @@ export interface AirTemperatureListMatch {
     datetime?: string;
 }
 export interface Collection {
-    coverage?: string;
-    datasetId?: string;
     id?: string;
-    name?: string;
-    type?: string;
 }
 export interface CollectionListMatch {
     id: number;

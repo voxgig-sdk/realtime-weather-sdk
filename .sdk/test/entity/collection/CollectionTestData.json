@@ -2,36 +2,19 @@
   "existing": {
     "collection": {
       "COLLECTION00": {
-        "coverage": "s32",
-        "datasetId": "s33",
-        "id": "COLLECTION00",
-        "name": "s35",
-        "type": "s36"
+        "id": "COLLECTION00"
       },
       "COLLECTION01": {
-        "coverage": "s64",
-        "datasetId": "s65",
-        "id": "COLLECTION01",
-        "name": "s67",
-        "type": "s68"
+        "id": "COLLECTION01"
       },
       "COLLECTION02": {
-        "coverage": "s96",
-        "datasetId": "s97",
-        "id": "COLLECTION02",
-        "name": "s99",
-        "type": "s9a"
+        "id": "COLLECTION02"
       }
     }
   },
   "new": {
     "collection": {
-      "collection_ref01": {
-        "coverage": "sc8",
-        "datasetId": "sc9",
-        "name": "scb",
-        "type": "scc"
-      }
+      "collection_ref01": {}
     }
   },
   "requests": {

@@ -143,15 +143,10 @@ declare class Config {
             };
         };
         collection: {
-            fields: ({
-                name: string;
-                short: string;
-                type: string;
-            } | {
+            fields: {
                 name: string;
                 type: string;
-                short?: undefined;
-            })[];
+            }[];
             id: {
                 field: string;
                 name: string;

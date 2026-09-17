@@ -6,32 +6,8 @@ main: kit: entity: collection: {
 
   fields: [
     {
-      name: "coverage"
-      req: false
-      short: "Time coverage of the dataset"
-      type: "`$STRING`"
-    }
-    {
-      name: "datasetId"
-      req: false
-      short: "Unique identifier for the dataset"
-      type: "`$STRING`"
-    }
-    {
       name: "id"
       req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "name"
-      req: false
-      short: "Name of the dataset"
-      type: "`$STRING`"
-    }
-    {
-      name: "type"
-      req: false
-      short: "Type of dataset"
       type: "`$STRING`"
     }
   ]

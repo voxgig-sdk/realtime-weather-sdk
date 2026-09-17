@@ -44,26 +44,10 @@ AirTemperatureListMatch = Struct.new(
 
 # Collection entity data model.
 #
-# @!attribute [rw] coverage
-#   @return [String, nil]
-#
-# @!attribute [rw] datasetId
-#   @return [String, nil]
-#
 # @!attribute [rw] id
 #   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
 Collection = Struct.new(
-  :coverage,
-  :datasetId,
   :id,
-  :name,
-  :type,
   keyword_init: true
 )
 

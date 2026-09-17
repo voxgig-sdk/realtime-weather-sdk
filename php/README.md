@@ -265,11 +265,7 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `coverage` | Time coverage of the dataset |
-| `datasetId` | Unique identifier for the dataset |
 | `id` |  |
-| `name` | Name of the dataset |
-| `type` | Type of dataset |
 
 Operations: List.
 
@@ -368,11 +364,7 @@ Create an instance: `$collection = $client->Collection();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `string` | Time coverage of the dataset |
-| `datasetId` | `string` | Unique identifier for the dataset |
 | `id` | `string` |  |
-| `name` | `string` | Name of the dataset |
-| `type` | `string` | Type of dataset |
 
 #### Example: List
 
@@ -628,6 +620,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── realtimeweather_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

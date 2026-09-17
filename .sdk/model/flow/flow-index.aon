@@ -1,8 +1,8 @@
 # Flows
 
-@"BasicAirTemperatureFlow.aon"
-@"BasicCollectionFlow.aon"
-@"BasicRainfallFlow.aon"
-@"BasicRelativeHumidityFlow.aon"
-@"BasicWindDirectionFlow.aon"
-@"BasicWindSpeedFlow.aon"
+@"./BasicAirTemperatureFlow.aon"
+@"./BasicCollectionFlow.aon"
+@"./BasicRainfallFlow.aon"
+@"./BasicRelativeHumidityFlow.aon"
+@"./BasicWindDirectionFlow.aon"
+@"./BasicWindSpeedFlow.aon"

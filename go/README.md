@@ -277,11 +277,7 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `"coverage"` | Time coverage of the dataset |
-| `"datasetId"` | Unique identifier for the dataset |
 | `"id"` |  |
-| `"name"` | Name of the dataset |
-| `"type"` | Type of dataset |
 
 Operations: List.
 
@@ -383,11 +379,7 @@ Create an instance: `collection := client.Collection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `string` | Time coverage of the dataset |
-| `datasetId` | `string` | Unique identifier for the dataset |
 | `id` | `string` |  |
-| `name` | `string` | Name of the dataset |
-| `type` | `string` | Type of dataset |
 
 #### Example: List
 

@@ -248,11 +248,7 @@ API path: `/collections/{collectionId}/air-temperature`
 
 | Field | Description |
 | --- | --- |
-| `coverage` | Time coverage of the dataset |
-| `datasetId` | Unique identifier for the dataset |
 | `id` |  |
-| `name` | Name of the dataset |
-| `type` | Type of dataset |
 
 Operations: List.
 
@@ -350,11 +346,7 @@ Create an instance: `local collection = client:Collection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coverage` | `string` | Time coverage of the dataset |
-| `datasetId` | `string` | Unique identifier for the dataset |
 | `id` | `string` |  |
-| `name` | `string` | Name of the dataset |
-| `type` | `string` | Type of dataset |
 
 #### Example: List
 
@@ -605,6 +597,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── realtime-weather_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

@@ -105,12 +105,12 @@ local results, err = client:WindDirection():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/realtime-weather-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
-| Python | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
-| PHP | `voxgig-sdk/realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
+| TypeScript | `@voxgig-sdk/realtime-weather-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/tags) |
+| Python | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/tags) |
+| PHP | `voxgig-sdk/realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/realtime-weather-sdk/go` | `go get github.com/voxgig-sdk/realtime-weather-sdk/go@latest` |
-| Ruby | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
-| Lua | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/releases) |
+| Ruby | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/tags) |
+| Lua | `voxgig-sdk-realtime-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/realtime-weather-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/realtime-weather-sdk/go-cli` | `go install github.com/voxgig-sdk/realtime-weather-sdk/go-cli/cmd/realtime-weather@latest` |
 | Go MCP server | `github.com/voxgig-sdk/realtime-weather-sdk/go-mcp` | `go get github.com/voxgig-sdk/realtime-weather-sdk/go-mcp@latest` |
 
