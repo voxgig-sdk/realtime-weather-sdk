@@ -1,0 +1,26 @@
+# BasicWindDirectionFlow
+
+main: kit: flow: BasicWindDirectionFlow:
+{
+  entity: "wind_direction",
+  kind: "basic",
+  name: "BasicWindDirectionFlow",
+  step: [
+    {
+      m: {
+        collection_id: "collection01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "wind_direction_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWindDirectionFlow"
+}

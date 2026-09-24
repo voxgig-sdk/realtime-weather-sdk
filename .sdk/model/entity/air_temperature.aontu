@@ -1,0 +1,111 @@
+# Entity: air_temperature
+
+main: kit: entity: air_temperature: {
+
+  alias: field: {}
+
+  fields: {
+    stationId: {
+      h: "Station Id"
+      n: "stationId"
+      r: false
+      sh: "Station identifier"
+      t: "`$STRING`"
+    }
+    timestamp: {
+      fo: "date-time"
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Timestamp of the reading"
+      t: "`$STRING`"
+    }
+    value: {
+      fo: "double"
+      h: "Value"
+      n: "value"
+      r: false
+      sh: "The measured value"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "air_temperature"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /collections/{collectionId}/air-temperature"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 1459
+                k: "param"
+                n: "collection_id"
+                or: "collection_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "datetime"
+                or: "datetime"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/collections/{collectionId}/air-temperature"
+          q: {
+            exist: [
+              "collection_id"
+              "date"
+              "datetime"
+            ]
+          }
+          r: {
+            param: {
+              collectionId: "collection_id"
+            }
+          }
+          s: [
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+            {
+              lit: "air-temperature"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.collection")]
+  ]
+
+}

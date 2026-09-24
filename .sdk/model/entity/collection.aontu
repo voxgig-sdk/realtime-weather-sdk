@@ -1,0 +1,79 @@
+# Entity: collection
+
+main: kit: entity: collection: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "collection"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /collections/{collectionId}/metadata"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 1459
+                k: "param"
+                n: "id"
+                or: "collection_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/collections/{collectionId}/metadata"
+          q: {
+            "$action": "metadata"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              collectionId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "collections"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "metadata"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.datasets`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

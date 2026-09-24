@@ -1,0 +1,26 @@
+# BasicRelativeHumidityFlow
+
+main: kit: flow: BasicRelativeHumidityFlow:
+{
+  entity: "relative_humidity",
+  kind: "basic",
+  name: "BasicRelativeHumidityFlow",
+  step: [
+    {
+      m: {
+        collection_id: "collection01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "relative_humidity_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRelativeHumidityFlow"
+}

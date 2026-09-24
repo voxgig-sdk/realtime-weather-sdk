@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WindSpeedEntity = void 0;
 const RealtimeWeatherEntityBase_1 = require("../RealtimeWeatherEntityBase");
-// TODO: needs Entity superclass
 class WindSpeedEntity extends RealtimeWeatherEntityBase_1.RealtimeWeatherEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

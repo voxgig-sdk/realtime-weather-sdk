@@ -19,7 +19,6 @@ import type {
   WindDirectionListMatch,
 } from '../RealtimeWeatherTypes'
 
-// TODO: needs Entity superclass
 class WindDirectionEntity extends RealtimeWeatherEntityBase<WindDirection> {
 
   constructor(client: RealtimeWeatherSDK, entopts: any) {

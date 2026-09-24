@@ -1,7 +1,7 @@
 // Typed models for the RealtimeWeather SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,9 +14,6 @@ import (
 
 // AirTemperature is the typed data model for the air_temperature entity.
 type AirTemperature struct {
-	StationId *string `json:"stationId,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Value *float64 `json:"value,omitempty"`
 }
 
 // AirTemperatureListMatch is the typed request payload for AirTemperature.ListTyped.
@@ -28,7 +25,6 @@ type AirTemperatureListMatch struct {
 
 // Collection is the typed data model for the collection entity.
 type Collection struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // CollectionListMatch is the typed request payload for Collection.ListTyped.
@@ -38,9 +34,6 @@ type CollectionListMatch struct {
 
 // Rainfall is the typed data model for the rainfall entity.
 type Rainfall struct {
-	StationId *string `json:"stationId,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Value *float64 `json:"value,omitempty"`
 }
 
 // RainfallListMatch is the typed request payload for Rainfall.ListTyped.
@@ -52,9 +45,6 @@ type RainfallListMatch struct {
 
 // RelativeHumidity is the typed data model for the relative_humidity entity.
 type RelativeHumidity struct {
-	StationId *string `json:"stationId,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Value *float64 `json:"value,omitempty"`
 }
 
 // RelativeHumidityListMatch is the typed request payload for RelativeHumidity.ListTyped.
@@ -66,9 +56,6 @@ type RelativeHumidityListMatch struct {
 
 // WindDirection is the typed data model for the wind_direction entity.
 type WindDirection struct {
-	StationId *string `json:"stationId,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Value *float64 `json:"value,omitempty"`
 }
 
 // WindDirectionListMatch is the typed request payload for WindDirection.ListTyped.
@@ -80,9 +67,6 @@ type WindDirectionListMatch struct {
 
 // WindSpeed is the typed data model for the wind_speed entity.
 type WindSpeed struct {
-	StationId *string `json:"stationId,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Value *float64 `json:"value,omitempty"`
 }
 
 // WindSpeedListMatch is the typed request payload for WindSpeed.ListTyped.

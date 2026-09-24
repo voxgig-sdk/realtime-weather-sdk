@@ -19,7 +19,6 @@ import type {
   CollectionListMatch,
 } from '../RealtimeWeatherTypes'
 
-// TODO: needs Entity superclass
 class CollectionEntity extends RealtimeWeatherEntityBase<Collection> {
 
   constructor(client: RealtimeWeatherSDK, entopts: any) {

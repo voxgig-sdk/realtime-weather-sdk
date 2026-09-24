@@ -96,20 +96,23 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"title": "Station Id",
+						"type": "`$STRING`",
 						"short": "Station identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Timestamp of the reading",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of the reading",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "value",
-						"short": "The measured value",
+						"title": "Value",
 						"type": "`$NUMBER`",
+						"short": "The measured value",
+						"format": "double",
 					},
 				},
 				"name": "air_temperature",
@@ -119,40 +122,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1459,
-											"kind": "param",
-											"name": "collection_id",
-											"orig": "collection_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "datetime",
-											"orig": "datetime",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/air-temperature",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"collectionId": "collection_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "collections",
@@ -164,21 +136,52 @@ func MakeConfig() map[string]any {
 										"lit": "air-temperature",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"collection_id",
-										"date",
-										"datetime",
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"air-temperature",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"collectionId": "collection_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"air-temperature",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "collection_id",
+											"orig": "collection_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1459,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "datetime",
+											"orig": "datetime",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"collection_id",
+										"date",
+										"datetime",
+									},
 								},
 							},
 						},
@@ -187,7 +190,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"collection",
+							"$.main.kit.entity.collection",
 						},
 					},
 				},
@@ -196,6 +199,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -210,26 +214,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1459,
-											"kind": "param",
-											"name": "id",
-											"orig": "collection_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/metadata",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"collectionId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "collections",
@@ -241,20 +228,37 @@ func MakeConfig() map[string]any {
 										"lit": "metadata",
 									},
 								},
-								"select": map[string]any{
-									"$action": "metadata",
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"collections",
+									"{id}",
+									"metadata",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"collectionId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.datasets`",
 								},
-								"parts": []any{
-									"collections",
-									"{id}",
-									"metadata",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "collection_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1459,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "metadata",
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -268,20 +272,23 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"title": "Station Id",
+						"type": "`$STRING`",
 						"short": "Station identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Timestamp of the reading",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of the reading",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "value",
-						"short": "The measured value",
+						"title": "Value",
 						"type": "`$NUMBER`",
+						"short": "The measured value",
+						"format": "double",
 					},
 				},
 				"name": "rainfall",
@@ -291,40 +298,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1459,
-											"kind": "param",
-											"name": "collection_id",
-											"orig": "collection_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "datetime",
-											"orig": "datetime",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/rainfall",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"collectionId": "collection_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "collections",
@@ -336,21 +312,52 @@ func MakeConfig() map[string]any {
 										"lit": "rainfall",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"collection_id",
-										"date",
-										"datetime",
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"rainfall",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"collectionId": "collection_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"rainfall",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "collection_id",
+											"orig": "collection_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1459,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "datetime",
+											"orig": "datetime",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"collection_id",
+										"date",
+										"datetime",
+									},
 								},
 							},
 						},
@@ -359,7 +366,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"collection",
+							"$.main.kit.entity.collection",
 						},
 					},
 				},
@@ -368,20 +375,23 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"title": "Station Id",
+						"type": "`$STRING`",
 						"short": "Station identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Timestamp of the reading",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of the reading",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "value",
-						"short": "The measured value",
+						"title": "Value",
 						"type": "`$NUMBER`",
+						"short": "The measured value",
+						"format": "double",
 					},
 				},
 				"name": "relative_humidity",
@@ -391,40 +401,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1459,
-											"kind": "param",
-											"name": "collection_id",
-											"orig": "collection_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "datetime",
-											"orig": "datetime",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/relative-humidity",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"collectionId": "collection_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "collections",
@@ -436,21 +415,52 @@ func MakeConfig() map[string]any {
 										"lit": "relative-humidity",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"collection_id",
-										"date",
-										"datetime",
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"relative-humidity",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"collectionId": "collection_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"relative-humidity",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "collection_id",
+											"orig": "collection_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1459,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "datetime",
+											"orig": "datetime",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"collection_id",
+										"date",
+										"datetime",
+									},
 								},
 							},
 						},
@@ -459,7 +469,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"collection",
+							"$.main.kit.entity.collection",
 						},
 					},
 				},
@@ -468,20 +478,23 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"title": "Station Id",
+						"type": "`$STRING`",
 						"short": "Station identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Timestamp of the reading",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of the reading",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "value",
-						"short": "The measured value",
+						"title": "Value",
 						"type": "`$NUMBER`",
+						"short": "The measured value",
+						"format": "double",
 					},
 				},
 				"name": "wind_direction",
@@ -491,40 +504,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1459,
-											"kind": "param",
-											"name": "collection_id",
-											"orig": "collection_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "datetime",
-											"orig": "datetime",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/wind-direction",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"collectionId": "collection_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "collections",
@@ -536,21 +518,52 @@ func MakeConfig() map[string]any {
 										"lit": "wind-direction",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"collection_id",
-										"date",
-										"datetime",
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"wind-direction",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"collectionId": "collection_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"wind-direction",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "collection_id",
+											"orig": "collection_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1459,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "datetime",
+											"orig": "datetime",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"collection_id",
+										"date",
+										"datetime",
+									},
 								},
 							},
 						},
@@ -559,7 +572,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"collection",
+							"$.main.kit.entity.collection",
 						},
 					},
 				},
@@ -568,20 +581,23 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "stationId",
+						"title": "Station Id",
+						"type": "`$STRING`",
 						"short": "Station identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Timestamp of the reading",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp of the reading",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "double",
 						"name": "value",
-						"short": "The measured value",
+						"title": "Value",
 						"type": "`$NUMBER`",
+						"short": "The measured value",
+						"format": "double",
 					},
 				},
 				"name": "wind_speed",
@@ -591,40 +607,9 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": 1459,
-											"kind": "param",
-											"name": "collection_id",
-											"orig": "collection_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "datetime",
-											"orig": "datetime",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/collections/{collectionId}/wind-speed",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"collectionId": "collection_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "collections",
@@ -636,21 +621,52 @@ func MakeConfig() map[string]any {
 										"lit": "wind-speed",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"collection_id",
-										"date",
-										"datetime",
+								"parts": []any{
+									"collections",
+									"{collection_id}",
+									"wind-speed",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"collectionId": "collection_id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"collections",
-									"{collection_id}",
-									"wind-speed",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "collection_id",
+											"orig": "collection_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 1459,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "datetime",
+											"orig": "datetime",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"collection_id",
+										"date",
+										"datetime",
+									},
 								},
 							},
 						},
@@ -659,7 +675,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"collection",
+							"$.main.kit.entity.collection",
 						},
 					},
 				},

@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -119,20 +112,23 @@ class Config {
             "fields": [
                 {
                     "name": "stationId",
-                    "short": "Station identifier",
-                    "type": "`$STRING`"
+                    "title": "Station Id",
+                    "type": "`$STRING`",
+                    "short": "Station identifier"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
                     "short": "Timestamp of the reading",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
-                    "format": "double",
                     "name": "value",
+                    "title": "Value",
+                    "type": "`$NUMBER`",
                     "short": "The measured value",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "name": "air_temperature",
@@ -142,40 +138,9 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1459,
-                                        "kind": "param",
-                                        "name": "collection_id",
-                                        "orig": "collection_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "date",
-                                        "orig": "date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "datetime",
-                                        "orig": "datetime",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/collections/{collectionId}/air-temperature",
-                            "rename": {
-                                "param": {
-                                    "collectionId": "collection_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "collections"
@@ -187,22 +152,53 @@ class Config {
                                     "lit": "air-temperature"
                                 }
                             ],
+                            "parts": [
+                                "collections",
+                                "{collection_id}",
+                                "air-temperature"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "collectionId": "collection_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "collection_id",
+                                        "orig": "collection_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 1459
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "date",
+                                        "orig": "date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "datetime",
+                                        "orig": "datetime",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "collection_id",
                                     "date",
                                     "datetime"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "collections",
-                                "{collection_id}",
-                                "air-temperature"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -210,7 +206,7 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "collection"
+                        "$.main.kit.entity.collection"
                     ]
                 ]
             }
@@ -219,6 +215,7 @@ class Config {
             "fields": [
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$STRING`"
                 }
             ],
@@ -233,26 +230,9 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1459,
-                                        "kind": "param",
-                                        "name": "id",
-                                        "orig": "collection_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/collections/{collectionId}/metadata",
-                            "rename": {
-                                "param": {
-                                    "collectionId": "id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "collections"
@@ -264,21 +244,38 @@ class Config {
                                     "lit": "metadata"
                                 }
                             ],
-                            "select": {
-                                "$action": "metadata",
-                                "exist": [
-                                    "id"
-                                ]
+                            "parts": [
+                                "collections",
+                                "{id}",
+                                "metadata"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "collectionId": "id"
+                                }
                             },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.datasets`"
                             },
-                            "parts": [
-                                "collections",
-                                "{id}",
-                                "metadata"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "collection_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 1459
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "$action": "metadata",
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }
@@ -291,20 +288,23 @@ class Config {
             "fields": [
                 {
                     "name": "stationId",
-                    "short": "Station identifier",
-                    "type": "`$STRING`"
+                    "title": "Station Id",
+                    "type": "`$STRING`",
+                    "short": "Station identifier"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
                     "short": "Timestamp of the reading",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
-                    "format": "double",
                     "name": "value",
+                    "title": "Value",
+                    "type": "`$NUMBER`",
                     "short": "The measured value",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "name": "rainfall",
@@ -314,40 +314,9 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1459,
-                                        "kind": "param",
-                                        "name": "collection_id",
-                                        "orig": "collection_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "date",
-                                        "orig": "date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "datetime",
-                                        "orig": "datetime",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/collections/{collectionId}/rainfall",
-                            "rename": {
-                                "param": {
-                                    "collectionId": "collection_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "collections"
@@ -359,22 +328,53 @@ class Config {
                                     "lit": "rainfall"
                                 }
                             ],
+                            "parts": [
+                                "collections",
+                                "{collection_id}",
+                                "rainfall"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "collectionId": "collection_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "collection_id",
+                                        "orig": "collection_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 1459
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "date",
+                                        "orig": "date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "datetime",
+                                        "orig": "datetime",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "collection_id",
                                     "date",
                                     "datetime"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "collections",
-                                "{collection_id}",
-                                "rainfall"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -382,7 +382,7 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "collection"
+                        "$.main.kit.entity.collection"
                     ]
                 ]
             }
@@ -391,20 +391,23 @@ class Config {
             "fields": [
                 {
                     "name": "stationId",
-                    "short": "Station identifier",
-                    "type": "`$STRING`"
+                    "title": "Station Id",
+                    "type": "`$STRING`",
+                    "short": "Station identifier"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
                     "short": "Timestamp of the reading",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
-                    "format": "double",
                     "name": "value",
+                    "title": "Value",
+                    "type": "`$NUMBER`",
                     "short": "The measured value",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "name": "relative_humidity",
@@ -414,40 +417,9 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1459,
-                                        "kind": "param",
-                                        "name": "collection_id",
-                                        "orig": "collection_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "date",
-                                        "orig": "date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "datetime",
-                                        "orig": "datetime",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/collections/{collectionId}/relative-humidity",
-                            "rename": {
-                                "param": {
-                                    "collectionId": "collection_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "collections"
@@ -459,22 +431,53 @@ class Config {
                                     "lit": "relative-humidity"
                                 }
                             ],
+                            "parts": [
+                                "collections",
+                                "{collection_id}",
+                                "relative-humidity"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "collectionId": "collection_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "collection_id",
+                                        "orig": "collection_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 1459
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "date",
+                                        "orig": "date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "datetime",
+                                        "orig": "datetime",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "collection_id",
                                     "date",
                                     "datetime"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "collections",
-                                "{collection_id}",
-                                "relative-humidity"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -482,7 +485,7 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "collection"
+                        "$.main.kit.entity.collection"
                     ]
                 ]
             }
@@ -491,20 +494,23 @@ class Config {
             "fields": [
                 {
                     "name": "stationId",
-                    "short": "Station identifier",
-                    "type": "`$STRING`"
+                    "title": "Station Id",
+                    "type": "`$STRING`",
+                    "short": "Station identifier"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
                     "short": "Timestamp of the reading",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
-                    "format": "double",
                     "name": "value",
+                    "title": "Value",
+                    "type": "`$NUMBER`",
                     "short": "The measured value",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "name": "wind_direction",
@@ -514,40 +520,9 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1459,
-                                        "kind": "param",
-                                        "name": "collection_id",
-                                        "orig": "collection_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "date",
-                                        "orig": "date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "datetime",
-                                        "orig": "datetime",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/collections/{collectionId}/wind-direction",
-                            "rename": {
-                                "param": {
-                                    "collectionId": "collection_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "collections"
@@ -559,22 +534,53 @@ class Config {
                                     "lit": "wind-direction"
                                 }
                             ],
+                            "parts": [
+                                "collections",
+                                "{collection_id}",
+                                "wind-direction"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "collectionId": "collection_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "collection_id",
+                                        "orig": "collection_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 1459
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "date",
+                                        "orig": "date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "datetime",
+                                        "orig": "datetime",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "collection_id",
                                     "date",
                                     "datetime"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "collections",
-                                "{collection_id}",
-                                "wind-direction"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -582,7 +588,7 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "collection"
+                        "$.main.kit.entity.collection"
                     ]
                 ]
             }
@@ -591,20 +597,23 @@ class Config {
             "fields": [
                 {
                     "name": "stationId",
-                    "short": "Station identifier",
-                    "type": "`$STRING`"
+                    "title": "Station Id",
+                    "type": "`$STRING`",
+                    "short": "Station identifier"
                 },
                 {
-                    "format": "date-time",
                     "name": "timestamp",
+                    "title": "Timestamp",
+                    "type": "`$STRING`",
                     "short": "Timestamp of the reading",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
-                    "format": "double",
                     "name": "value",
+                    "title": "Value",
+                    "type": "`$NUMBER`",
                     "short": "The measured value",
-                    "type": "`$NUMBER`"
+                    "format": "double"
                 }
             ],
             "name": "wind_speed",
@@ -614,40 +623,9 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 1459,
-                                        "kind": "param",
-                                        "name": "collection_id",
-                                        "orig": "collection_id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "date",
-                                        "orig": "date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "datetime",
-                                        "orig": "datetime",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/collections/{collectionId}/wind-speed",
-                            "rename": {
-                                "param": {
-                                    "collectionId": "collection_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "collections"
@@ -659,22 +637,53 @@ class Config {
                                     "lit": "wind-speed"
                                 }
                             ],
+                            "parts": [
+                                "collections",
+                                "{collection_id}",
+                                "wind-speed"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "collectionId": "collection_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "collection_id",
+                                        "orig": "collection_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 1459
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "date",
+                                        "orig": "date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "datetime",
+                                        "orig": "datetime",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "collection_id",
                                     "date",
                                     "datetime"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "collections",
-                                "{collection_id}",
-                                "wind-speed"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -682,7 +691,7 @@ class Config {
             "relations": {
                 "ancestors": [
                     [
-                        "collection"
+                        "$.main.kit.entity.collection"
                     ]
                 ]
             }

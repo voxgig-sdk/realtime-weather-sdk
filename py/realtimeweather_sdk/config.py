@@ -121,20 +121,23 @@ def make_config():
         "fields": [
           {
             "name": "stationId",
+            "title": "Station Id",
+            "type": "`$STRING`",
             "short": "Station identifier",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Timestamp of the reading",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Timestamp of the reading",
+            "format": "date-time",
           },
           {
-            "format": "double",
             "name": "value",
-            "short": "The measured value",
+            "title": "Value",
             "type": "`$NUMBER`",
+            "short": "The measured value",
+            "format": "double",
           },
         ],
         "name": "air_temperature",
@@ -144,40 +147,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1459,
-                      "kind": "param",
-                      "name": "collection_id",
-                      "orig": "collection_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "date",
-                      "orig": "date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "datetime",
-                      "orig": "datetime",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/air-temperature",
-                "rename": {
-                  "param": {
-                    "collectionId": "collection_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "collections",
@@ -189,6 +161,46 @@ def make_config():
                     "lit": "air-temperature",
                   },
                 ],
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "air-temperature",
+                ],
+                "rename": {
+                  "param": {
+                    "collectionId": "collection_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "collection_id",
+                      "orig": "collection_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1459,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "date",
+                      "orig": "date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "datetime",
+                      "orig": "datetime",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "collection_id",
@@ -196,15 +208,6 @@ def make_config():
                     "datetime",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "air-temperature",
-                ],
               },
             ],
           },
@@ -212,7 +215,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "collection",
+              "$.main.kit.entity.collection",
             ],
           ],
         },
@@ -221,6 +224,7 @@ def make_config():
         "fields": [
           {
             "name": "id",
+            "title": "Id",
             "type": "`$STRING`",
           },
         ],
@@ -235,26 +239,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1459,
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "collection_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/metadata",
-                "rename": {
-                  "param": {
-                    "collectionId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "collections",
@@ -266,21 +253,38 @@ def make_config():
                     "lit": "metadata",
                   },
                 ],
+                "parts": [
+                  "collections",
+                  "{id}",
+                  "metadata",
+                ],
+                "rename": {
+                  "param": {
+                    "collectionId": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.datasets`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "collection_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1459,
+                    },
+                  ],
+                },
                 "select": {
                   "$action": "metadata",
                   "exist": [
                     "id",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.datasets`",
-                },
-                "parts": [
-                  "collections",
-                  "{id}",
-                  "metadata",
-                ],
               },
             ],
           },
@@ -293,20 +297,23 @@ def make_config():
         "fields": [
           {
             "name": "stationId",
+            "title": "Station Id",
+            "type": "`$STRING`",
             "short": "Station identifier",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Timestamp of the reading",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Timestamp of the reading",
+            "format": "date-time",
           },
           {
-            "format": "double",
             "name": "value",
-            "short": "The measured value",
+            "title": "Value",
             "type": "`$NUMBER`",
+            "short": "The measured value",
+            "format": "double",
           },
         ],
         "name": "rainfall",
@@ -316,40 +323,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1459,
-                      "kind": "param",
-                      "name": "collection_id",
-                      "orig": "collection_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "date",
-                      "orig": "date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "datetime",
-                      "orig": "datetime",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/rainfall",
-                "rename": {
-                  "param": {
-                    "collectionId": "collection_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "collections",
@@ -361,6 +337,46 @@ def make_config():
                     "lit": "rainfall",
                   },
                 ],
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "rainfall",
+                ],
+                "rename": {
+                  "param": {
+                    "collectionId": "collection_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "collection_id",
+                      "orig": "collection_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1459,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "date",
+                      "orig": "date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "datetime",
+                      "orig": "datetime",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "collection_id",
@@ -368,15 +384,6 @@ def make_config():
                     "datetime",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "rainfall",
-                ],
               },
             ],
           },
@@ -384,7 +391,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "collection",
+              "$.main.kit.entity.collection",
             ],
           ],
         },
@@ -393,20 +400,23 @@ def make_config():
         "fields": [
           {
             "name": "stationId",
+            "title": "Station Id",
+            "type": "`$STRING`",
             "short": "Station identifier",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Timestamp of the reading",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Timestamp of the reading",
+            "format": "date-time",
           },
           {
-            "format": "double",
             "name": "value",
-            "short": "The measured value",
+            "title": "Value",
             "type": "`$NUMBER`",
+            "short": "The measured value",
+            "format": "double",
           },
         ],
         "name": "relative_humidity",
@@ -416,40 +426,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1459,
-                      "kind": "param",
-                      "name": "collection_id",
-                      "orig": "collection_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "date",
-                      "orig": "date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "datetime",
-                      "orig": "datetime",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/relative-humidity",
-                "rename": {
-                  "param": {
-                    "collectionId": "collection_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "collections",
@@ -461,6 +440,46 @@ def make_config():
                     "lit": "relative-humidity",
                   },
                 ],
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "relative-humidity",
+                ],
+                "rename": {
+                  "param": {
+                    "collectionId": "collection_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "collection_id",
+                      "orig": "collection_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1459,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "date",
+                      "orig": "date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "datetime",
+                      "orig": "datetime",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "collection_id",
@@ -468,15 +487,6 @@ def make_config():
                     "datetime",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "relative-humidity",
-                ],
               },
             ],
           },
@@ -484,7 +494,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "collection",
+              "$.main.kit.entity.collection",
             ],
           ],
         },
@@ -493,20 +503,23 @@ def make_config():
         "fields": [
           {
             "name": "stationId",
+            "title": "Station Id",
+            "type": "`$STRING`",
             "short": "Station identifier",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Timestamp of the reading",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Timestamp of the reading",
+            "format": "date-time",
           },
           {
-            "format": "double",
             "name": "value",
-            "short": "The measured value",
+            "title": "Value",
             "type": "`$NUMBER`",
+            "short": "The measured value",
+            "format": "double",
           },
         ],
         "name": "wind_direction",
@@ -516,40 +529,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1459,
-                      "kind": "param",
-                      "name": "collection_id",
-                      "orig": "collection_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "date",
-                      "orig": "date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "datetime",
-                      "orig": "datetime",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/wind-direction",
-                "rename": {
-                  "param": {
-                    "collectionId": "collection_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "collections",
@@ -561,6 +543,46 @@ def make_config():
                     "lit": "wind-direction",
                   },
                 ],
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "wind-direction",
+                ],
+                "rename": {
+                  "param": {
+                    "collectionId": "collection_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "collection_id",
+                      "orig": "collection_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1459,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "date",
+                      "orig": "date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "datetime",
+                      "orig": "datetime",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "collection_id",
@@ -568,15 +590,6 @@ def make_config():
                     "datetime",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "wind-direction",
-                ],
               },
             ],
           },
@@ -584,7 +597,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "collection",
+              "$.main.kit.entity.collection",
             ],
           ],
         },
@@ -593,20 +606,23 @@ def make_config():
         "fields": [
           {
             "name": "stationId",
+            "title": "Station Id",
+            "type": "`$STRING`",
             "short": "Station identifier",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "timestamp",
-            "short": "Timestamp of the reading",
+            "title": "Timestamp",
             "type": "`$STRING`",
+            "short": "Timestamp of the reading",
+            "format": "date-time",
           },
           {
-            "format": "double",
             "name": "value",
-            "short": "The measured value",
+            "title": "Value",
             "type": "`$NUMBER`",
+            "short": "The measured value",
+            "format": "double",
           },
         ],
         "name": "wind_speed",
@@ -616,40 +632,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": 1459,
-                      "kind": "param",
-                      "name": "collection_id",
-                      "orig": "collection_id",
-                      "reqd": True,
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "date",
-                      "orig": "date",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "datetime",
-                      "orig": "datetime",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/collections/{collectionId}/wind-speed",
-                "rename": {
-                  "param": {
-                    "collectionId": "collection_id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "collections",
@@ -661,6 +646,46 @@ def make_config():
                     "lit": "wind-speed",
                   },
                 ],
+                "parts": [
+                  "collections",
+                  "{collection_id}",
+                  "wind-speed",
+                ],
+                "rename": {
+                  "param": {
+                    "collectionId": "collection_id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "collection_id",
+                      "orig": "collection_id",
+                      "type": "`$INTEGER`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": 1459,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "date",
+                      "orig": "date",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "datetime",
+                      "orig": "datetime",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "collection_id",
@@ -668,15 +693,6 @@ def make_config():
                     "datetime",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "collections",
-                  "{collection_id}",
-                  "wind-speed",
-                ],
               },
             ],
           },
@@ -684,7 +700,7 @@ def make_config():
         "relations": {
           "ancestors": [
             [
-              "collection",
+              "$.main.kit.entity.collection",
             ],
           ],
         },

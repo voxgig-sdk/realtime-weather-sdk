@@ -19,7 +19,6 @@ import type {
   WindSpeedListMatch,
 } from '../RealtimeWeatherTypes'
 
-// TODO: needs Entity superclass
 class WindSpeedEntity extends RealtimeWeatherEntityBase<WindSpeed> {
 
   constructor(client: RealtimeWeatherSDK, entopts: any) {

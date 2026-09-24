@@ -43,7 +43,7 @@ local airtemperatures, err = client:AirTemperature():list()
 if err then error(err) end
 
 for _, item in ipairs(airtemperatures) do
-  print(item["stationId"])
+  print(item)
 end
 ```
 

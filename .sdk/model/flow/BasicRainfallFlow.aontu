@@ -1,0 +1,26 @@
+# BasicRainfallFlow
+
+main: kit: flow: BasicRainfallFlow:
+{
+  entity: "rainfall",
+  kind: "basic",
+  name: "BasicRainfallFlow",
+  step: [
+    {
+      m: {
+        collection_id: "collection01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "rainfall_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRainfallFlow"
+}

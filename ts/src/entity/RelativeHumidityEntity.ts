@@ -19,7 +19,6 @@ import type {
   RelativeHumidityListMatch,
 } from '../RealtimeWeatherTypes'
 
-// TODO: needs Entity superclass
 class RelativeHumidityEntity extends RealtimeWeatherEntityBase<RelativeHumidity> {
 
   constructor(client: RealtimeWeatherSDK, entopts: any) {

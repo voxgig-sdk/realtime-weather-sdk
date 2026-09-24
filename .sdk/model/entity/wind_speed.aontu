@@ -1,0 +1,111 @@
+# Entity: wind_speed
+
+main: kit: entity: wind_speed: {
+
+  alias: field: {}
+
+  fields: {
+    stationId: {
+      h: "Station Id"
+      n: "stationId"
+      r: false
+      sh: "Station identifier"
+      t: "`$STRING`"
+    }
+    timestamp: {
+      fo: "date-time"
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Timestamp of the reading"
+      t: "`$STRING`"
+    }
+    value: {
+      fo: "double"
+      h: "Value"
+      n: "value"
+      r: false
+      sh: "The measured value"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "wind_speed"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /collections/{collectionId}/wind-speed"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 1459
+                k: "param"
+                n: "collection_id"
+                or: "collection_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "datetime"
+                or: "datetime"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/collections/{collectionId}/wind-speed"
+          q: {
+            exist: [
+              "collection_id"
+              "date"
+              "datetime"
+            ]
+          }
+          r: {
+            param: {
+              collectionId: "collection_id"
+            }
+          }
+          s: [
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+            {
+              lit: "wind-speed"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.collection")]
+  ]
+
+}

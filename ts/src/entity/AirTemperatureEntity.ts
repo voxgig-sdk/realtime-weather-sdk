@@ -19,7 +19,6 @@ import type {
   AirTemperatureListMatch,
 } from '../RealtimeWeatherTypes'
 
-// TODO: needs Entity superclass
 class AirTemperatureEntity extends RealtimeWeatherEntityBase<AirTemperature> {
 
   constructor(client: RealtimeWeatherSDK, entopts: any) {
