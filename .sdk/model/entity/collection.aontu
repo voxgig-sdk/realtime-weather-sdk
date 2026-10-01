@@ -35,7 +35,7 @@ main: kit: entity: collection: {
                 ex: 1459
                 k: "param"
                 n: "id"
-                or: "collection_id"
+                or: "collectionId"
                 r: true
                 t: "`$INTEGER`"
               }

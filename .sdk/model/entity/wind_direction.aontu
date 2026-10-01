@@ -47,7 +47,7 @@ main: kit: entity: wind_direction: {
                 ex: 1459
                 k: "param"
                 n: "collection_id"
-                or: "collection_id"
+                or: "collectionId"
                 r: true
                 t: "`$INTEGER`"
               }
@@ -96,7 +96,7 @@ main: kit: entity: wind_direction: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

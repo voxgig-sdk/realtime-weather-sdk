@@ -170,13 +170,13 @@ class RealtimeWeatherConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'args' => [
                     'params' => [
                       [
                         'name' => 'collection_id',
-                        'orig' => 'collection_id',
+                        'orig' => 'collectionId',
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -268,7 +268,7 @@ class RealtimeWeatherConfig
                     'params' => [
                       [
                         'name' => 'id',
-                        'orig' => 'collection_id',
+                        'orig' => 'collectionId',
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -346,13 +346,13 @@ class RealtimeWeatherConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'args' => [
                     'params' => [
                       [
                         'name' => 'collection_id',
-                        'orig' => 'collection_id',
+                        'orig' => 'collectionId',
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -449,13 +449,13 @@ class RealtimeWeatherConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'args' => [
                     'params' => [
                       [
                         'name' => 'collection_id',
-                        'orig' => 'collection_id',
+                        'orig' => 'collectionId',
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -552,13 +552,13 @@ class RealtimeWeatherConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'args' => [
                     'params' => [
                       [
                         'name' => 'collection_id',
-                        'orig' => 'collection_id',
+                        'orig' => 'collectionId',
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -655,13 +655,13 @@ class RealtimeWeatherConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.data`',
                   ],
                   'args' => [
                     'params' => [
                       [
                         'name' => 'collection_id',
-                        'orig' => 'collection_id',
+                        'orig' => 'collectionId',
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,

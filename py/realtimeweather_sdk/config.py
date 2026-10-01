@@ -173,13 +173,13 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.data`",
                 },
                 "args": {
                   "params": [
                     {
                       "name": "collection_id",
-                      "orig": "collection_id",
+                      "orig": "collectionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -271,7 +271,7 @@ def make_config():
                   "params": [
                     {
                       "name": "id",
-                      "orig": "collection_id",
+                      "orig": "collectionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -349,13 +349,13 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.data`",
                 },
                 "args": {
                   "params": [
                     {
                       "name": "collection_id",
-                      "orig": "collection_id",
+                      "orig": "collectionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -452,13 +452,13 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.data`",
                 },
                 "args": {
                   "params": [
                     {
                       "name": "collection_id",
-                      "orig": "collection_id",
+                      "orig": "collectionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -555,13 +555,13 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.data`",
                 },
                 "args": {
                   "params": [
                     {
                       "name": "collection_id",
-                      "orig": "collection_id",
+                      "orig": "collectionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -658,13 +658,13 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.data`",
                 },
                 "args": {
                   "params": [
                     {
                       "name": "collection_id",
-                      "orig": "collection_id",
+                      "orig": "collectionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,

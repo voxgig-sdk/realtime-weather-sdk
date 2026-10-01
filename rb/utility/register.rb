@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 RealtimeWeatherUtility.registrar = ->(u) {
   u.clean = RealtimeWeatherUtilities::Clean
+  u.clean_add = RealtimeWeatherUtilities::CleanAdd
+  u.clean_explain = RealtimeWeatherUtilities::CleanExplain
   u.done = RealtimeWeatherUtilities::Done
   u.make_error = RealtimeWeatherUtilities::MakeError
   u.feature_add = RealtimeWeatherUtilities::FeatureAdd

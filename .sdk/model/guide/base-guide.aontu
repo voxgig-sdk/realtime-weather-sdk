@@ -12,6 +12,7 @@ guide: {
     path: "/collections/{collectionId}/air-temperature": {
       rename: param: "collectionId": *"collection_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -28,6 +29,7 @@ guide: {
     path: "/collections/{collectionId}/rainfall": {
       rename: param: "collectionId": *"collection_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -35,6 +37,7 @@ guide: {
     path: "/collections/{collectionId}/relative-humidity": {
       rename: param: "collectionId": *"collection_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -42,6 +45,7 @@ guide: {
     path: "/collections/{collectionId}/wind-direction": {
       rename: param: "collectionId": *"collection_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
@@ -49,6 +53,7 @@ guide: {
     path: "/collections/{collectionId}/wind-speed": {
       rename: param: "collectionId": *"collection_id"
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 

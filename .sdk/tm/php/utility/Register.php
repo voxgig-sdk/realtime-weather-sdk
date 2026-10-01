@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 RealtimeWeatherUtility::setRegistrar(function (RealtimeWeatherUtility $u): void {
     $u->clean = [RealtimeWeatherClean::class, 'call'];
+    $u->clean_add = [RealtimeWeatherClean::class, 'add'];
+    $u->clean_explain = [RealtimeWeatherDone::class, 'clean_explain'];
     $u->done = [RealtimeWeatherDone::class, 'call'];
     $u->make_error = [RealtimeWeatherMakeError::class, 'call'];
     $u->feature_add = [RealtimeWeatherFeatureAdd::class, 'call'];

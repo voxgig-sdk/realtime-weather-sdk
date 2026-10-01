@@ -148,13 +148,13 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
 											"name": "collection_id",
-											"orig": "collection_id",
+											"orig": "collectionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -246,7 +246,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "collection_id",
+											"orig": "collectionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -324,13 +324,13 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
 											"name": "collection_id",
-											"orig": "collection_id",
+											"orig": "collectionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -427,13 +427,13 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
 											"name": "collection_id",
-											"orig": "collection_id",
+											"orig": "collectionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -530,13 +530,13 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
 											"name": "collection_id",
-											"orig": "collection_id",
+											"orig": "collectionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -633,13 +633,13 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
 											"name": "collection_id",
-											"orig": "collection_id",
+											"orig": "collectionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
