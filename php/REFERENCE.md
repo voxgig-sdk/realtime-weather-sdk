@@ -120,10 +120,10 @@ $air_temperature = $client->AirTemperature();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->AirTemperature()->list();
+$results = $client->AirTemperature()->list(["collection_id" => 1]);
 ```
 
 ### Common Methods
@@ -172,10 +172,10 @@ $collection = $client->Collection();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->Collection()->list();
+$results = $client->Collection()->list(["id" => 1]);
 ```
 
 ### Common Methods
@@ -226,10 +226,10 @@ $rainfall = $client->Rainfall();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->Rainfall()->list();
+$results = $client->Rainfall()->list(["collection_id" => 1]);
 ```
 
 ### Common Methods
@@ -280,10 +280,10 @@ $relative_humidity = $client->RelativeHumidity();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->RelativeHumidity()->list();
+$results = $client->RelativeHumidity()->list(["collection_id" => 1]);
 ```
 
 ### Common Methods
@@ -334,10 +334,10 @@ $wind_direction = $client->WindDirection();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->WindDirection()->list();
+$results = $client->WindDirection()->list(["collection_id" => 1]);
 ```
 
 ### Common Methods
@@ -388,10 +388,10 @@ $wind_speed = $client->WindSpeed();
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->WindSpeed()->list();
+$results = $client->WindSpeed()->list(["collection_id" => 1]);
 ```
 
 ### Common Methods
@@ -581,6 +581,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

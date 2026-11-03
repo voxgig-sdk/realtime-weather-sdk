@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.WindSpeed();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.RealtimeWeatherSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.WindSpeed().list({ "collection_id": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.REALTIME_WEATHER_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "stationId": { "a": true, "h": "Station Id", "n": "stationId", "r": false, "sh": "Station identifier", "t": "`$STRING`", "key$": "stationId", "index$": 0 }, "timestamp": { "a": true, "fo": "date-time", "h": "Timestamp", "n": "timestamp", "r": false, "sh": "Timestamp of the reading", "t": "`$STRING`", "key$": "timestamp", "index$": 1 }, "value": { "a": true, "fo": "double", "h": "Value", "n": "value", "r": false, "sh": "The measured value", "t": "`$NUMBER`", "key$": "value", "index$": 2 } }, "name": "wind_speed", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /collections/{collectionId}/wind-speed", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": 1459, "k": "param", "n": "collection_id", "or": "collectionId", "r": true, "t": "`$INTEGER`", "index$": 0 }], "query": [{ "a": true, "k": "query", "n": "date", "or": "date", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "datetime", "or": "datetime", "r": false, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/collections/{collectionId}/wind-speed", "q": { "exist": ["collection_id", "date", "datetime"] }, "r": { "param": { "collectionId": "collection_id" } }, "s": [{ "lit": "collections" }, { "var": "collection_id" }, { "lit": "wind-speed" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [["$.main.kit.entity.collection"]] }, "key$": "wind_speed", "name__orig": "wind_speed", "Name": "WindSpeed", "name_": "wind_speed", "name-": "wind-speed", "NAME": "WIND_SPEED", "index$": 5 }, { "active": true, "entity": "wind_speed", "key$": "BasicWindSpeedFlow", "kind": "basic", "name": "BasicWindSpeedFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": { "collection_id": "collection01" }, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "wind_speed_ref01" } }], "index$": 0 }] }, 'WindSpeed', { "GET /collections/{collectionId}/wind-speed": { "protocol": "http", "parameters": [{ "name": "collectionId", "in": "path", "required": true, "description": "The collection identifier (1459 for Realtime Weather)", "schema": { "type": "integer", "example": 1459 }, "index$": 0 }, { "name": "date", "in": "query", "required": false, "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)", "schema": { "type": "string", "format": "date" }, "index$": 1 }, { "name": "datetime", "in": "query", "required": false, "description": "Filter by datetime in ISO 8601 format", "schema": { "type": "string", "format": "date-time" }, "index$": 2 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "stationId": { "a": true, "h": "Station Id", "n": "stationId", "r": false, "sh": "Station identifier", "t": "`$STRING`", "key$": "stationId", "index$": 0 }, "timestamp": { "a": true, "fo": "date-time", "h": "Timestamp", "n": "timestamp", "r": false, "sh": "Timestamp of the reading", "t": "`$STRING`", "key$": "timestamp", "index$": 1 }, "value": { "a": true, "fo": "double", "h": "Value", "n": "value", "r": false, "sh": "The measured value", "t": "`$NUMBER`", "key$": "value", "index$": 2 } }, "name": "wind_speed", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /collections/{collectionId}/wind-speed", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": 1459, "k": "param", "n": "collection_id", "or": "collectionId", "r": true, "t": "`$INTEGER`", "index$": 0 }], "query": [{ "a": true, "k": "query", "n": "date", "or": "date", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "datetime", "or": "datetime", "r": false, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/collections/{collectionId}/wind-speed", "q": { "exist": ["collection_id"] }, "r": { "param": { "collectionId": "collection_id" } }, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "collections" }, { "var": "collection_id" }, { "lit": "wind-speed" }], "t": { "req": "`reqdata`", "res": "`body.data`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [["$.main.kit.entity.collection"]] }, "key$": "wind_speed", "name__orig": "wind_speed", "Name": "WindSpeed", "name_": "wind_speed", "name-": "wind-speed", "NAME": "WIND_SPEED", "index$": 5 }, { "active": true, "entity": "wind_speed", "key$": "BasicWindSpeedFlow", "kind": "basic", "name": "BasicWindSpeedFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": { "collection_id": "collection01" }, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "wind_speed_ref01" } }], "index$": 0 }] }, 'WindSpeed', { "GET /collections/{collectionId}/wind-speed": { "protocol": "http", "parameters": [{ "name": "collectionId", "in": "path", "required": true, "description": "The collection identifier (1459 for Realtime Weather)", "schema": { "type": "integer", "example": 1459 }, "index$": 0 }, { "name": "date", "in": "query", "required": false, "description": "Filter by date in ISO 8601 format (YYYY-MM-DD)", "schema": { "type": "string", "format": "date" }, "index$": 1 }, { "name": "datetime", "in": "query", "required": false, "description": "Filter by datetime in ISO 8601 format", "schema": { "type": "string", "format": "date-time" }, "index$": 2 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         const wind_speed_ref01_list = (await wind_speed_ref01_ent.list(wind_speed_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

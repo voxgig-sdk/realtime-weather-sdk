@@ -3,5 +3,20 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Production server",
+      "Station identifier",
+      "Successful response with air temperature data",
+      "Successful response with collection metadata",
+      "Successful response with rainfall data",
+      "Successful response with relative humidity data",
+      "Successful response with wind direction data",
+      "Successful response with wind speed data",
+      "The measured value",
+      "This API provides real-time readings of temperature, humidity, precipitation, and wind conditions across various weather stations in Singapore at intervals of up to one minute. Managed by the National Environment Agency (NEA), it allows users to access detailed weather data for public use.",
+      "Timestamp of the reading"
+    ]
+  }
 }

@@ -79,6 +79,7 @@ module RealtimeWeatherConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -187,9 +188,11 @@ module RealtimeWeatherConfig
                   "select" => {
                     "exist" => [
                       "collection_id",
-                      "date",
-                      "datetime",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -267,6 +270,10 @@ module RealtimeWeatherConfig
                     "exist" => [
                       "id",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -363,9 +370,11 @@ module RealtimeWeatherConfig
                   "select" => {
                     "exist" => [
                       "collection_id",
-                      "date",
-                      "datetime",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -466,9 +475,11 @@ module RealtimeWeatherConfig
                   "select" => {
                     "exist" => [
                       "collection_id",
-                      "date",
-                      "datetime",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -569,9 +580,11 @@ module RealtimeWeatherConfig
                   "select" => {
                     "exist" => [
                       "collection_id",
-                      "date",
-                      "datetime",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -672,9 +685,11 @@ module RealtimeWeatherConfig
                   "select" => {
                     "exist" => [
                       "collection_id",
-                      "date",
-                      "datetime",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

@@ -74,14 +74,16 @@ main: kit: entity: rainfall: {
           q: {
             exist: [
               "collection_id"
-              "date"
-              "datetime"
             ]
           }
           r: {
             param: {
               collectionId: "collection_id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

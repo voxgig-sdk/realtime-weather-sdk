@@ -26,32 +26,46 @@ const PLAN: any[] = [
       "datetime": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "date",
       "datetime"
+    ],
+    "queryArgs": [
+      {
+        "name": "date",
+        "wire": "date"
+      },
+      {
+        "name": "datetime",
+        "wire": "datetime"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "metadata": {
-        "readingType": "temperature",
-        "readingUnit": "deg C",
         "stations": [
           {
-            "deviceId": "x",
             "id": "x",
+            "deviceId": "x",
+            "name": "x",
             "location": {
               "latitude": 1,
               "longitude": 1
-            },
-            "name": "x"
+            }
           }
-        ]
+        ],
+        "readingType": "temperature",
+        "readingUnit": "deg C"
       },
       "data": [
         {
-          "stationId": "x",
           "timestamp": "2026-01-01T00:00:00Z",
+          "stationId": "x",
           "value": 1
         }
       ]
@@ -74,7 +88,12 @@ const PLAN: any[] = [
     ],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
@@ -84,9 +103,9 @@ const PLAN: any[] = [
       "agency": "National Environment Agency (NEA)",
       "datasets": [
         {
-          "coverage": "May 2016 to Feb 2026",
           "datasetId": "x",
           "name": "x",
+          "coverage": "May 2016 to Feb 2026",
           "type": "API"
         }
       ],
@@ -112,32 +131,46 @@ const PLAN: any[] = [
       "datetime": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "date",
       "datetime"
+    ],
+    "queryArgs": [
+      {
+        "name": "date",
+        "wire": "date"
+      },
+      {
+        "name": "datetime",
+        "wire": "datetime"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "metadata": {
-        "readingType": "temperature",
-        "readingUnit": "deg C",
         "stations": [
           {
-            "deviceId": "x",
             "id": "x",
+            "deviceId": "x",
+            "name": "x",
             "location": {
               "latitude": 1,
               "longitude": 1
-            },
-            "name": "x"
+            }
           }
-        ]
+        ],
+        "readingType": "temperature",
+        "readingUnit": "deg C"
       },
       "data": [
         {
-          "stationId": "x",
           "timestamp": "2026-01-01T00:00:00Z",
+          "stationId": "x",
           "value": 1
         }
       ]
@@ -162,32 +195,46 @@ const PLAN: any[] = [
       "datetime": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "date",
       "datetime"
+    ],
+    "queryArgs": [
+      {
+        "name": "date",
+        "wire": "date"
+      },
+      {
+        "name": "datetime",
+        "wire": "datetime"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "metadata": {
-        "readingType": "temperature",
-        "readingUnit": "deg C",
         "stations": [
           {
-            "deviceId": "x",
             "id": "x",
+            "deviceId": "x",
+            "name": "x",
             "location": {
               "latitude": 1,
               "longitude": 1
-            },
-            "name": "x"
+            }
           }
-        ]
+        ],
+        "readingType": "temperature",
+        "readingUnit": "deg C"
       },
       "data": [
         {
-          "stationId": "x",
           "timestamp": "2026-01-01T00:00:00Z",
+          "stationId": "x",
           "value": 1
         }
       ]
@@ -212,32 +259,46 @@ const PLAN: any[] = [
       "datetime": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "date",
       "datetime"
+    ],
+    "queryArgs": [
+      {
+        "name": "date",
+        "wire": "date"
+      },
+      {
+        "name": "datetime",
+        "wire": "datetime"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "metadata": {
-        "readingType": "temperature",
-        "readingUnit": "deg C",
         "stations": [
           {
-            "deviceId": "x",
             "id": "x",
+            "deviceId": "x",
+            "name": "x",
             "location": {
               "latitude": 1,
               "longitude": 1
-            },
-            "name": "x"
+            }
           }
-        ]
+        ],
+        "readingType": "temperature",
+        "readingUnit": "deg C"
       },
       "data": [
         {
-          "stationId": "x",
           "timestamp": "2026-01-01T00:00:00Z",
+          "stationId": "x",
           "value": 1
         }
       ]
@@ -262,32 +323,46 @@ const PLAN: any[] = [
       "datetime": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "date",
       "datetime"
+    ],
+    "queryArgs": [
+      {
+        "name": "date",
+        "wire": "date"
+      },
+      {
+        "name": "datetime",
+        "wire": "datetime"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "metadata": {
-        "readingType": "temperature",
-        "readingUnit": "deg C",
         "stations": [
           {
-            "deviceId": "x",
             "id": "x",
+            "deviceId": "x",
+            "name": "x",
             "location": {
               "latitude": 1,
               "longitude": 1
-            },
-            "name": "x"
+            }
           }
-        ]
+        ],
+        "readingType": "temperature",
+        "readingUnit": "deg C"
       },
       "data": [
         {
-          "stationId": "x",
           "timestamp": "2026-01-01T00:00:00Z",
+          "stationId": "x",
           "value": 1
         }
       ]

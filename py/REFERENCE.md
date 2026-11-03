@@ -113,14 +113,14 @@ air_temperature = client.AirTemperature()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[AirTemperatureEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.AirTemperature().list({"collection_id": 1})
 for air_temperature in results:
-    print(air_temperature)
+    print(air_temperature.data_get())
 ```
 
 ### Common Methods
@@ -166,14 +166,14 @@ collection = client.Collection()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[CollectionEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Collection().list({"id": 1})
 for collection in results:
-    print(collection)
+    print(collection.data_get())
 ```
 
 ### Common Methods
@@ -221,14 +221,14 @@ rainfall = client.Rainfall()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[RainfallEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Rainfall().list({"collection_id": 1})
 for rainfall in results:
-    print(rainfall)
+    print(rainfall.data_get())
 ```
 
 ### Common Methods
@@ -276,14 +276,14 @@ relative_humidity = client.RelativeHumidity()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[RelativeHumidityEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.RelativeHumidity().list({"collection_id": 1})
 for relative_humidity in results:
-    print(relative_humidity)
+    print(relative_humidity.data_get())
 ```
 
 ### Common Methods
@@ -331,14 +331,14 @@ wind_direction = client.WindDirection()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[WindDirectionEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.WindDirection().list({"collection_id": 1})
 for wind_direction in results:
-    print(wind_direction)
+    print(wind_direction.data_get())
 ```
 
 ### Common Methods
@@ -386,14 +386,14 @@ wind_speed = client.WindSpeed()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[WindSpeedEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.WindSpeed().list({"collection_id": 1})
 for wind_speed in results:
-    print(wind_speed)
+    print(wind_speed.data_get())
 ```
 
 ### Common Methods
@@ -582,6 +582,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

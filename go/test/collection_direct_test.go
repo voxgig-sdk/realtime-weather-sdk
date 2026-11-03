@@ -10,6 +10,12 @@ import (
 	"github.com/voxgig-sdk/realtime-weather-sdk/go/core"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const collectionDirectLiveStrict = true
+
 func TestCollectionDirect(t *testing.T) {
 	t.Run("direct-list-collection", func(t *testing.T) {
 		setup := collectionDirectSetup([]any{
@@ -30,7 +36,7 @@ func TestCollectionDirect(t *testing.T) {
 		if setup.live {
 			for _, _liveKey := range []string{"collection01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
-					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
+					liveMiss(t, collectionDirectLiveStrict, "Live test blocked: needs %s via REALTIME_WEATHER_TEST_COLLECTION_ENTID", _liveKey)
 					return
 				}
 			}
@@ -38,6 +44,7 @@ func TestCollectionDirect(t *testing.T) {
 		client := setup.client
 
 		params := map[string]any{}
+		query := map[string]any{}
 		if setup.live {
 			params["id"] = setup.idmap["collection01"]
 		} else {
@@ -48,21 +55,17 @@ func TestCollectionDirect(t *testing.T) {
 			"path":   "collections/{id}/metadata",
 			"method": "GET",
 			"params": params,
+			"query":  query,
 		})
 		if setup.live {
-			// Live-mode leniency is a model decision
-			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
-			// against an arbitrary public API, so the default SKIPS here.
-			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
-				t.Fatalf("list call failed (likely synthetic IDs against live API): %v", err)
+				liveMiss(t, collectionDirectLiveStrict, "Live list failed: %v", err)
 			}
-			if result["ok"] != true {
-				t.Fatalf("list call not ok (likely synthetic IDs against live API): %v", result)
+			if status := core.ToInt(result["status"]); result["ok"] != true || status < 200 || status >= 300 {
+				liveMiss(t, collectionDirectLiveStrict, "Live list failed: %s", liveDescribe(result))
 			}
-			status := core.ToInt(result["status"])
-			if status < 200 || status >= 300 {
-				t.Fatalf("expected 2xx status, got %v", result["status"])
+			if _, ok := liveList(result["data"]); !ok {
+				liveMiss(t, collectionDirectLiveStrict, "Live list returned no list: %s", liveDescribe(result))
 			}
 		} else {
 			if err != nil {
@@ -142,6 +145,12 @@ func collectionDirectSetup(mockres any) *collectionDirectSetupResult {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {
 				idmap = entidMap
+			}
+		}
+		// A path parameter's example stands in for an id *_ENTID does not give.
+		for k, v := range map[string]any{"collection01": 1459} {
+			if idmap[k] == nil {
+				idmap[k] = v
 			}
 		}
 

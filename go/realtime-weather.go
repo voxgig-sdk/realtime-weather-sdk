@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type RealtimeWeatherEntity = core.RealtimeWeatherEntity
+type RealtimeWeatherEntityBase = core.RealtimeWeatherEntityBase
+
+// Deprecated: use RealtimeWeatherEntityBase.
+type RealtimeWeatherEntity = core.RealtimeWeatherEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,22 +46,22 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewAirTemperatureEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntity {
+	core.NewAirTemperatureEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntityBase {
 		return entity.NewAirTemperatureEntity(client, entopts)
 	}
-	core.NewCollectionEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntity {
+	core.NewCollectionEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntityBase {
 		return entity.NewCollectionEntity(client, entopts)
 	}
-	core.NewRainfallEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntity {
+	core.NewRainfallEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntityBase {
 		return entity.NewRainfallEntity(client, entopts)
 	}
-	core.NewRelativeHumidityEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntity {
+	core.NewRelativeHumidityEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntityBase {
 		return entity.NewRelativeHumidityEntity(client, entopts)
 	}
-	core.NewWindDirectionEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntity {
+	core.NewWindDirectionEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntityBase {
 		return entity.NewWindDirectionEntity(client, entopts)
 	}
-	core.NewWindSpeedEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntity {
+	core.NewWindSpeedEntityFunc = func(client *core.RealtimeWeatherSDK, entopts map[string]any) core.RealtimeWeatherEntityBase {
 		return entity.NewWindSpeedEntity(client, entopts)
 	}
 }

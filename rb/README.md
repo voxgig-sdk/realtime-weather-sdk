@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/realtime-weather-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/realtime-weather-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = RealtimeWeatherSDK.new
 
 ```ruby
 begin
-  # list returns an Array of AirTemperature records — iterate directly.
-  airtemperatures = client.AirTemperature.list
+  # list returns an Array of AirTemperature entities, one per record; data_get reads the record.
+  airtemperatures = client.AirTemperature.list({ "collection_id" => 1 })
   airtemperatures.each do |item|
-    puts "#{item["stationId"]}"
+    record = item.data_get
+    puts "#{record["stationId"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  winddirections = client.WindDirection.list()
+  winddirections = client.WindDirection.list({ "collection_id" => 1 })
 rescue => err
   warn "list failed: #{err}"
 end
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = RealtimeWeatherSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-winddirection = client.WindDirection.list()
-puts winddirection
+# list returns an Array of WindDirection entities, one per mock record (raises on
+# error); data_get reads each record.
+winddirections = client.WindDirection.list({ "collection_id" => 1 })
+winddirections.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -220,7 +221,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -230,9 +231,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `RealtimeWeatherError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`RealtimeWeatherError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -343,8 +345,9 @@ Create an instance: `air_temperature = client.AirTemperature`
 #### Example: List
 
 ```ruby
-# list returns an Array of AirTemperature records (raises on error).
-air_temperatures = client.AirTemperature.list
+# list returns an Array of AirTemperature entities, one per record (raises on error).
+air_temperatures = client.AirTemperature.list({ "collection_id" => 1 })
+air_temperatures.each { |item| puts item.data_get }
 ```
 
 
@@ -367,8 +370,9 @@ Create an instance: `collection = client.Collection`
 #### Example: List
 
 ```ruby
-# list returns an Array of Collection records (raises on error).
-collections = client.Collection.list
+# list returns an Array of Collection entities, one per record (raises on error).
+collections = client.Collection.list({ "id" => 1 })
+collections.each { |item| puts item.data_get }
 ```
 
 
@@ -393,8 +397,9 @@ Create an instance: `rainfall = client.Rainfall`
 #### Example: List
 
 ```ruby
-# list returns an Array of Rainfall records (raises on error).
-rainfalls = client.Rainfall.list
+# list returns an Array of Rainfall entities, one per record (raises on error).
+rainfalls = client.Rainfall.list({ "collection_id" => 1 })
+rainfalls.each { |item| puts item.data_get }
 ```
 
 
@@ -419,8 +424,9 @@ Create an instance: `relative_humidity = client.RelativeHumidity`
 #### Example: List
 
 ```ruby
-# list returns an Array of RelativeHumidity records (raises on error).
-relative_humiditys = client.RelativeHumidity.list
+# list returns an Array of RelativeHumidity entities, one per record (raises on error).
+relative_humiditys = client.RelativeHumidity.list({ "collection_id" => 1 })
+relative_humiditys.each { |item| puts item.data_get }
 ```
 
 
@@ -445,8 +451,9 @@ Create an instance: `wind_direction = client.WindDirection`
 #### Example: List
 
 ```ruby
-# list returns an Array of WindDirection records (raises on error).
-wind_directions = client.WindDirection.list
+# list returns an Array of WindDirection entities, one per record (raises on error).
+wind_directions = client.WindDirection.list({ "collection_id" => 1 })
+wind_directions.each { |item| puts item.data_get }
 ```
 
 
@@ -471,8 +478,9 @@ Create an instance: `wind_speed = client.WindSpeed`
 #### Example: List
 
 ```ruby
-# list returns an Array of WindSpeed records (raises on error).
-wind_speeds = client.WindSpeed.list
+# list returns an Array of WindSpeed entities, one per record (raises on error).
+wind_speeds = client.WindSpeed.list({ "collection_id" => 1 })
+wind_speeds.each { |item| puts item.data_get }
 ```
 
 ## Features
@@ -638,7 +646,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 winddirection = client.WindDirection
-winddirection.list()
+winddirection.list({ "collection_id" => 1 })
 
 # winddirection.data_get now returns the winddirection data from the last list
 # winddirection.match_get returns the last match criteria

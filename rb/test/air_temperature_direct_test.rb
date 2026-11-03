@@ -6,6 +6,17 @@ require_relative "../RealtimeWeather_sdk"
 require_relative "runner"
 
 class AirTemperatureDirectTest < Minitest::Test
+  # main.kit.test.live.strict is true (the default is true): a live
+  # request that fails, or a live test missing an input it needs,
+  # fails the test.
+  # An account with no record for a test to read skips it either way.
+  LIVE_STRICT = true
+
+  def live_ok(result)
+    status = Helpers.to_int(result["status"])
+    result["err"].nil? && result["ok"] && status >= 200 && status < 300
+  end
+
   def test_direct_list_air_temperature
     setup = air_temperature_direct_setup([
       { "id" => "direct01" },
@@ -19,42 +30,30 @@ class AirTemperatureDirectTest < Minitest::Test
     if setup[:live]
       ["collection01"].each do |_live_key|
         if setup[:idmap][_live_key].nil?
-          skip "live test needs #{_live_key} via *_ENTID env var (synthetic IDs only)"
-          return
+          Runner.live_miss(LIVE_STRICT, "Live test blocked: needs #{_live_key} via REALTIME_WEATHER_TEST_AIR_TEMPERATURE_ENTID")
         end
       end
     end
     client = setup[:client]
 
     params = {}
-    if setup[:live]
-      params["collection_id"] = setup[:idmap]["collection01"]
-    else
-      params["collection_id"] = "direct01"
-    end
+    query = {}
+    params["collection_id"] = setup[:live] ? setup[:idmap]["collection01"] : "direct01"
 
     result = client.direct({
       "path" => "collections/{collection_id}/air-temperature",
       "method" => "GET",
       "params" => params,
+      "query" => query,
     })
     if setup[:live]
-      # Live mode is lenient: synthetic IDs frequently 4xx and the list-
-      # response shape varies wildly across public APIs. Skip rather than
-      # fail when the call doesn't return a usable list.
-      if !result["err"].nil?
-        skip("list call failed (likely synthetic IDs against live API): #{result["err"]}")
-        return
+      unless live_ok(result)
+        Runner.live_miss(LIVE_STRICT, "Live list failed: " + Runner.live_describe(result))
       end
-      unless result["ok"]
-        skip("list call not ok (likely synthetic IDs against live API)")
-        return
+      if Runner.live_list(result["data"]).nil?
+        Runner.live_miss(LIVE_STRICT, "Live list returned no list: " + Runner.live_describe(result))
       end
-      status = Helpers.to_int(result["status"])
-      if status < 200 || status >= 300
-        skip("expected 2xx status, got #{status}")
-        return
-      end
+      assert Runner.live_list(result["data"]).is_a?(Array)
     else
       assert_nil result["err"]
       assert result["ok"]
@@ -86,11 +85,15 @@ def air_temperature_direct_setup(mockres)
     merged_opts = Runner.live_client_options.merge({
     })
     client = RealtimeWeatherSDK.new(merged_opts)
+    idmap = env["REALTIME_WEATHER_TEST_AIR_TEMPERATURE_ENTID"]
+    # A path parameter's example stands in for an id *_ENTID does not give.
+    idmap = { "collection01" => 1459 }
+      .merge(idmap.is_a?(Hash) ? idmap : {})
     return {
       client: client,
       calls: calls,
       live: true,
-      idmap: {},
+      idmap: idmap.is_a?(Hash) ? idmap : {},
     }
   end
 

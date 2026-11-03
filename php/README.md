@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/realtime-weather-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/realtime-weather-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -41,7 +41,7 @@ $client = new RealtimeWeatherSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $airtemperatures = $client->AirTemperature()->list();
+    $airtemperatures = $client->AirTemperature()->list(["collection_id" => 1]);
     foreach ($airtemperatures as $record) {
         $item = $record->data_get();
         echo $item["stationId"] . "\n";
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $winddirections = $client->WindDirection()->list();
+    $winddirections = $client->WindDirection()->list(["collection_id" => 1]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,7 +133,7 @@ $client = RealtimeWeatherSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$winddirection = $client->WindDirection()->list();
+$winddirection = $client->WindDirection()->list(["collection_id" => 1]);
 print_r(array_map(fn($item) => $item->data_get(), $winddirection));
 ```
 
@@ -226,7 +226,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -236,9 +236,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -350,8 +350,8 @@ Create an instance: `$air_temperature = $client->AirTemperature();`
 #### Example: List
 
 ```php
-// list() returns an array of AirTemperature records (throws on error).
-$air_temperatures = $client->AirTemperature()->list();
+// list() returns an array of AirTemperature entities, one per record (throws on error).
+$air_temperatures = $client->AirTemperature()->list(["collection_id" => 1]);
 ```
 
 
@@ -374,8 +374,8 @@ Create an instance: `$collection = $client->Collection();`
 #### Example: List
 
 ```php
-// list() returns an array of Collection records (throws on error).
-$collections = $client->Collection()->list();
+// list() returns an array of Collection entities, one per record (throws on error).
+$collections = $client->Collection()->list(["id" => 1]);
 ```
 
 
@@ -400,8 +400,8 @@ Create an instance: `$rainfall = $client->Rainfall();`
 #### Example: List
 
 ```php
-// list() returns an array of Rainfall records (throws on error).
-$rainfalls = $client->Rainfall()->list();
+// list() returns an array of Rainfall entities, one per record (throws on error).
+$rainfalls = $client->Rainfall()->list(["collection_id" => 1]);
 ```
 
 
@@ -426,8 +426,8 @@ Create an instance: `$relative_humidity = $client->RelativeHumidity();`
 #### Example: List
 
 ```php
-// list() returns an array of RelativeHumidity records (throws on error).
-$relative_humiditys = $client->RelativeHumidity()->list();
+// list() returns an array of RelativeHumidity entities, one per record (throws on error).
+$relative_humiditys = $client->RelativeHumidity()->list(["collection_id" => 1]);
 ```
 
 
@@ -452,8 +452,8 @@ Create an instance: `$wind_direction = $client->WindDirection();`
 #### Example: List
 
 ```php
-// list() returns an array of WindDirection records (throws on error).
-$wind_directions = $client->WindDirection()->list();
+// list() returns an array of WindDirection entities, one per record (throws on error).
+$wind_directions = $client->WindDirection()->list(["collection_id" => 1]);
 ```
 
 
@@ -478,8 +478,8 @@ Create an instance: `$wind_speed = $client->WindSpeed();`
 #### Example: List
 
 ```php
-// list() returns an array of WindSpeed records (throws on error).
-$wind_speeds = $client->WindSpeed()->list();
+// list() returns an array of WindSpeed entities, one per record (throws on error).
+$wind_speeds = $client->WindSpeed()->list(["collection_id" => 1]);
 ```
 
 ## Features
@@ -645,7 +645,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $winddirection = $client->WindDirection();
-$winddirection->list();
+$winddirection->list(["collection_id" => 1]);
 
 // $winddirection->data_get() now returns the winddirection data from the last list
 // $winddirection->match_get() returns the last match criteria

@@ -146,6 +146,14 @@ func (sdk *RealtimeWeatherSDK) Prepare(fetchargs map[string]any) (map[string]any
 	if method == "" {
 		method = "GET"
 	}
+	method = strings.ToUpper(method)
+
+	allowMethodVal := vs.GetPath(options, []any{"allow", "method"})
+	if !Allowed(allowMethodVal, method) {
+		allowMethod, _ := allowMethodVal.(string)
+		return nil, ctx.MakeError("spec_method_allow",
+			"Method \""+method+"\" not allowed by SDK option allow.method value: \""+allowMethod+"\"")
+	}
 
 	params := ToMapAny(vs.GetProp(fetchargs, "params"))
 	if params == nil {
@@ -205,8 +213,7 @@ func (sdk *RealtimeWeatherSDK) Direct(fetchargs map[string]any) (map[string]any,
 
 // Is this raw-access op permitted by the SDK's allow.op option?
 func (sdk *RealtimeWeatherSDK) opAllowed(op string) bool {
-	allowOp, _ := vs.GetPath(sdk.options, []any{"allow", "op"}).(string)
-	return strings.Contains(allowOp, op)
+	return Allowed(vs.GetPath(sdk.options, []any{"allow", "op"}), op)
 }
 
 func (sdk *RealtimeWeatherSDK) opDenied(op string) map[string]any {
@@ -278,20 +285,34 @@ func (sdk *RealtimeWeatherSDK) rawRequest(fetchargs map[string]any) (map[string]
 		noBody := status == 204 || status == 304 || contentLength == "0"
 
 		var jsonData any
+		var bodyErr error
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
 					jsonData = f()
 				}
 			}
+			if unreadable, _ := vs.GetProp(fm, "unreadable").(bool); unreadable {
+				var failed error
+				if status < 200 || status >= 300 {
+					failed = ctx.MakeError("request_status",
+						fmt.Sprintf("request: %d: %v", status, vs.GetProp(fm, "statusText")))
+				}
+				bodyErr = UnreadableBody(ctx, status, headers, vs.GetProp(fm, "body"),
+					fetchdef["headers"], failed)
+			}
 		}
 
-		return map[string]any{
-			"ok":      status >= 200 && status < 300,
+		out := map[string]any{
+			"ok":      bodyErr == nil && status >= 200 && status < 300,
 			"status":  status,
 			"headers": headers,
 			"data":    jsonData,
-		}, nil
+		}
+		if bodyErr != nil {
+			out["err"] = sdk.cleanErr(ctx, bodyErr)
+		}
+		return out, nil
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
@@ -354,7 +375,7 @@ func (sdk *RealtimeWeatherSDK) Graphql(
 // AirTemperature returns a AirTemperature entity bound to this client.
 // Idiomatic usage: client.AirTemperature(nil).List(nil, nil) or
 // client.AirTemperature(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *RealtimeWeatherSDK) AirTemperature(data map[string]any) RealtimeWeatherEntity {
+func (sdk *RealtimeWeatherSDK) AirTemperature(data map[string]any) RealtimeWeatherEntityBase {
 	return NewAirTemperatureEntityFunc(sdk, data)
 }
 
@@ -362,7 +383,7 @@ func (sdk *RealtimeWeatherSDK) AirTemperature(data map[string]any) RealtimeWeath
 // Collection returns a Collection entity bound to this client.
 // Idiomatic usage: client.Collection(nil).List(nil, nil) or
 // client.Collection(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *RealtimeWeatherSDK) Collection(data map[string]any) RealtimeWeatherEntity {
+func (sdk *RealtimeWeatherSDK) Collection(data map[string]any) RealtimeWeatherEntityBase {
 	return NewCollectionEntityFunc(sdk, data)
 }
 
@@ -370,7 +391,7 @@ func (sdk *RealtimeWeatherSDK) Collection(data map[string]any) RealtimeWeatherEn
 // Rainfall returns a Rainfall entity bound to this client.
 // Idiomatic usage: client.Rainfall(nil).List(nil, nil) or
 // client.Rainfall(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *RealtimeWeatherSDK) Rainfall(data map[string]any) RealtimeWeatherEntity {
+func (sdk *RealtimeWeatherSDK) Rainfall(data map[string]any) RealtimeWeatherEntityBase {
 	return NewRainfallEntityFunc(sdk, data)
 }
 
@@ -378,7 +399,7 @@ func (sdk *RealtimeWeatherSDK) Rainfall(data map[string]any) RealtimeWeatherEnti
 // RelativeHumidity returns a RelativeHumidity entity bound to this client.
 // Idiomatic usage: client.RelativeHumidity(nil).List(nil, nil) or
 // client.RelativeHumidity(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *RealtimeWeatherSDK) RelativeHumidity(data map[string]any) RealtimeWeatherEntity {
+func (sdk *RealtimeWeatherSDK) RelativeHumidity(data map[string]any) RealtimeWeatherEntityBase {
 	return NewRelativeHumidityEntityFunc(sdk, data)
 }
 
@@ -386,7 +407,7 @@ func (sdk *RealtimeWeatherSDK) RelativeHumidity(data map[string]any) RealtimeWea
 // WindDirection returns a WindDirection entity bound to this client.
 // Idiomatic usage: client.WindDirection(nil).List(nil, nil) or
 // client.WindDirection(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *RealtimeWeatherSDK) WindDirection(data map[string]any) RealtimeWeatherEntity {
+func (sdk *RealtimeWeatherSDK) WindDirection(data map[string]any) RealtimeWeatherEntityBase {
 	return NewWindDirectionEntityFunc(sdk, data)
 }
 
@@ -394,7 +415,7 @@ func (sdk *RealtimeWeatherSDK) WindDirection(data map[string]any) RealtimeWeathe
 // WindSpeed returns a WindSpeed entity bound to this client.
 // Idiomatic usage: client.WindSpeed(nil).List(nil, nil) or
 // client.WindSpeed(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *RealtimeWeatherSDK) WindSpeed(data map[string]any) RealtimeWeatherEntity {
+func (sdk *RealtimeWeatherSDK) WindSpeed(data map[string]any) RealtimeWeatherEntityBase {
 	return NewWindSpeedEntityFunc(sdk, data)
 }
 

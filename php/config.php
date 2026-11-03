@@ -93,6 +93,7 @@ class RealtimeWeatherConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -201,9 +202,11 @@ class RealtimeWeatherConfig
                   'select' => [
                     'exist' => [
                       'collection_id',
-                      'date',
-                      'datetime',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -281,6 +284,10 @@ class RealtimeWeatherConfig
                     'exist' => [
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -377,9 +384,11 @@ class RealtimeWeatherConfig
                   'select' => [
                     'exist' => [
                       'collection_id',
-                      'date',
-                      'datetime',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -480,9 +489,11 @@ class RealtimeWeatherConfig
                   'select' => [
                     'exist' => [
                       'collection_id',
-                      'date',
-                      'datetime',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -583,9 +594,11 @@ class RealtimeWeatherConfig
                   'select' => [
                     'exist' => [
                       'collection_id',
-                      'date',
-                      'datetime',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -686,9 +699,11 @@ class RealtimeWeatherConfig
                   'select' => [
                     'exist' => [
                       'collection_id',
-                      'date',
-                      'datetime',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

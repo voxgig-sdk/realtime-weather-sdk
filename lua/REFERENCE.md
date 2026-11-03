@@ -118,10 +118,10 @@ local air_temperature = client:AirTemperature(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:AirTemperature():list()
+local results, err = client:AirTemperature():list({ collection_id = 1 })
 ```
 
 ### Common Methods
@@ -170,10 +170,10 @@ local collection = client:Collection(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:Collection():list()
+local results, err = client:Collection():list({ id = 1 })
 ```
 
 ### Common Methods
@@ -224,10 +224,10 @@ local rainfall = client:Rainfall(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:Rainfall():list()
+local results, err = client:Rainfall():list({ collection_id = 1 })
 ```
 
 ### Common Methods
@@ -278,10 +278,10 @@ local relative_humidity = client:RelativeHumidity(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:RelativeHumidity():list()
+local results, err = client:RelativeHumidity():list({ collection_id = 1 })
 ```
 
 ### Common Methods
@@ -332,10 +332,10 @@ local wind_direction = client:WindDirection(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:WindDirection():list()
+local results, err = client:WindDirection():list({ collection_id = 1 })
 ```
 
 ### Common Methods
@@ -386,10 +386,10 @@ local wind_speed = client:WindSpeed(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:WindSpeed():list()
+local results, err = client:WindSpeed():list({ collection_id = 1 })
 ```
 
 ### Common Methods
@@ -579,6 +579,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and
